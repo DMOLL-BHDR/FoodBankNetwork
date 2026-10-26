@@ -1,0 +1,1482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BHD Food Bank Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --navy:#0B1F3A;--navy2:#12294A;--navy3:#1C3A62;--navyLine:#24446E;
+ --lime:#BCD84A;--limeH:#AAC63A;--limeInk:#1F2A06;--limeBg:#F3F8DF;
+ --teal:#0D7F74;--tealBg:#E2F3F0;--amber:#A86300;--amberBg:#FCF0DA;--red:#BC2F28;--redBg:#FBE5E3;
+ --bg:#F2F4F7;--surface:#fff;--soft:#F8F9FB;--line:#DFE4EB;--line2:#ECEFF3;
+ --ink:#14202F;--ink2:#344255;--muted:#627083;
+ --r:6px;--sh:0 1px 2px rgba(16,24,40,.06);--sh2:0 12px 32px rgba(11,31,58,.18);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--navy3)}
+:focus-visible{outline:2px solid #3B82F6;outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:8px 12px;z-index:100}.skip:focus{left:8px;top:8px}
+.top{background:var(--navy);color:#fff;position:sticky;top:0;z-index:40}
+.top-in{display:flex;align-items:center;gap:18px;padding:0 24px;min-height:58px;max-width:1440px;margin:0 auto}
+.brand{display:flex;flex-direction:column;line-height:1.15;color:#fff;text-decoration:none;white-space:nowrap}
+.brand .wm{font-weight:700;font-size:15px;letter-spacing:.02em}
+.brand .wm i{font-style:normal;color:var(--lime);padding:0 6px;font-weight:500}
+.brand small{color:#93A6C1;font-size:10.5px;letter-spacing:.04em}
+nav.mainnav{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+nav.mainnav a{color:#C3CFE0;text-decoration:none;padding:8px 12px;border-radius:5px;font-weight:500;white-space:nowrap;font-size:13.5px}
+nav.mainnav a:hover{color:#fff;background:var(--navy2)}
+nav.mainnav a[aria-current="page"]{color:#fff;background:var(--navy3);box-shadow:inset 0 -2px 0 var(--lime)}
+.tools{display:flex;align-items:center;gap:8px}
+.rolebox{display:flex;align-items:center;gap:4px;background:var(--navy2);border:1px solid var(--navyLine);border-radius:6px;padding:2px 2px 2px 10px}
+.rolebox label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--lime);font-weight:700;white-space:nowrap}
+.rolebox select{background:transparent;color:#fff;border:0;padding:6px 4px;font-weight:500;max-width:240px;cursor:pointer}
+.rolebox select option,.rolebox select optgroup{color:#111;background:#fff}
+.hbtn{position:relative;display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--navyLine);color:#DCE5F2;border-radius:6px;height:34px;padding:0 10px;cursor:pointer;font-size:12.5px;font-weight:500}
+.hbtn:hover{background:var(--navy2);color:#fff}
+.hbtn .dot{position:absolute;top:-6px;right:-6px;background:var(--lime);color:var(--limeInk);font-size:10px;font-weight:700;border-radius:9px;min-width:17px;height:17px;display:grid;place-items:center;padding:0 4px}
+.demo-strip{background:#0E2645;color:#A9BBD3;font-size:11.5px;text-align:center;padding:4px 12px;border-top:1px solid #1A3459}
+.demo-strip b{color:var(--lime);font-weight:600}
+@media (max-width:1020px){.top-in{flex-wrap:wrap;padding:8px 14px;gap:8px}.brand{order:1;flex:1}.tools{order:2}nav.mainnav{order:3;flex-basis:100%}.hbtn .lbl{display:none}.rolebox select{max-width:160px}}
+main{max-width:1360px;margin:0 auto;padding:24px 24px 120px;outline:none}
+@media (max-width:700px){main{padding:16px 16px 120px}}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.page-head h1{font-size:22px}
+.page-head p{margin:4px 0 0;color:var(--muted);max-width:700px}
+.ph-actions{display:flex;gap:8px;flex-wrap:wrap}
+.sec-h{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;margin:28px 0 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.pad{padding:16px 18px}
+.muted{color:var(--muted)}.small{font-size:12.5px}.tiny{font-size:11.5px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.demo-tag{font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:#E9EDF3;color:#55657A;border-radius:4px;padding:2px 6px;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:34px;padding:0 14px;border-radius:6px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn:hover{border-color:#C5CDD8;background:var(--soft)}
+.btn.primary{background:var(--lime);border-color:var(--lime);color:var(--limeInk)}
+.btn.primary:hover{background:var(--limeH);border-color:var(--limeH)}
+.btn.dark{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn.dark:hover{background:var(--navy3)}
+.btn.danger{color:var(--red);border-color:#F0C9C6}
+.btn.danger:hover{background:var(--redBg)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--navy3)}
+.btn.ghost:hover{background:#EEF2F7}
+.btn.sm{min-height:28px;padding:0 10px;font-size:12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;padding:0;color:var(--navy3);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-size:inherit}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:20px;white-space:nowrap;line-height:18px;border:1px solid transparent}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.85}
+.pill.teal{background:var(--tealBg);color:var(--teal)}
+.pill.amber{background:var(--amberBg);color:var(--amber)}
+.pill.red{background:var(--redBg);color:var(--red)}
+.pill.navy{background:#E4EAF3;color:var(--navy3)}
+.pill.lime{background:var(--limeBg);color:#4F6310;border-color:#DCE9A8}
+.pill.gray{background:#EEF1F4;color:#566375}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.stat{all:unset;box-sizing:border-box;padding:12px 16px;border-right:1px solid var(--line2);cursor:pointer;display:block}
+.stat:hover{background:var(--soft)}
+.stat:focus-visible{outline:2px solid #3B82F6;outline-offset:-2px}
+.stat span{display:block}
+.stat .l{font-size:11.5px;color:var(--muted);font-weight:500}
+.stat .v{font-size:19px;font-weight:700;margin-top:2px;letter-spacing:-.01em}
+.stat .s{font-size:11.5px;color:var(--muted)}
+.stat .v.amber{color:var(--amber)}.stat .v.teal{color:var(--teal)}.stat .v.red{color:var(--red)}
+.stats.static .stat{cursor:default}.stats.static .stat:hover{background:none}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;padding:28px;align-items:center}
+.eyebrow{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hero h1{font-size:30px;margin:10px 0;color:var(--navy);letter-spacing:-.02em}
+.hero h1 em{font-style:normal;box-shadow:inset 0 -.32em 0 #E4F0B8}
+.lede{color:var(--ink2);margin:0;max-width:560px;font-size:15px}
+.acts4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.act{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;gap:12px;align-items:flex-start;background:#fff}
+.act:hover{border-color:#B9C3D0;background:var(--soft)}
+.act:focus-visible{outline:2px solid #3B82F6}
+.act .ic{width:34px;height:34px;border-radius:6px;background:var(--navy);color:var(--lime);display:grid;place-items:center;flex:none}
+.act b{display:block;font-size:14px}
+.act span.d{font-size:12.5px;color:var(--muted);display:block}
+.act.hl{border-color:#D3E59A;background:#FBFDF4}
+.act.hl .ic{background:var(--lime);color:var(--navy)}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding:20px}.hero h1{font-size:24px}}
+@media (max-width:480px){.acts4{grid-template-columns:1fr}}
+.portals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.portals{grid-template-columns:1fr}}
+.portal{padding:16px 18px}
+.portal h3{font-size:15px;display:flex;align-items:center;gap:8px}
+.portal p{margin:4px 0 12px;color:var(--muted);font-size:13px}
+.idlist{display:flex;flex-direction:column;gap:6px}
+.idbtn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:5px;padding:7px 10px;font-size:13px;font-weight:500}
+.idbtn:hover{background:var(--soft);border-color:var(--line)}
+.idbtn:focus-visible{outline:2px solid #3B82F6}
+.idbtn.on{border-color:#C9DD7A;background:var(--limeBg)}
+.idbtn small{color:var(--muted);font-weight:400}
+.tbl-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--soft);white-space:nowrap}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .r{text-align:right}
+.tbl tr[data-open]{cursor:pointer}
+.tbl tr[data-open]:hover td{background:#F6F9FC}
+.tbl .id{font-weight:600;color:var(--navy3);white-space:nowrap}
+.sub{display:block;color:var(--muted);font-size:12px}
+.tbl tr.me td{background:#FBFDF4}
+@media (max-width:760px){
+ .tbl thead{display:none}
+ .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+ .tbl tr{border-bottom:1px solid var(--line);padding:8px 0}
+ .tbl td{display:flex;justify-content:space-between;gap:14px;border:0;padding:4px 14px;text-align:right}
+ .tbl td::before{content:attr(data-label);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;text-align:left;flex:none;max-width:45%}
+}
+.empty{padding:22px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:var(--r);font-size:13px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tab{all:unset;cursor:pointer;padding:9px 12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;font-size:13.5px}
+.tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--navy)}
+.tab:focus-visible{outline:2px solid #3B82F6}
+.tab .pill{margin-left:6px}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.search{flex:1;min-width:220px;position:relative}
+.search input{width:100%;height:36px;border:1px solid var(--line);border-radius:6px;padding:0 12px 0 34px;background:#fff}
+.search svg{position:absolute;left:10px;top:9px;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.chip{all:unset;cursor:pointer;font-size:12.5px;font-weight:500;padding:6px 10px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink2);white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip:focus-visible{outline:2px solid #3B82F6}
+.sel{height:36px;border:1px solid var(--line);border-radius:6px;padding:0 10px;background:#fff}
+.check{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--ink2);cursor:pointer}
+.saved{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:14px;font-size:12.5px}
+.savedchip{display:inline-flex;align-items:center;border:1px solid #DCE9A8;background:var(--limeBg);border-radius:16px;overflow:hidden}
+.savedchip button{all:unset;cursor:pointer;padding:4px 10px;font-weight:500;color:#3F500C}
+.savedchip button+button{padding:4px 9px;border-left:1px solid #DCE9A8}
+.savedchip button:focus-visible{outline:2px solid #3B82F6;outline-offset:-2px}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+@media (max-width:420px){.board{grid-template-columns:1fr}}
+.post{display:flex;gap:12px;padding:12px;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
+.post:hover{border-color:#B9C3D0}
+.post.dim{opacity:.62}
+.thumb{width:76px;height:76px;flex:none;border-radius:5px;overflow:hidden;display:grid;place-items:center;font-size:34px;background:#EEF1F4}
+.thumb.big{width:112px;height:112px;font-size:50px}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.post h3{font-size:14px;margin:4px 0 2px}
+.post .meta{font-size:12px;color:var(--muted)}
+.post .facts{font-size:12.5px;color:var(--ink2);margin-top:4px}
+.qbar{display:flex;height:6px;border-radius:3px;overflow:hidden;background:#E8ECF1;margin-top:8px}
+.qbar .c{background:var(--teal)}.qbar .q{background:#E3A63C}
+.qlegend{font-size:11.5px;color:var(--muted);margin-top:4px}
+.price{font-weight:700;color:var(--navy3)}
+.scrim{position:fixed;inset:0;background:rgba(11,31,58,.38);z-index:50}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(620px,100%);background:#fff;z-index:51;box-shadow:var(--sh2);display:flex;flex-direction:column}
+.dw-head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.dw-head h2{font-size:17px}
+.dw-head .sub{font-size:12.5px;margin-top:3px}
+.dw-body{padding:4px 20px 28px;overflow-y:auto;flex:1}
+.x{all:unset;cursor:pointer;width:32px;height:32px;display:grid;place-items:center;border-radius:6px;color:var(--muted);font-size:18px;flex:none}
+.x:hover{background:var(--soft);color:var(--ink)}
+.x:focus-visible{outline:2px solid #3B82F6}
+.dsec{padding:16px 0;border-bottom:1px solid var(--line2)}
+.dsec:last-child{border-bottom:0}
+.dsec>h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.kv div{min-width:0}.kv dt{font-size:11.5px;color:var(--muted)}.kv dd{margin:1px 0 0;font-weight:500;overflow-wrap:anywhere}
+.kv.k3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:520px){.kv,.kv.k3{grid-template-columns:1fr 1fr}}
+.qty4{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.qty4 div{padding:8px 10px;border-right:1px solid var(--line2)}.qty4 div:last-child{border-right:0}
+.qty4 b{display:block;font-size:17px}.qty4 span{font-size:11.5px;color:var(--muted)}
+.modal-wrap{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(11,31,58,.42)}
+.modal{background:#fff;border-radius:8px;width:min(560px,100%);max-height:92vh;overflow:auto;box-shadow:var(--sh2)}
+.modal .mh{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.modal .mh h2{font-size:16px}
+.modal .mb{padding:16px 20px}
+.modal .mf{padding:12px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;background:var(--soft);position:sticky;bottom:0;flex-wrap:wrap}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fgrid .full{grid-column:1/-1}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}}
+.field label,.flabel{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:4px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{width:100%;height:36px;border:1px solid var(--line);border-radius:6px;padding:0 10px;background:#fff}
+.field textarea{height:72px;padding:8px 10px;resize:vertical}
+.field .hint{font-size:11.5px;color:var(--muted);margin-top:3px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#7FA0CC;outline:2px solid #DCE7F7}
+.ferr{background:var(--redBg);color:var(--red);border-radius:6px;padding:8px 10px;font-size:12.5px;margin-bottom:12px;font-weight:500}
+.note{background:var(--soft);border:1px solid var(--line2);border-radius:6px;padding:10px 12px;font-size:12.5px;color:var(--ink2)}
+.note.lime{background:var(--limeBg);border-color:#DCE9A8}
+.note.amber{background:var(--amberBg);border-color:#F2D9A8}
+.note.red{background:var(--redBg);border-color:#F0C9C6}
+.note.navy{background:#EAF0F7;border-color:#D3DEEC}
+.note+.note{margin-top:8px}
+.internal{border:1px dashed #9AAAC0;background:#F5F7FA;border-radius:6px;padding:12px;margin-top:12px}
+.internal .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#4A5B73;margin-bottom:6px}
+form .t-sale,form .t-food,form .t-cap{display:none}
+form[data-type="sale"] .t-sale,form[data-type="shared"] .t-sale{display:block}
+form[data-type="donate"] .t-food,form[data-type="sale"] .t-food,form[data-type="shared"] .t-food,form[data-type="need"] .t-food{display:block}
+form[data-type="capacity"] .t-cap{display:block}
+.stops{list-style:none;margin:0;padding:0}
+.stop{display:grid;grid-template-columns:26px 1fr auto;gap:10px;padding:8px 0;align-items:start;border-bottom:1px dashed var(--line2)}
+.stop:last-child{border-bottom:0}
+.stop .n{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+.stop .n.pu{background:var(--lime);color:var(--navy)}
+.stop .acts{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.checks{list-style:none;margin:0;padding:0}
+.checks li{display:flex;gap:10px;padding:6px 0;font-size:13px;align-items:flex-start}
+.ck{width:18px;height:18px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:1px}
+.ck.ok{background:var(--tealBg);color:var(--teal)}.ck.no{background:var(--redBg);color:var(--red)}.ck.warn{background:var(--amberBg);color:var(--amber)}
+.cmt{padding:8px 0;border-bottom:1px solid var(--line2);font-size:13px}
+.cmt:last-child{border-bottom:0}
+.cmt .who{font-weight:600;font-size:12.5px}
+.alloc{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line2);flex-wrap:wrap}
+.alloc:last-child{border-bottom:0}
+.loadbar{height:8px;background:#E8ECF1;border-radius:4px;overflow:hidden;margin-top:4px}
+.loadbar span{display:block;height:100%;background:var(--navy3)}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.photos figure{margin:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.photos img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.photos figcaption{font-size:11.5px;padding:6px 8px;color:var(--muted)}
+.opps{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px}
+@media (max-width:520px){.opps{grid-template-columns:1fr}}
+.opp{padding:18px;display:flex;flex-direction:column;gap:12px;border-top:3px solid var(--lime)}
+.opp.done{border-top-color:var(--teal)}.opp.review{border-top-color:var(--red)}
+.opp .oid{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.03em}
+.opp h3{font-size:17px;color:var(--navy)}
+.route{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px;font-weight:500}
+.route .arr{color:var(--muted)}
+.route .city{background:var(--soft);border:1px solid var(--line2);border-radius:4px;padding:1px 7px}
+.route .city.o{background:var(--limeBg);border-color:#DCE9A8}
+.fbar{height:12px;border-radius:6px;background:#E6EAF0;display:flex;overflow:hidden}
+.fbar .c{background:var(--teal)}
+.fbar .p{background:repeating-linear-gradient(45deg,#D99A2B 0 5px,#EFC46F 5px 10px)}
+.flegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;margin-top:6px}
+.flegend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line2);border-radius:6px}
+.big3 div{padding:8px 12px;border-right:1px solid var(--line2);min-width:0}.big3 div:last-child{border-right:0}
+.big3 span{font-size:11.5px;color:var(--muted);display:block}.big3 b{font-size:15px}
+.funds-note{font-size:12px;color:var(--ink2);background:var(--soft);border-radius:5px;padding:8px 10px}
+.nextact{font-size:13px}
+.nextact b{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:6px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.cal .dh{background:var(--soft);padding:6px 8px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.cal .day{background:#fff;min-height:96px;padding:6px;min-width:0}
+.cal .day.today{background:#FBFDF3}
+.cal .day .dn{font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.cal .day.today .dn{color:var(--navy)}
+.cal .day.wk{background:#FAFBFC}
+.ev{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;font-size:11.5px;padding:3px 6px;border-radius:4px;margin-bottom:3px;border-left:3px solid var(--navy3);background:#EEF2F8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev.teal{border-left-color:var(--teal);background:var(--tealBg)}.ev.amber{border-left-color:var(--amber);background:var(--amberBg)}.ev.red{border-left-color:var(--red);background:var(--redBg)}.ev.lime{border-left-color:#8FA92A;background:var(--limeBg)}
+.ev:focus-visible{outline:2px solid #3B82F6}
+@media (max-width:760px){.cal{grid-template-columns:1fr}.cal .dh{display:none}.cal .day{min-height:0}.cal .day.noev{display:none}}
+.queue{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
+.qg header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line2);gap:8px}
+.qg header h3{font-size:13.5px}
+.qg ul{list-style:none;margin:0;padding:4px 0}
+.qg li button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:7px 14px;font-size:13px}
+.qg li button:hover{background:var(--soft)}
+.qg li button:focus-visible{outline:2px solid #3B82F6;outline-offset:-2px}
+.qg .none{padding:10px 14px;font-size:12.5px;color:var(--muted)}
+.qg.sev-red header{box-shadow:inset 3px 0 0 var(--red)}.qg.sev-amber header{box-shadow:inset 3px 0 0 var(--amber)}.qg.sev-teal header{box-shadow:inset 3px 0 0 var(--teal)}.qg.sev-lime header{box-shadow:inset 3px 0 0 var(--lime)}
+.qg.empty-g{opacity:.7}
+.toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(560px,92vw)}
+.toast{background:var(--navy);color:#fff;padding:10px 14px;border-radius:6px;font-size:13px;box-shadow:var(--sh2);border-left:4px solid var(--lime);pointer-events:auto;width:100%}
+.toast.err{border-left-color:#F27A72}
+.notif{position:absolute;right:16px;top:62px;width:min(400px,calc(100vw - 24px));background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:var(--sh2);z-index:45;max-height:70vh;overflow:auto}
+.notif header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line2);position:sticky;top:0;background:#fff}
+.notif ul{list-style:none;margin:0;padding:0}
+.notif li button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:9px 14px;border-bottom:1px solid var(--line2);font-size:13px}
+.notif li button:hover{background:var(--soft)}
+.notif li.unread button{box-shadow:inset 3px 0 0 var(--lime);background:#FCFEF6}
+.notif time{display:block;font-size:11px;color:var(--muted)}
+.gbtn{position:fixed;right:20px;bottom:20px;z-index:44;box-shadow:var(--sh2)}
+.guide{position:fixed;right:20px;bottom:20px;width:min(410px,calc(100vw - 24px));max-height:calc(100vh - 120px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--sh2);z-index:45}
+.guide header{background:var(--navy);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;position:sticky;top:0;z-index:1}
+.guide header h2{font-size:14px}
+.guide header p{margin:2px 0 0;font-size:11.5px;color:#A9BBD3}
+.guide .x{color:#C3CFE0}.guide .x:hover{background:var(--navy2);color:#fff}
+.guide ol{list-style:none;margin:0;padding:6px 0}
+.gs{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:9px 14px}
+.gs .n{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted)}
+.gs.done .n{background:var(--teal);border-color:var(--teal);color:#fff}
+.gs.cur{background:var(--limeBg)}
+.gs.cur .n{border-color:var(--navy);color:var(--navy)}
+.gs b{font-size:13px;display:block;font-weight:600}
+.gs .who{font-size:11.5px;color:var(--muted)}
+.gs .row{margin-top:6px;gap:6px}
+.guide footer{padding:10px 14px;border-top:1px solid var(--line2);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.foot{max-width:1360px;margin:-90px auto 0;padding:0 24px 90px;color:var(--muted);font-size:12px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+@media (prefers-reduced-motion:no-preference){.drawer{animation:slin .18s ease-out}.toast{animation:fade .15s ease-out}}
+@keyframes slin{from{transform:translateX(24px);opacity:.6}to{transform:none;opacity:1}}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+ <div class="top-in">
+  <a class="brand" href="#/home" aria-label="BHD Food Bank Network — home"><span class="wm">BHD<i>|</i>Food Bank Network</span><small>A working concept powered by Backhaul Direct</small></a>
+  <nav class="mainnav" id="nav" aria-label="Primary"></nav>
+  <div class="tools">
+   <div class="rolebox"><label for="roleSel">Demo role</label><select id="roleSel"></select></div>
+   <button class="hbtn" id="bellBtn" data-act="toggleNotif" aria-haspopup="true" aria-expanded="false"></button>
+  </div>
+ </div>
+ <div class="demo-strip"><b>Demonstration prototype.</b> All organizations, contacts, quantities, prices, routes and figures are fictional demo data. No payments are collected and no live systems are connected.</div>
+ <div id="notif" hidden></div>
+</header>
+<main id="main" tabindex="-1"></main>
+<div class="foot"><span>BHD | Food Bank Network — working concept. Demo changes are saved in this browser only.</span><button class="link" data-act="about">About this prototype</button><button class="link" data-act="resetAsk">Reset demo</button></div>
+<div id="scrim" class="scrim" hidden data-act="closeDrawer"></div>
+<aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="dwTitle" hidden></aside>
+<div id="modalRoot"></div>
+<div id="guideRoot"></div>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+/* ============ helpers ============ */
+const VER=4, LS_KEY='bhd-food-bank-network-demo';
+const DAY=864e5;
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{const a=String(s).split('-').map(Number);return new Date(a[0],a[1]-1,a[2])};
+const todayISO=()=>iso(new Date());
+const addDays=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return iso(d)};
+const dOff=n=>addDays(todayISO(),n);
+const isWknd=s=>{const g=parse(s).getDay();return g===0||g===6};
+const bizOn=s=>{while(isWknd(s))s=addDays(s,1);return s};
+const bizBack=s=>{while(isWknd(s))s=addDays(s,-1);return s};
+const addBiz=(s,n)=>{let c=0;while(c<n){s=addDays(s,1);if(!isWknd(s))c++}return s};
+const fmtD=s=>s?parse(s).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}):'—';
+const fmtS=s=>s?parse(s).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'—';
+const rel=s=>{const n=Math.round((parse(s)-parse(todayISO()))/DAY);return n===0?'today':n===1?'tomorrow':n===-1?'yesterday':n>0?'in '+n+' days':(-n)+' days ago'};
+const fmtT=t=>new Date(t).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+const r2=n=>Math.round(n*100)/100;
+const money=n=>{n=r2(n);const whole=Math.abs(n-Math.round(n))<0.005;return '$'+n.toLocaleString('en-US',{minimumFractionDigits:whole?0:2,maximumFractionDigits:whole?0:2})};
+const num=n=>Math.round(n).toLocaleString('en-US');
+const city=s=>String(s).split(',')[0];
+const pct=(a,b)=>b>0?Math.max(0,Math.min(100,a/b*100)):0;
+
+const ICON={
+ search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+ box:'<path d="M3 7.5l9-4.5 9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/>',
+ truck:'<path d="M2 6h12v10H2zM14 9h4.5L22 12.5V16h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>',
+ heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.2a4.3 4.3 0 017.5 2.6C19.5 15.4 12 20 12 20z"/>',
+ bell:'<path d="M6 9a6 6 0 1112 0c0 6.5 2.5 8 2.5 8h-17S6 15.5 6 9"/><path d="M10 20.5a2 2 0 004 0"/>',
+ food:'<path d="M4 10h16l-1.5 9.5h-13z"/><path d="M8 10V7a4 4 0 018 0v3"/>',
+ ops:'<rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4M7 13l3-3 2 2 5-5"/>',
+ play:'<circle cx="12" cy="12" r="9"/><path d="M10 8.8l5 3.2-5 3.2z"/>'
+};
+const icon=(n,s=18)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
+const pill=(t,tone='gray')=>`<span class="pill ${tone}">${esc(t)}</span>`;
+
+function demoPhoto(caption){
+ const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 200'><rect width='320' height='200' fill='#DCE3EC'/><rect y='150' width='320' height='50' fill='#B9C4D2'/><rect x='18' y='28' width='96' height='122' fill='#C9D2DE' stroke='#AEB9C8'/><g fill='#D2AE72' stroke='#9C7B45' stroke-width='1.5'><rect x='128' y='96' width='58' height='54'/><rect x='190' y='96' width='58' height='54'/><rect x='252' y='96' width='54' height='54'/><rect x='158' y='46' width='58' height='50'/><rect x='220' y='46' width='58' height='50'/></g><rect x='120' y='150' width='192' height='7' fill='#8C6A3A'/><rect width='320' height='22' fill='#0B1F3A' fill-opacity='.8'/><text x='10' y='15' font-family='Arial' font-size='11' fill='#ffffff'>${caption.replace(/[<>&'"]/g,'')}</text><text x='310' y='192' font-family='Arial' font-size='9' fill='#4b5a6e' text-anchor='end'>Demo photo placeholder</text></svg>`;
+ return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
+
+/* ============ reference data (fictional) ============ */
+const ORGS={
+ crossroads:{name:'Crossroads Community Food Bank',short:'Crossroads',type:'foodbank',city:'Indianapolis, IN',lat:39.77,lng:-86.16,contact:'Dana Whitfield'},
+ eastgate:{name:'Eastgate Regional Food Bank',short:'Eastgate',type:'foodbank',city:'Muncie, IN',lat:40.19,lng:-85.39,contact:'Marcus Lee'},
+ wabash:{name:'Wabash Valley Food Network',short:'Wabash Valley',type:'foodbank',city:'Lafayette, IN',lat:40.42,lng:-86.88,contact:'Priya Nandakumar'},
+ heartland:{name:'Heartland Plains Pantry Alliance',short:'Heartland Plains',type:'foodbank',city:'Kokomo, IN',lat:40.49,lng:-86.13,contact:'Ruth Okafor'},
+ lakeshore:{name:'Lakeshore Fresh Produce Co.',short:'Lakeshore Fresh',type:'donor',city:'Benton Harbor, MI',lat:42.12,lng:-86.45,contact:'Elena Ruiz'},
+ prairiemill:{name:'Prairie Mill Foods',short:'Prairie Mill',type:'donor',city:'Fort Wayne, IN',lat:41.08,lng:-85.14,contact:'Sam Ostrowski'},
+ cedar:{name:'Cedar Ridge Dairy',short:'Cedar Ridge',type:'donor',city:'Columbus, OH',lat:39.96,lng:-83.0,contact:'Hannah Brooks'},
+ northline:{name:'Northline Mutual Insurance',short:'Northline Mutual',type:'sponsor',city:'Indianapolis, IN',contact:'Grace Holloway'},
+ keystone:{name:'Keystone Health Partners',short:'Keystone Health',type:'sponsor',city:'Carmel, IN',contact:'Tom Brennan'},
+ riverbend:{name:'Riverbend Credit Union',short:'Riverbend CU',type:'sponsor',city:'Fishers, IN',contact:'Alicia Moreno'},
+ lakeview:{name:'Lakeview Transport',short:'Lakeview Transport',type:'carrier',city:'Grand Rapids, MI',lat:42.96,lng:-85.67,contact:'Dispatch desk'},
+ bhd:{name:'BHD Operations',short:'BHD Operations',type:'ops',city:'Indianapolis, IN',lat:39.77,lng:-86.16,contact:'Jordan Reyes'}
+};
+const ROLES=[
+ {id:'crossroads',group:'Food Banks',kind:'foodbank'},
+ {id:'eastgate',group:'Food Banks',kind:'foodbank'},
+ {id:'wabash',group:'Food Banks',kind:'foodbank'},
+ {id:'lakeshore',group:'Donors & Sponsors',kind:'donor'},
+ {id:'northline',group:'Donors & Sponsors',kind:'sponsor'},
+ {id:'keystone',group:'Donors & Sponsors',kind:'sponsor'},
+ {id:'riverbend',group:'Donors & Sponsors',kind:'sponsor'},
+ {id:'bhd',group:'BHD Operations',kind:'ops'}
+];
+const CAPS=[
+ {id:'cap-lakeview',name:'Lakeview Transport — return trip',kind:'Return-trip capacity',equip:"53' reefer",pallets:22,lbs:40000,temps:['Refrigerated','Frozen','Dry'],avail:'Grand Rapids, MI → Indianapolis, IN · empty return leg this week',cost:1650,note:'Repositions through southwest Michigan; lower cost than a dedicated truck.'},
+ {id:'cap-coldline',name:'Midwest Coldline Carriers',kind:'Approved carrier',equip:"53' reefer",pallets:26,lbs:44000,temps:['Refrigerated','Frozen','Dry'],avail:'Regional coverage · 24-hour notice',cost:2150},
+ {id:'cap-fresh',name:'Fresh Connect fleet (Gleaners)',kind:'Food-bank fleet · potential pilot',equip:"26' reefer box truck",pallets:12,lbs:20000,temps:['Refrigerated','Dry'],avail:'Illustrative weekday availability',cost:900,note:'Potential pilot relationship under discussion — not a committed customer or committed capacity. All figures illustrative.'},
+ {id:'cap-crossway',name:'Crossway Dry Van Co.',kind:'Approved carrier',equip:"53' dry van",pallets:26,lbs:45000,temps:['Dry'],avail:'Indiana statewide · 48-hour notice',cost:1400}
+];
+const ROUTES=[
+ {id:'R-1',name:'Indianapolis → Muncie produce shuttle',freq:'Weekly',runs:4,perRun:640,serves:'Eastgate Regional Food Bank'},
+ {id:'R-2',name:'Fort Wayne → Kokomo dry goods',freq:'Every other week',runs:2,perRun:520,serves:'Heartland Plains Pantry Alliance'},
+ {id:'R-3',name:'Benton Harbor → Lafayette seasonal produce',freq:'Weekly in season',runs:4,perRun:780,serves:'Wabash Valley Food Network'}
+];
+const TYPES={
+ donate:{label:'Donation',tone:'teal',emoji:'🥬',bg:'#E7F2DA',verb:'Request pallets',dl:'Pickup by'},
+ sale:{label:'For purchase',tone:'navy',emoji:'🥫',bg:'#F1ECDD',verb:'Request to purchase',dl:'Pickup by'},
+ need:{label:'Food needed',tone:'amber',emoji:'📋',bg:'#F6EEDC',dl:'Needed by'},
+ shared:{label:'Shared order',tone:'lime',emoji:'🤝',bg:'#EEF4DA',verb:'Join shared order',dl:'Commit by'},
+ capacity:{label:'Truck capacity',tone:'gray',emoji:'🚚',bg:'#E3EAF3',verb:'Request space',dl:'Available until'}
+};
+const ALLOCABLE=['donate','sale','shared','capacity'];
+
+/* ============ seed ============ */
+function seed(){
+ const now=Date.now(),H=36e5;
+ const S0={v:VER,role:'bhd',n:500,pSeq:1001,shSeq:2042,spSeq:304,
+  ui:{f:{q:'',type:'all',temp:'all',exp:false},foodTab:'board',tTab:'ship',tFilter:'active',spFilter:'open',guide:true,notifOpen:false,lens:null},
+  profiles:{
+   crossroads:{open:7,close:15,refrig:12,frozen:6,dry:40,temps:['Dry','Refrigerated','Frozen'],dock:'2 dock doors; 24-hour appointment notice; pallet jack on site',recurring:'Fresh produce weekly; shelf-stable protein monthly'},
+   eastgate:{open:8,close:16,refrig:8,frozen:0,dry:24,temps:['Dry','Refrigerated'],dock:'1 dock door; call on arrival',recurring:'Produce and dairy every other week'},
+   wabash:{open:7,close:14,refrig:6,frozen:4,dry:20,temps:['Dry','Refrigerated','Frozen'],dock:'Single dock; call 30 minutes ahead',recurring:'Frozen protein monthly; produce in season'},
+   heartland:{open:9,close:15,refrig:4,frozen:2,dry:30,temps:['Dry','Refrigerated','Frozen'],dock:'Ground-level only — liftgate required',recurring:'Shelf-stable protein monthly'}
+  },
+  posts:[],shipments:[],sponsorships:[],notes:[],saved:[],adoptions:[],
+  campaign:{orgId:'riverbend',name:'Riverbend Neighbors Match',ratio:1,max:5000}
+ };
+ const P=(o)=>Object.assign({status:'open',reviewed:true,created:now-2*DAY,comments:[],allocs:[],shipmentId:null,price:null,desc:'',scn:false},o);
+ S0.posts=[
+  P({id:'P-1002',type:'sale',title:'Canned green beans & sweet corn — discounted',product:'Canned vegetables (#10 and 15 oz cans)',orgId:'prairiemill',location:'Fort Wayne, IN',lat:41.08,lng:-85.14,pallets:12,lbs:18000,temp:'Dry',shelfLife:'Best by Aug 2027',shelfDays:300,deadline:bizOn(dOff(9)),receiving:'Standard dock; 48×40 pallets, double-stack OK',transport:'Needs coordinated transportation',price:0.22,desc:'Label-change inventory offered below wholesale. This is a purchase, not a donation.',photo:{emoji:'🥫',bg:'#F1ECDD'},created:now-3*DAY,
+   allocs:[{id:'A-401',orgId:'crossroads',pallets:4,status:'requested',at:now-20*H}]}),
+  P({id:'P-1003',type:'need',title:'Shelf-stable protein needed',product:'Peanut butter, canned chicken or tuna',orgId:'heartland',location:'Kokomo, IN',lat:40.49,lng:-86.13,pallets:6,lbs:7200,temp:'Dry',shelfLife:'Shelf-stable, 6+ months preferred',shelfDays:180,deadline:bizOn(dOff(14)),receiving:'Ground-level dock — liftgate required',transport:'Can share a route with nearby deliveries',desc:'Monthly protein gap for partner pantries in three counties.',photo:{emoji:'🥜',bg:'#F4EBDD'},created:now-4*DAY,
+   comments:[{id:'C-1',orgId:'crossroads',text:'We have the same need this month — happy to combine an order if a donor turns up.',at:now-30*H}]}),
+  P({id:'P-1004',type:'shared',title:'Shared order: frozen chicken thighs — 8 pallets open',product:'Frozen chicken thighs, 40 lb cases (IQF)',orgId:'eastgate',location:'Holland, MI',lat:42.79,lng:-86.11,pallets:22,lbs:22000,temp:'Frozen',shelfLife:'12 months frozen at 0°F or below',shelfDays:365,deadline:bizOn(dOff(6)),receiving:'Frozen receiving at 0°F; appointment required',transport:'Ships as one truckload once all 22 pallets are committed',price:0.98,desc:'Supplier price unlocks at a full truckload. Join with the pallets you need; each participant pays for its own share.',photo:{emoji:'🍗',bg:'#F6E7DF'},created:now-5*DAY,
+   allocs:[{id:'A-402',orgId:'eastgate',pallets:10,status:'confirmed',at:now-5*DAY},{id:'A-403',orgId:'heartland',pallets:4,status:'confirmed',at:now-3*DAY}]}),
+  P({id:'P-1005',type:'capacity',title:'Return trip: Grand Rapids, MI → Indianapolis, IN',product:"53' reefer, empty return leg",orgId:'lakeview',location:'Grand Rapids, MI',lat:42.96,lng:-85.67,pallets:22,lbs:40000,temp:'Refrigerated',shelfLife:'—',shelfDays:0,deadline:bizOn(dOff(4)),receiving:'—',transport:'Can reposition through Benton Harbor or Holland, MI',desc:'Illustrative capacity. Rates are quoted through BHD Operations.',photo:{emoji:'🚚',bg:'#E3EAF3'},created:now-1*DAY}),
+  P({id:'P-1006',type:'donate',title:'Yogurt cups — short-dated',product:'Yogurt cups, 6 oz (mixed flavors)',orgId:'cedar',location:'Columbus, OH',lat:39.96,lng:-83.0,pallets:4,lbs:4800,temp:'Refrigerated',shelfLife:'14 days remaining',shelfDays:14,deadline:bizOn(dOff(3)),receiving:'Refrigerated receipt at 34–40°F',transport:'Needs coordinated transportation',desc:'Overrun from a promotional pack. Donated at no cost.',photo:{emoji:'🥛',bg:'#E6EEF6'},created:now-10*H,reviewed:false,
+   allocs:[{id:'A-404',orgId:'heartland',pallets:1,status:'confirmed',at:now-8*H},{id:'A-405',orgId:'wabash',pallets:2,status:'requested',at:now-6*H}],
+   comments:[{id:'C-2',orgId:'wabash',text:'Could you hold two pallets until Thursday? Our reefer space frees up then.',at:now-6*H}]}),
+  P({id:'P-1007',type:'donate',title:'Day-old bakery bread',product:'Sliced bread and buns',orgId:'prairiemill',location:'Fort Wayne, IN',lat:41.08,lng:-85.14,pallets:3,lbs:1800,temp:'Dry',shelfLife:'3 days',shelfDays:3,deadline:dOff(-1),receiving:'Any dock',transport:'Recipient pickup',desc:'Offer posted last week; pickup window has passed.',photo:{emoji:'🍞',bg:'#F5ECDC'},created:now-6*DAY,
+   allocs:[{id:'A-406',orgId:'crossroads',pallets:2,status:'requested',at:now-5*DAY}]})
+ ];
+ const doc=(name,t)=>({name,at:t});
+ const p38=bizBack(dOff(-12)),p39=bizBack(dOff(-6)),d39=addBiz(p39,1),p40=bizOn(dOff(2));
+ S0.shipments=[
+  {id:'SH-2041',title:'Yogurt & cottage cheese',product:'Yogurt and cottage cheese',donorId:'cedar',postId:null,temp:'Refrigerated',shelfDays:12,deadline:todayISO(),pickup:{orgId:'cedar',loc:'Columbus, OH',date:todayISO(),win:'05:00–07:00'},
+   stops:[{orgId:'heartland',pallets:3,lbs:3600,date:todayISO(),win:'11:00–14:00',appt:'accepted'}],miles:205,stage:'in_transit',foodOk:true,
+   quote:{linehaul:820,fuel:150,stopoffs:0,handling:110,coord:100,status:'approved',ver:1},internal:{carrierCost:780,note:'Participant-paid; no sponsorship requested.'},assignment:'cap-coldline',participantCommit:true,
+   exceptions:[{id:'EX-1',sev:'red',text:'Reefer temperature alarm reported at 41°F in transit — driver verifying unit setting (target 34–38°F).',at:now-1.5*H,resolved:false}],
+   docs:[doc('Transportation quote v1 (illustrative)',now-3*DAY),doc('Rate confirmation (demo)',now-2*DAY),doc('Bill of lading (demo)',now-5*H)],pod:null,created:now-3*DAY},
+  {id:'SH-2040',title:'Canned fruit & tomato products',product:'Canned fruit and tomato products',donorId:'prairiemill',postId:null,temp:'Dry',shelfDays:400,deadline:bizOn(dOff(4)),pickup:{orgId:'prairiemill',loc:'Fort Wayne, IN',date:p40,win:'07:00–09:00'},
+   stops:[{orgId:'wabash',pallets:6,lbs:9000,date:p40,win:'10:00–13:00',appt:'requested'}],miles:132,stage:'planned',foodOk:true,
+   quote:{linehaul:640,fuel:120,stopoffs:0,handling:110,coord:80,status:'approved',ver:1},internal:{carrierCost:620,note:'Crossway prefers 48-hour notice.'},assignment:'cap-crossway',participantCommit:false,
+   exceptions:[],docs:[doc('Transportation quote v1 (illustrative)',now-2*DAY)],pod:null,created:now-2*DAY},
+  {id:'SH-2039',title:'Milk & cheese — shared delivery',product:'Milk and shredded cheese',donorId:'cedar',postId:null,temp:'Refrigerated',shelfDays:18,deadline:p39,pickup:{orgId:'cedar',loc:'Columbus, OH',date:p39,win:'05:00–07:00'},
+   stops:[{orgId:'crossroads',pallets:7,lbs:8400,date:p39,win:'12:00–15:00',appt:'accepted',recPallets:7,recLbs:8400},{orgId:'eastgate',pallets:5,lbs:6000,date:d39,win:'08:00–11:00',appt:'accepted',recPallets:5,recLbs:6000}],miles:260,stage:'delivered',foodOk:true,
+   quote:{linehaul:1350,fuel:260,stopoffs:150,handling:110,coord:120,status:'approved',ver:1},internal:{carrierCost:1500,note:''},assignment:'cap-coldline',participantCommit:false,exceptions:[],
+   docs:[doc('Transportation quote v1 (illustrative)',now-9*DAY),doc('Rate confirmation (demo)',now-8*DAY),doc('Bill of lading (demo)',now-6*DAY),doc('Proof of delivery (demo)',now-5*DAY)],
+   pod:{date:d39,at:now-5*DAY,receiver:'Dana Whitfield; Marcus Lee',notes:'Both stops received in full. Temperatures logged 35–36°F.',photos:[{src:demoPhoto('SH-2039 - Crossroads dock, Indianapolis'),approved:true},{src:demoPhoto('SH-2039 - Eastgate receiving, Muncie'),approved:true}]},created:now-10*DAY},
+  {id:'SH-2038',title:'Canned vegetables & dry pasta',product:'Canned vegetables and dry pasta',donorId:'prairiemill',postId:null,temp:'Dry',shelfDays:300,deadline:p38,pickup:{orgId:'prairiemill',loc:'Fort Wayne, IN',date:p38,win:'07:00–09:00'},
+   stops:[{orgId:'heartland',pallets:10,lbs:12000,date:p38,win:'11:00–14:00',appt:'accepted',recPallets:10,recLbs:12000}],miles:98,stage:'delivered',foodOk:true,
+   quote:{linehaul:960,fuel:170,stopoffs:0,handling:110,coord:160,status:'approved',ver:1},internal:{carrierCost:1090,note:'Repeat lane — candidate for an adopted route.'},assignment:'cap-crossway',participantCommit:false,exceptions:[],
+   docs:[doc('Transportation quote v1 (illustrative)',now-15*DAY),doc('Rate confirmation (demo)',now-14*DAY),doc('Bill of lading (demo)',now-12*DAY),doc('Proof of delivery (demo)',now-12*DAY)],
+   pod:{date:p38,at:now-12*DAY,receiver:'Ruth Okafor',notes:'Received in full. No damage.',photos:[{src:demoPhoto('SH-2038 - Heartland Plains, Kokomo'),approved:true}]},created:now-16*DAY}
+ ];
+ S0.sponsorships=[
+  {id:'SP-301',shipmentId:'SH-2038',target:1400,pledges:[{id:'PL-1',orgId:'riverbend',amount:1400,status:'confirmed',at:now-15*DAY}],review:null,closed:false,created:now-15*DAY},
+  {id:'SP-302',shipmentId:'SH-2039',target:2100,pledges:[{id:'PL-2',orgId:'northline',amount:1000,status:'confirmed',at:now-9*DAY},{id:'PL-3',orgId:'keystone',amount:1100,status:'confirmed',at:now-8*DAY}],review:null,closed:false,created:now-9*DAY},
+  {id:'SP-303',shipmentId:'SH-2040',target:950,pledges:[{id:'PL-4',orgId:'riverbend',amount:500,status:'confirmed',at:now-1*DAY}],review:null,closed:false,created:now-2*DAY}
+ ];
+ S0.saved=[{id:'SS-1',owner:'crossroads',name:'Refrigerated donations',f:{q:'',type:'donate',temp:'Refrigerated',exp:false},alert:true}];
+ S0.adoptions=[{id:'AD-1',routeId:'R-2',orgId:'riverbend',cap:600,status:'active',at:now-20*DAY}];
+ const N=(to,text,link,ago)=>({id:'N-'+(++S0.n),to,text,link,at:now-ago,read:false});
+ S0.notes=[
+  N('bhd','Urgent: reefer temperature alarm on SH-2041 — driver verifying.','sh:SH-2041',1.5*H),
+  N('bhd','New donation from Cedar Ridge awaiting review: Yogurt cups — short-dated.','post:P-1006',10*H),
+  N('wabash','Delivery appointment requested for SH-2040 — please accept or propose a change.','sh:SH-2040',30*H),
+  N('northline','Impact update: SH-2039 delivered — 14,400 lbs to two food banks.','nav:impact',5*DAY),
+  N('keystone','Impact update: SH-2039 delivered — 14,400 lbs to two food banks.','nav:impact',5*DAY),
+  N('lakeshore','Welcome to the demo network. Use “Offer food” to post surplus.','nav:food',2*DAY)
+ ];
+ return S0;
+}
+
+/* ============ state ============ */
+let S=load();
+function load(){try{const raw=localStorage.getItem(LS_KEY);if(raw){const s=JSON.parse(raw);if(s&&s.v===VER)return s}}catch(e){}return seed()}
+function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(S));return true}catch(e){toast('Demo changes could not be saved in this browser (storage full or blocked). They will last until you reload.','err');return false}}
+const uid=p=>p+'-'+(++S.n);
+
+/* ============ derived ============ */
+const post=id=>S.posts.find(p=>p.id===id);
+const shp=id=>S.shipments.find(s=>s.id===id);
+const spById=id=>S.sponsorships.find(s=>s.id===id);
+const spFor=sh=>sh?S.sponsorships.find(s=>s.shipmentId===sh.id):null;
+const R=()=>ROLES.find(r=>r.id===S.role)||ROLES[ROLES.length-1];
+const isOps=()=>S.role==='bhd';
+const kind=()=>R().kind;
+const orgName=id=>ORGS[id]?ORGS[id].name:id;
+const orgShort=id=>ORGS[id]?ORGS[id].short:id;
+function qty(p){let req=0,conf=0;p.allocs.forEach(a=>{if(a.status==='requested')req+=a.pallets;else if(a.status==='confirmed')conf+=a.pallets});return{total:p.pallets,req,conf,rem:Math.max(0,p.pallets-req-conf)}}
+const sumP=sh=>sh.stops.reduce((a,s)=>a+s.pallets,0);
+const sumL=sh=>sh.stops.reduce((a,s)=>a+s.lbs,0);
+const qTotal=(q,sh)=>r2(q.linehaul+q.fuel+q.stopoffs+q.handling*sh.stops.length+q.coord);
+const shTotal=sh=>sh.quote?qTotal(sh.quote,sh):0;
+function spT(sp){let c=0,p=0;sp.pledges.forEach(x=>{if(x.status==='confirmed')c+=x.amount;else if(x.status==='pending')p+=x.amount});c=r2(c);p=r2(p);return{conf:c,pend:p,gap:Math.max(0,r2(sp.target-c-p))}}
+const activeSp=sh=>{const sp=spFor(sh);return sp&&!sp.closed?sp:null};
+function covered(sh){if(!sh.quote)return false;const sp=activeSp(sh);const c=sp?spT(sp).conf:0;return !!sh.participantCommit||c>=shTotal(sh)-0.005}
+function fits(cap,sh){const why=[];if(sumP(sh)>cap.pallets)why.push(`${sumP(sh)} pallets exceeds ${cap.pallets} positions`);if(sumL(sh)>cap.lbs)why.push(`${num(sumL(sh))} lbs exceeds ${num(cap.lbs)} lbs`);if(!cap.temps.includes(sh.temp))why.push(`not equipped for ${sh.temp.toLowerCase()}`);return{ok:!why.length,why}}
+function readiness(sh){
+ const sp=activeSp(sh);const cap=CAPS.find(c=>c.id===sh.assignment);const f=cap?fits(cap,sh):null;const cv=covered(sh);
+ return[
+  {ok:!!sh.foodOk,l:'Food allocations accepted by the donor',d:sh.foodOk?'All stops have confirmed allocations':'Food is no longer available'},
+  {ok:!!(sh.quote&&sh.quote.status==='approved'),l:'Transportation cost approved',d:!sh.quote?'No quote issued yet':sh.quote.status==='approved'?`Quote v${sh.quote.ver} approved — ${money(shTotal(sh))}`:`Quote v${sh.quote.ver} issued — approval needed`},
+  {ok:!!(f&&f.ok),l:'Suitable capacity assigned',d:!cap?'No carrier, fleet or return trip assigned':f.ok?cap.name:f.why.join('; ')},
+  {ok:cv,l:'Transportation cost covered',d:cv?(sh.participantCommit?'Remaining balance committed by participants':'Sponsorship funding confirmed'):'Confirmed funding is below the quoted cost'},
+  {ok:!(sp&&sp.review),l:'No open funding review',d:sp&&sp.review?sp.review.reason:'Clear'}
+ ];
+}
+const ready=sh=>sh.stage==='planned'&&readiness(sh).every(c=>c.ok);
+function shares(sh){
+ const q=sh.quote;const tot=shTotal(sh);const base=q.linehaul+q.fuel+q.stopoffs;const P=sumP(sh);const sp=activeSp(sh);const t=sp?spT(sp):{conf:0,pend:0};
+ return sh.stops.map(s=>{const w=s.pallets/P;const tr=r2(base*w),ha=q.handling,co=r2(q.coord*w);const total=r2(tr+ha+co);const k=tot?total/tot:0;const sc=r2(t.conf*k),sd=r2(t.pend*k);
+  return{org:s.orgId,pallets:s.pallets,w,tr,ha,co,total,sc,sd,due:sh.participantCommit?Math.max(0,r2(total-sc)):Math.max(0,r2(total-sc-sd))}});
+}
+function foodState(sh){if(sh.stage==='canceled')return['Food: shipment canceled','gray'];return sh.foodOk?['Food: allocations accepted','teal']:['Food: no longer available','red']}
+function fundState(sh){
+ const sp=spFor(sh);
+ if(sp&&sp.review&&!sp.closed)return['Funding: under review','red'];
+ if(sh.stage==='canceled')return['Funding: closed','gray'];
+ if(!sh.quote)return['Funding: awaiting quote','gray'];
+ if(sp&&!sp.closed){const t=spT(sp);
+  if(t.conf>=sp.target-0.005)return['Funding: confirmed','teal'];
+  if(sh.participantCommit)return['Funding: balance covered by participants','teal'];
+  if(t.gap>0)return['Funding: '+money(t.gap)+' gap','amber'];
+  return['Funding: pledged, awaiting confirmation','amber'];}
+ return sh.participantCommit?['Funding: participant-paid','teal']:['Funding: not arranged','amber'];
+}
+function transState(sh){
+ switch(sh.stage){
+  case 'planned':
+   if(!sh.quote)return['Transport: quote needed','amber'];
+   if(sh.quote.status!=='approved')return['Transport: quote approval needed','amber'];
+   if(!sh.assignment)return['Transport: capacity needed','amber'];
+   return ready(sh)?['Transport: ready for release','lime']:['Transport: planned, not released','gray'];
+  case 'released':return['Transport: released for dispatch','teal'];
+  case 'in_transit':return['Transport: in transit','navy'];
+  case 'delivered':return['Transport: delivered','teal'];
+  default:return['Transport: canceled','red'];
+ }
+}
+const P3=sh=>[foodState(sh),fundState(sh),transState(sh)].map(([t,c])=>pill(t,c)).join(' ');
+const short=s=>s.replace(/^(Food|Funding|Transport): /,'');
+function nextAct(sh){
+ if(sh.stage==='canceled')return 'Canceled — sponsorship review handles any pledges';
+ if(sh.stage==='delivered')return 'Complete — counted in Impact';
+ if(sh.stage==='in_transit')return 'Record delivery and proof of delivery';
+ if(sh.stage==='released')return 'Confirm pickup (mark in transit)';
+ const r=readiness(sh);const miss=r.find(c=>!c.ok);
+ if(!miss){const a=sh.stops.find(s=>s.appt==='requested');return a?'Release for dispatch (appointment pending at '+orgShort(a.orgId)+')':'Release for dispatch'}
+ if(!sh.quote)return 'Issue transportation quote';
+ if(sh.quote.status!=='approved')return 'Approve transportation cost';
+ if(!readiness(sh)[2].ok)return 'Assign suitable capacity';
+ if(!readiness(sh)[3].ok){const sp=activeSp(sh);if(sp){const t=spT(sp);return t.gap>0?`Close ${money(t.gap)} funding gap`:'Confirm pledged funding'}return 'Arrange transportation funding'}
+ return miss.l;
+}
+function lppOf(p){return p.pallets?p.lbs/p.pallets:0}
+function dist(a,b){const R0=3959,k=Math.PI/180;const dLat=(b.lat-a.lat)*k,dLng=(b.lng-a.lng)*k;const h=Math.sin(dLat/2)**2+Math.cos(a.lat*k)*Math.cos(b.lat*k)*Math.sin(dLng/2)**2;return 2*R0*Math.asin(Math.sqrt(h))*1.18}
+function buildPlan(p){
+ const conf=p.allocs.filter(a=>a.status==='confirmed');const by={};conf.forEach(a=>by[a.orgId]=(by[a.orgId]||0)+a.pallets);
+ const lpp=lppOf(p);let cur={lat:p.lat,lng:p.lng};let rest=Object.keys(by);const seq=[];let miles=0;
+ while(rest.length){rest.sort((a,b)=>dist(cur,ORGS[a])-dist(cur,ORGS[b]));const n=rest.shift();miles+=dist(cur,ORGS[n]);seq.push(n);cur=ORGS[n]}
+ let pick=dOff(2);if(p.deadline<pick)pick=p.deadline;if(pick<todayISO())pick=todayISO();pick=bizOn(pick);
+ const stops=seq.map((o,i)=>{const pr=S.profiles[o]||{open:8,close:16};const st=Math.max(pr.open,8);return{orgId:o,pallets:by[o],lbs:Math.round(by[o]*lpp),date:i===0?pick:addBiz(pick,1),win:`${pad(st)}:00–${pad(Math.min(st+3,pr.close))}:00`,appt:'requested'}});
+ const totP=stops.reduce((a,s)=>a+s.pallets,0),totL=stops.reduce((a,s)=>a+s.lbs,0);
+ const transit=stops.length?Math.round((parse(stops[stops.length-1].date)-parse(pick))/DAY)+1:0;
+ const C=[];const add=(ok,l,d)=>C.push({ok,l,d});
+ add(totP<=26?'ok':'no','Pallet space',`${totP} of 26 positions on a 53' reefer`);
+ add(totL<=44000?'ok':'no','Weight',`${num(totL)} of 44,000 lbs`);
+ const tempBad=seq.filter(o=>{const pr=S.profiles[o];if(!pr||!pr.temps.includes(p.temp))return true;const lim=p.temp==='Refrigerated'?pr.refrig:p.temp==='Frozen'?pr.frozen:pr.dry;return by[o]>lim});
+ add(tempBad.length?'no':'ok','Temperature & storage',tempBad.length?'Check storage at '+tempBad.map(orgShort).join(', '):`${p.temp} end to end; every receiver has ${p.temp.toLowerCase()} storage for its pallets`);
+ add(pick<=p.deadline?'ok':'no','Pickup window',`Pickup ${fmtD(pick)} 06:00–08:00 · donor deadline ${fmtD(p.deadline)}`);
+ const winBad=stops.filter(s=>{const pr=S.profiles[s.orgId];const st=parseInt(s.win,10);return !pr||isWknd(s.date)||st<pr.open||st+1>pr.close});
+ add(winBad.length?'warn':'ok','Receiving windows',winBad.length?'Confirm hours at '+winBad.map(s=>orgShort(s.orgId)).join(', '):'All deliveries fall inside posted receiving hours');
+ if(p.shelfDays)add(transit<=p.shelfDays-3?'ok':'warn','Shelf life',`${transit}-day transit vs ${p.shelfDays} days of shelf life`);
+ add(totP>=8?'ok':'warn','Utilization',totP>=8?`${Math.round(totP/26*100)}% of trailer used`:`Only ${totP} pallets — consider combining with another order`);
+ const pend=p.allocs.filter(a=>a.status==='requested');
+ return{stops,miles:Math.round(miles),pick,totP,totL,checks:C,pending:pend,transit};
+}
+function suggestions(){return S.posts.filter(p=>['donate','sale','shared'].includes(p.type)&&!p.shipmentId&&p.status==='open'&&qty(p).conf>0&&(p.type!=='shared'||(qty(p).rem===0&&qty(p).req===0)))}
+function illustrativeQuote(sh){
+ if(sh.scn)return{linehaul:1700,fuel:395,stopoffs:300,handling:110,coord:475};
+ const m=sh.miles||150;const lh=Math.max(650,Math.round(m*3.1/5)*5);const fuel=Math.round(m*0.55);
+ return{linehaul:lh,fuel,stopoffs:150*Math.max(0,sh.stops.length-1),handling:110,coord:Math.round(0.12*(lh+fuel)/5)*5};
+}
+
+/* ============ actions (pure state changes; caller commits) ============ */
+const OK=m=>({ok:true,msg:m}),NO=m=>({ok:false,msg:m});
+function notify(to,text,link){S.notes.unshift({id:uid('N'),to,text,link:link||'',at:Date.now(),read:false});if(S.notes.length>150)S.notes.length=150}
+const sponsorsOf=sp=>[...new Set(sp.pledges.filter(p=>p.status!=='released').map(p=>p.orgId))];
+function matchF(p,f){
+ if(!f.exp&&p.status!=='open')return false;
+ if(f.type!=='all'&&p.type!==f.type)return false;
+ if(f.temp!=='all'&&p.temp!==f.temp)return false;
+ const q=(f.q||'').trim().toLowerCase();
+ if(q){const hay=[p.title,p.product,orgName(p.orgId),p.location,p.desc,p.id,TYPES[p.type].label].join(' ').toLowerCase();if(!q.split(/\s+/).every(w=>hay.includes(w)))return false}
+ return true;
+}
+function nextPostId(){let id;do{id='P-'+(S.pSeq++)}while(post(id));return id}
+
+function validatePost(d){
+ if(!TYPES[d.type])return 'Choose a post type.';
+ if(!d.title||d.title.trim().length<4)return 'Add a short title (at least 4 characters).';
+ const pl=Number(d.pallets),lb=Number(d.lbs);
+ if(!Number.isInteger(pl)||pl<1||pl>60)return 'Pallets must be a whole number from 1 to 60.';
+ if(!(lb>0))return 'Enter the total weight in pounds.';
+ if(d.type!=='capacity'&&lb/pl>2500)return 'That is more than 2,500 lbs per pallet — check the weight.';
+ if(!['Dry','Refrigerated','Frozen'].includes(d.temp))return 'Choose a temperature.';
+ if(!d.deadline)return 'Choose a date.';
+ if(d.deadline<todayISO())return 'The date cannot be in the past.';
+ if(d.type==='sale'&&!(Number(d.price)>0))return 'Purchase offers need a price per pound.';
+ if(d.shelfDays&&Number(d.shelfDays)<0)return 'Shelf life days cannot be negative.';
+ return null;
+}
+function createPost(d,orgId){
+ const err=validatePost(d);if(err)return NO(err);
+ const o=ORGS[orgId]||ORGS.bhd;
+ const p={id:nextPostId(),type:d.type,title:d.title.trim(),product:(d.product||d.title).trim(),orgId,location:(d.location||o.city).trim(),lat:o.lat||39.77,lng:o.lng||-86.16,
+  pallets:Number(d.pallets),lbs:Number(d.lbs),temp:d.temp,shelfLife:d.shelfLife||'—',shelfDays:Number(d.shelfDays)||0,deadline:d.deadline,receiving:d.receiving||'',transport:d.transport||'',
+  price:(d.type==='sale'||d.type==='shared')&&Number(d.price)>0?Number(d.price):null,desc:d.desc||'',photo:d.photo||{emoji:TYPES[d.type].emoji,bg:TYPES[d.type].bg},
+  status:'open',reviewed:orgId==='bhd',created:Date.now(),comments:[],allocs:[],shipmentId:null,scn:!!d.scn};
+ S.posts.unshift(p);
+ if(orgId!=='bhd')notify('bhd',`New ${TYPES[p.type].label.toLowerCase()} from ${o.short} awaiting review: ${p.title}`,'post:'+p.id);
+ S.saved.forEach(s=>{if(s.alert&&s.owner!==orgId&&matchF(p,s.f))notify(s.owner,`New post matches your saved search “${s.name}”: ${p.title}`,'post:'+p.id)});
+ return Object.assign(OK(`Posted ${p.id}: ${p.title}.`),{id:p.id});
+}
+function requestAlloc(postId,orgId,pallets){
+ const p=post(postId);if(!p||p.status!=='open')return NO('This post is no longer open.');
+ if(!ALLOCABLE.includes(p.type))return NO('This post type does not take requests.');
+ if(p.orgId===orgId)return NO('You cannot request your own post.');
+ if(p.shipmentId)return NO('This offer is already planned on a shipment.');
+ const n=Number(pallets);if(!Number.isInteger(n)||n<1)return NO('Enter a whole number of pallets (at least 1).');
+ const q=qty(p);if(n>q.rem)return NO(q.rem===0?'Nothing remains to request on this post.':`Only ${q.rem} pallet${q.rem===1?'':'s'} remain unrequested.`);
+ if(p.allocs.some(a=>a.orgId===orgId&&a.status==='requested'))return NO(`${orgShort(orgId)} already has a pending request on this post.`);
+ const og=ORGS[orgId];
+ if(og&&og.type==='foodbank'&&p.type!=='capacity'){const pr=S.profiles[orgId];
+  if(!pr.temps.includes(p.temp))return NO(`${og.short}'s receiving profile does not list ${p.temp.toLowerCase()} storage.`);
+  const lim=p.temp==='Refrigerated'?pr.refrig:p.temp==='Frozen'?pr.frozen:pr.dry;
+  if(n>lim)return NO(`${n} pallets exceeds ${og.short}'s ${p.temp.toLowerCase()} storage limit of ${lim}.`);}
+ p.allocs.push({id:uid('A'),orgId,pallets:n,status:'requested',at:Date.now()});
+ notify(p.orgId,`${orgShort(orgId)} requested ${n} pallet${n===1?'':'s'} of ${p.title}.`,'post:'+p.id);
+ return OK(`${orgShort(orgId)} requested ${n} pallet${n===1?'':'s'}. ${orgShort(p.orgId)} will confirm or decline.`);
+}
+function decideAlloc(postId,allocId,decision,actor){
+ const p=post(postId);if(!p)return NO('Post not found.');
+ if(actor!==p.orgId&&actor!=='bhd')return NO(`Only ${orgShort(p.orgId)} or BHD Operations can decide requests.`);
+ const a=p.allocs.find(x=>x.id===allocId);if(!a||a.status!=='requested')return NO('That request has already been decided.');
+ if(decision==='confirm'){const q=qty(p);if(q.conf+a.pallets>p.pallets)return NO('Confirming would over-allocate this offer.');a.status='confirmed';
+  notify(a.orgId,`${orgShort(p.orgId)} confirmed ${a.pallets} pallet${a.pallets===1?'':'s'} of ${p.title}.`,'post:'+p.id);
+  const q2=qty(p);if(q2.rem===0&&q2.req===0)notify('bhd',`${p.id} is fully allocated — review the suggested shared shipment.`,'sg:'+p.id);
+  return OK(`Confirmed ${a.pallets} pallet${a.pallets===1?'':'s'} for ${orgShort(a.orgId)}.`)}
+ a.status='declined';notify(a.orgId,`${orgShort(p.orgId)} declined your request on ${p.title}. The pallets return to the available quantity.`,'post:'+p.id);
+ return OK(`Declined ${orgShort(a.orgId)}'s request. ${a.pallets} pallet${a.pallets===1?'':'s'} returned to remaining.`);
+}
+function cancelReq(postId,allocId,actor){const p=post(postId);const a=p&&p.allocs.find(x=>x.id===allocId);if(!a||a.status!=='requested')return NO('Request not found.');if(a.orgId!==actor&&actor!=='bhd')return NO('Only the requester can cancel.');a.status='canceled';return OK('Request canceled.')}
+function addComment(postId,orgId,text){const p=post(postId);text=(text||'').trim();if(!p)return NO('Post not found.');if(text.length<2)return NO('Write a comment first.');if(text.length>600)return NO('Keep comments under 600 characters.');p.comments.push({id:uid('C'),orgId,text,at:Date.now()});if(orgId!==p.orgId)notify(p.orgId,`${orgShort(orgId)} commented on ${p.title}.`,'post:'+p.id);return OK('Comment posted.')}
+function reviewPost(postId){const p=post(postId);if(!p)return NO('Post not found.');p.reviewed=true;notify(p.orgId,`BHD Operations reviewed your post ${p.id}.`,'post:'+p.id);return OK(`${p.id} marked as reviewed.`)}
+function flagSp(sh,reason,newTarget){
+ const sp=activeSp(sh);if(!sp)return false;
+ const live=sp.pledges.filter(p=>p.status==='pending'||p.status==='confirmed');
+ if(!live.length&&newTarget!=null){sp.target=newTarget;return false}
+ sp.review={reason,at:Date.now(),newTarget:newTarget==null?null:newTarget};
+ sponsorsOf(sp).forEach(o=>notify(o,`Sponsorship ${sp.id} is under review: ${reason}. Your pledge has not been moved or reallocated.`,'sp:'+sp.id));
+ notify('bhd',`${sp.id} flagged for review: ${reason}. Sponsors notified.`,'sp:'+sp.id);
+ return true;
+}
+function withdrawPost(postId,actor){
+ const p=post(postId);if(!p)return NO('Post not found.');if(actor!==p.orgId&&actor!=='bhd')return NO('Only the poster or BHD Operations can withdraw this.');
+ if(p.status!=='open'&&p.status!=='allocated')return NO('This post is already closed.');
+ p.status='withdrawn';p.allocs.forEach(a=>{if(a.status==='requested')a.status='expired'});
+ [...new Set(p.allocs.map(a=>a.orgId))].forEach(o=>notify(o,`${orgShort(p.orgId)} withdrew ${p.title}.`,'post:'+p.id));
+ let extra='';
+ if(p.shipmentId){const sh=shp(p.shipmentId);if(sh&&!['delivered','canceled'].includes(sh.stage)){sh.foodOk=false;sh.exceptions.push({id:uid('EX'),sev:'red',text:'Food no longer available — donor withdrew the offer.',at:Date.now(),resolved:false});if(flagSp(sh,'Food became unavailable'))extra=' Linked sponsorship flagged for review and sponsors notified.'}}
+ return OK(`${p.id} withdrawn.${extra}`);
+}
+function expireStale(){
+ const t=todayISO();let n=0;
+ S.posts.forEach(p=>{if(p.status==='open'&&!p.shipmentId&&p.deadline<t){p.status='expired';n++;
+  p.allocs.forEach(a=>{if(a.status==='requested'){a.status='expired';notify(a.orgId,`Your request on ${p.title} expired with the offer.`,'post:'+p.id)}});
+  notify(p.orgId,`${p.id} “${p.title}” expired automatically — its date passed.`,'post:'+p.id)}});
+ return n;
+}
+function approvePlan(postId){
+ const p=post(postId);if(!p)return NO('Post not found.');if(p.shipmentId)return NO('A shipment already exists for this offer.');
+ const plan=buildPlan(p);if(!plan.stops.length)return NO('No confirmed allocations to ship.');
+ const hard=plan.checks.filter(c=>c.ok==='no');if(hard.length)return NO('Cannot approve: '+hard.map(c=>c.l+' — '+c.d).join('; '));
+ const sh={id:'SH-'+(S.shSeq++),title:p.title,product:p.product,donorId:p.orgId,postId:p.id,temp:p.temp,shelfDays:p.shelfDays,deadline:p.deadline,
+  pickup:{orgId:p.orgId,loc:p.location,date:plan.pick,win:'06:00–08:00'},stops:plan.stops,miles:plan.miles,stage:'planned',foodOk:true,quote:null,
+  internal:{carrierCost:null,note:''},assignment:null,participantCommit:false,exceptions:[],docs:[{name:'Shared route plan (demo)',at:Date.now()}],pod:null,created:Date.now(),scn:!!p.scn};
+ S.shipments.unshift(sh);p.shipmentId=sh.id;const q=qty(p);if(q.rem===0&&q.req===0)p.status='allocated';
+ sh.stops.forEach(s=>notify(s.orgId,`Delivery appointment requested: ${fmtD(s.date)} ${s.win} (${sh.id}). Please accept.`,'sh:'+sh.id));
+ notify(p.orgId,`BHD planned ${sh.id} to move your ${p.title}.`,'sh:'+sh.id);
+ return Object.assign(OK(`Approved combined shipment ${sh.id} with ${sh.stops.length} stop${sh.stops.length===1?'':'s'}. Next: issue the quote.`),{id:sh.id});
+}
+function validQuote(q){for(const k of ['linehaul','fuel','stopoffs','handling','coord']){const v=Number(q[k]);if(!(v>=0)||!isFinite(v))return 'Quote amounts must be zero or more.'}if(!(Number(q.linehaul)>0))return 'Linehaul must be greater than $0.';return null}
+function issueQuote(shId,q,openSp,internal){
+ const sh=shp(shId);if(!sh)return NO('Shipment not found.');if(!['planned'].includes(sh.stage))return NO('Quotes can only change before release.');
+ const e=validQuote(q);if(e)return NO(e);
+ const nq={linehaul:r2(+q.linehaul),fuel:r2(+q.fuel),stopoffs:r2(+q.stopoffs),handling:r2(+q.handling),coord:r2(+q.coord),status:'issued',ver:sh.quote?sh.quote.ver+1:1};
+ const old=sh.quote?shTotal(sh):null;sh.quote=nq;const tot=shTotal(sh);
+ if(internal){if(internal.cost!==''&&internal.cost!=null&&!isNaN(+internal.cost))sh.internal.carrierCost=+internal.cost;if(internal.note!=null)sh.internal.note=internal.note}
+ sh.docs.push({name:`Transportation quote v${nq.ver} (illustrative)`,at:Date.now()});
+ let msg=`Quote v${nq.ver} issued: ${money(tot)}.`;
+ const sp=activeSp(sh);
+ if(sp){if(Math.abs(sp.target-tot)>0.005){if(flagSp(sh,`Quote changed from ${money(sp.target)} to ${money(tot)}`,tot))msg+=' Sponsorship flagged for review — sponsors notified, no funds reallocated.';else msg+=' Sponsorship target updated (no pledges yet).'}}
+ else if(openSp){S.sponsorships.unshift({id:'SP-'+(S.spSeq++),shipmentId:sh.id,target:tot,pledges:[],review:null,closed:false,created:Date.now()});
+  ['northline','keystone','riverbend'].forEach(o=>notify(o,`New delivery to sponsor: ${sh.title} — ${money(tot)} transportation target.`,'nav:sponsor'));msg+=' Sponsorship opportunity opened.'}
+ sh.stops.forEach(s=>notify(s.orgId,`Transportation quote issued for ${sh.id}. Review your share before confirmation.`,'sh:'+sh.id));
+ return OK(msg);
+}
+function approveQuote(shId){const sh=shp(shId);if(!sh||!sh.quote)return NO('Issue a quote first.');if(sh.quote.status==='approved')return NO('Quote already approved.');sh.quote.status='approved';return OK(`Transportation cost approved (${money(shTotal(sh))}).`)}
+function openSp(shId){const sh=shp(shId);if(!sh||!sh.quote)return NO('Issue a quote first.');if(spFor(sh))return NO('A sponsorship already exists.');if(sh.stage!=='planned')return NO('Sponsorship can only open before release.');S.sponsorships.unshift({id:'SP-'+(S.spSeq++),shipmentId:sh.id,target:shTotal(sh),pledges:[],review:null,closed:false,created:Date.now()});return OK('Sponsorship opportunity opened.')}
+function assignCap(shId,capId){const sh=shp(shId);const cap=CAPS.find(c=>c.id===capId);if(!sh||!cap)return NO('Not found.');if(!['planned'].includes(sh.stage))return NO('Capacity can only change before release.');const f=fits(cap,sh);if(!f.ok)return NO(`${cap.name} is not suitable: ${f.why.join('; ')}.`);sh.assignment=capId;sh.internal.carrierCost=cap.cost;return OK(`Assigned ${cap.name}.`)}
+function acceptAppt(shId,orgId,actor){const sh=shp(shId);const s=sh&&sh.stops.find(x=>x.orgId===orgId);if(!s)return NO('Stop not found.');if(actor!==orgId&&actor!=='bhd')return NO('Only the receiving food bank or BHD Operations can accept.');s.appt='accepted';notify('bhd',`${orgShort(orgId)} accepted the delivery appointment for ${sh.id}.`,'sh:'+sh.id);return OK(`Appointment accepted for ${orgShort(orgId)}.`)}
+function participantCommit(shId){const sh=shp(shId);if(!sh||!sh.quote)return NO('Issue a quote first.');sh.participantCommit=true;sh.stops.forEach(s=>notify(s.orgId,`${sh.id}: any balance not covered by confirmed sponsorship will be billed to participants by share (demo).`,'sh:'+sh.id));return OK('Remaining balance marked as participant-paid (demo).')}
+function release(shId){const sh=shp(shId);if(!sh)return NO('Shipment not found.');if(sh.stage!=='planned')return NO('Only planned shipments can be released.');const miss=readiness(sh).filter(c=>!c.ok);if(miss.length)return NO('Not ready: '+miss.map(c=>c.l.toLowerCase()).join('; ')+'.');
+ sh.stage='released';sh.docs.push({name:'Rate confirmation (demo)',at:Date.now()},{name:'Dispatch sheet (demo)',at:Date.now()});
+ const sp=activeSp(sh);[sh.donorId,...sh.stops.map(s=>s.orgId),...(sp?sponsorsOf(sp):[])].forEach(o=>notify(o,`${sh.id} released for dispatch — pickup ${fmtD(sh.pickup.date)}.`,'sh:'+sh.id));
+ return OK(`${sh.id} released for dispatch.`)}
+function markTransit(shId){const sh=shp(shId);if(!sh||sh.stage!=='released')return NO('Release the shipment first.');sh.stage='in_transit';sh.docs.push({name:'Bill of lading (demo)',at:Date.now()});return OK(`${sh.id} picked up — in transit.`)}
+function recordDelivery(shId,d){
+ const sh=shp(shId);if(!sh)return NO('Shipment not found.');if(!['released','in_transit'].includes(sh.stage))return NO('Release the shipment before recording delivery.');
+ for(const s of sh.stops){const n=Number(d.rec[s.orgId]);if(!Number.isInteger(n)||n<0||n>s.pallets)return NO(`Pallets received at ${orgShort(s.orgId)} must be a whole number from 0 to ${s.pallets}.`)}
+ if(!d.receiver||!d.receiver.trim())return NO('Enter who received the delivery.');
+ sh.stops.forEach(s=>{const n=Number(d.rec[s.orgId]);s.recPallets=n;s.recLbs=Math.round(s.lbs*n/s.pallets)});
+ const lbs=sh.stops.reduce((a,s)=>a+s.recLbs,0);
+ sh.stage='delivered';sh.pod={date:todayISO(),at:Date.now(),receiver:d.receiver.trim(),notes:(d.notes||'').trim(),photos:d.photo?[{src:d.photo,approved:!!d.approve}]:[]};
+ const shortS=sh.stops.filter(s=>s.recPallets<s.pallets);
+ if(shortS.length)sh.exceptions.push({id:uid('EX'),sev:'amber',text:'Short receipt: '+shortS.map(s=>`${orgShort(s.orgId)} received ${s.recPallets} of ${s.pallets}`).join('; '),at:Date.now(),resolved:false});
+ sh.docs.push({name:'Proof of delivery (demo)',at:Date.now()});
+ const sp=activeSp(sh);[sh.donorId,...sh.stops.map(s=>s.orgId),...(sp?sponsorsOf(sp):[])].forEach(o=>notify(o,`${sh.id} delivered — ${num(lbs)} lbs confirmed. Impact report updated.`,'nav:impact'));
+ return OK(`Delivery recorded — ${num(lbs)} lbs. Impact report updated.`);
+}
+function cancelShipment(shId,reason){const sh=shp(shId);if(!sh)return NO('Not found.');if(['delivered','canceled'].includes(sh.stage))return NO('This shipment can no longer be canceled.');if(!reason||reason.trim().length<4)return NO('Give a short reason.');
+ sh.stage='canceled';sh.exceptions.push({id:uid('EX'),sev:'red',text:'Shipment canceled: '+reason.trim(),at:Date.now(),resolved:true});
+ const p=sh.postId&&post(sh.postId);if(p){p.shipmentId=null;if(p.status==='allocated')p.status='open'}
+ const flagged=flagSp(sh,'Shipment canceled — '+reason.trim());
+ [sh.donorId,...sh.stops.map(s=>s.orgId)].forEach(o=>notify(o,`${sh.id} was canceled: ${reason.trim()}`,'sh:'+sh.id));
+ return OK(`${sh.id} canceled.${flagged?' Sponsorship flagged for review; sponsors notified. Nothing was reallocated.':''}`)}
+function addException(shId,sev,text){const sh=shp(shId);if(!sh)return NO('Not found.');if(!text||text.trim().length<4)return NO('Describe the exception.');sh.exceptions.push({id:uid('EX'),sev:sev==='red'?'red':'amber',text:text.trim(),at:Date.now(),resolved:false});return OK('Exception logged.')}
+function resolveEx(shId,exId){const sh=shp(shId);const e=sh&&sh.exceptions.find(x=>x.id===exId);if(!e)return NO('Not found.');e.resolved=true;e.resolvedAt=Date.now();return OK('Exception resolved.')}
+function setPhotoApproval(shId,i,v){const sh=shp(shId);if(!sh||!sh.pod||!sh.pod.photos[i])return NO('Photo not found.');sh.pod.photos[i].approved=v;return OK(v?'Photo approved for sponsor and impact reports.':'Photo hidden from reports.')}
+function campaignUsed(){let u=0;S.sponsorships.forEach(sp=>sp.pledges.forEach(p=>{if(p.viaCampaign&&(p.status==='pending'||p.status==='confirmed'))u+=p.amount}));return r2(u)}
+const campaignRem=()=>Math.max(0,r2(S.campaign.max-campaignUsed()));
+function pledge(spId,orgId,amount,useMatch){
+ const sp=spById(spId);if(!sp)return NO('Opportunity not found.');const sh=shp(sp.shipmentId);
+ if(sp.closed)return NO('This opportunity is closed.');
+ if(sp.review)return NO('This opportunity is under review — new pledges are paused until BHD resolves it.');
+ if(!sh||!['planned','released'].includes(sh.stage))return NO('This delivery is no longer accepting pledges.');
+ if(!ORGS[orgId]||ORGS[orgId].type!=='sponsor')return NO('Choose a sponsor organization.');
+ const amt=r2(Number(amount));if(!(amt>0))return NO('Enter an amount greater than $0.');
+ const t=spT(sp);if(t.gap<=0)return NO('This delivery has no remaining gap.');
+ if(amt>t.gap+0.004)return NO(`That exceeds the remaining gap of ${money(t.gap)}. Pledges cannot exceed the target.`);
+ const pl={id:uid('PL'),orgId,amount:amt,status:'pending',at:Date.now()};sp.pledges.push(pl);
+ let m=0;
+ if(useMatch&&orgId!==S.campaign.orgId){m=r2(Math.min(amt*S.campaign.ratio,campaignRem(),r2(t.gap-amt)));if(m>0)sp.pledges.push({id:uid('PL'),orgId:S.campaign.orgId,amount:m,status:'pending',at:Date.now(),viaCampaign:true,matchFor:pl.id})}
+ notify('bhd',`${orgShort(orgId)} pledged ${money(amt)}${m>0?` (+${money(m)} ${S.campaign.name})`:''} to ${sp.id}. Confirm simulated funding.`,'sp:'+sp.id);
+ if(m>0)notify(S.campaign.orgId,`${S.campaign.name}: ${money(m)} match requested for ${orgShort(orgId)}'s pledge on ${sp.id}.`,'sp:'+sp.id);
+ return OK(`Demo pledge of ${money(amt)} recorded as pending${m>0?`, plus a ${money(m)} match`:''}. BHD Operations must confirm simulated funding.`);
+}
+function confirmPledge(spId,plId){const sp=spById(spId);const p=sp&&sp.pledges.find(x=>x.id===plId);if(!p||p.status!=='pending')return NO('Pledge not pending.');if(sp.review)return NO('Resolve the review before confirming funding.');p.status='confirmed';notify(p.orgId,`BHD marked your ${money(p.amount)} pledge to ${sp.id} as funded (simulated).`,'sp:'+sp.id);return OK(`Simulated funding confirmed: ${money(p.amount)} from ${orgShort(p.orgId)}.`)}
+function releasePledge(spId,plId,actor){const sp=spById(spId);const p=sp&&sp.pledges.find(x=>x.id===plId);if(!p||!['pending','confirmed'].includes(p.status))return NO('Pledge not active.');if(actor!=='bhd'&&!(actor===p.orgId&&p.status==='pending'))return NO('Only BHD Operations can release a confirmed pledge.');p.status='released';
+ sp.pledges.filter(x=>x.matchFor===p.id&&['pending','confirmed'].includes(x.status)).forEach(x=>{x.status='released';notify(x.orgId,`Match of ${money(x.amount)} on ${sp.id} released with the matched pledge.`,'sp:'+sp.id)});
+ notify(p.orgId,`Your ${money(p.amount)} pledge to ${sp.id} was released — it was not moved to another delivery.`,'sp:'+sp.id);return OK(`Pledge released (${money(p.amount)}). Sponsor notified; nothing reallocated.`)}
+function closeReview(spId){const sp=spById(spId);if(!sp||!sp.review)return NO('No open review.');const sh=shp(sp.shipmentId);const t=spT(sp);
+ if(sh.stage==='canceled'||!sh.foodOk){if(t.conf+t.pend>0)return NO('Release each remaining pledge first (sponsors are notified individually).');sp.review=null;sp.closed=true;return OK(`${sp.id} closed. No funds were reallocated.`)}
+ if(sp.review.newTarget!=null){if(t.conf+t.pend>sp.review.newTarget+0.004)return NO(`Active pledges (${money(t.conf+t.pend)}) exceed the new target of ${money(sp.review.newTarget)}. Release or reduce pledges with sponsors first.`);sp.target=sp.review.newTarget}
+ sp.review=null;sponsorsOf(sp).forEach(o=>notify(o,`Review of ${sp.id} closed. New transportation target ${money(sp.target)}; your pledge stands as made.`,'sp:'+sp.id));return OK(`Review closed. Target is now ${money(sp.target)}.`)}
+function adoptRoute(routeId,orgId,cap){const r=ROUTES.find(x=>x.id===routeId);if(!r)return NO('Route not found.');if(!ORGS[orgId]||ORGS[orgId].type!=='sponsor')return NO('Choose a sponsor organization.');const c=r2(Number(cap));const est=r.runs*r.perRun;const used=S.adoptions.filter(a=>a.routeId===routeId&&a.status!=='ended').reduce((a,b)=>a+b.cap,0);const rem=Math.max(0,est-used);
+ if(!(c>0))return NO('Enter a monthly cap greater than $0.');if(c>rem+0.004)return NO(`The remaining unadopted cost for this route is ${money(rem)} per month.`);
+ S.adoptions.push({id:uid('AD'),routeId,orgId,cap:c,status:'pending',at:Date.now()});notify('bhd',`${orgShort(orgId)} wants to adopt ${r.name} up to ${money(c)}/month.`,'adopt:'+S.adoptions[S.adoptions.length-1].id);
+ return OK(`Route adoption requested at up to ${money(c)}/month. Pending BHD confirmation — nothing is charged.`)}
+function confirmAdoption(id){const a=S.adoptions.find(x=>x.id===id);if(!a||a.status!=='pending')return NO('Not pending.');a.status='active';notify(a.orgId,`Your adoption of ${ROUTES.find(r=>r.id===a.routeId).name} is active (demo).`,'nav:sponsor');return OK('Route adoption confirmed (demo).')}
+function saveProfile(orgId,d){const pr=S.profiles[orgId];if(!pr)return NO('Profile not found.');const o=+d.open,c=+d.close;if(!(c>o))return NO('Closing hour must be after opening hour.');for(const k of ['refrig','frozen','dry']){const v=Number(d[k]);if(!Number.isInteger(v)||v<0||v>200)return NO('Storage limits must be whole numbers from 0 to 200.')}if(!d.temps.length)return NO('Select at least one temperature capability.');
+ Object.assign(pr,{open:o,close:c,refrig:+d.refrig,frozen:+d.frozen,dry:+d.dry,temps:d.temps,dock:d.dock,recurring:d.recurring});return OK('Receiving profile saved.')}
+
+/* ============ view helpers ============ */
+function table(cols,rows,empty){
+ if(!rows.length)return `<div class="empty">${empty||'Nothing here yet.'}</div>`;
+ return `<div class="tbl-wrap"><table class="tbl"><thead><tr>${cols.map(c=>`<th scope="col"${c.r?' class="r"':''}>${c.h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr${r.open?` data-open="${r.open}" tabindex="0"`:''}${r.cls?` class="${r.cls}"`:''}>${r.cells.map((v,i)=>`<td data-label="${esc(cols[i].h)}"${cols[i].r?' class="r"':''}>${v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+function stats(items,stat){return `<div class="stats${stat?' static':''}">${items.map(i=>{const attrs=i.nav?`data-act="nav" data-to="${i.nav}"`:i.open?`data-open="${i.open}"`:'';return `<${stat?'div':'button'} class="stat" ${attrs}><span class="l">${i.l}</span><span class="v ${i.tone||''}">${i.v}</span>${i.s?`<span class="s">${i.s}</span>`:''}</${stat?'div':'button'}>`}).join('')}</div>`}
+function thumb(p,big){const ph=p.photo||{};return `<div class="thumb${big?' big':''}" style="background:${esc(ph.bg||'#EEF1F4')}">${ph.src?`<img src="${esc(ph.src)}" alt="Photo of ${esc(p.title)}">`:`<span role="img" aria-label="Demo image placeholder">${ph.emoji||'📦'}</span>`}</div>`}
+const routeChips=sh=>`<div class="route"><span class="city o">${esc(city(sh.pickup.loc))}</span>${sh.stops.map(s=>`<span class="arr">→</span><span class="city">${esc(city(ORGS[s.orgId].city))}</span>`).join('')}</div>`;
+const routeText=sh=>[city(sh.pickup.loc),...sh.stops.map(s=>city(ORGS[s.orgId].city))].join(' → ');
+const tabBtn=(act,v,cur,label,extra)=>`<button class="tab" role="tab" aria-selected="${cur===v}" data-act="${act}" data-v="${v}">${label}${extra||''}</button>`;
+function fbar(sp){const t=spT(sp);return `<div class="fbar" role="img" aria-label="Confirmed ${money(t.conf)}, pending ${money(t.pend)}, remaining ${money(t.gap)} of ${money(sp.target)}"><span class="c" style="width:${pct(t.conf,sp.target)}%"></span><span class="p" style="width:${pct(t.pend,sp.target)}%"></span></div><div class="flegend"><span><i style="background:var(--teal)"></i>Confirmed <b>${money(t.conf)}</b></span><span><i style="background:#E3A63C"></i>Pending pledges <b>${money(t.pend)}</b></span><span><i style="background:#D5DBE3"></i>Remaining gap <b>${money(t.gap)}</b></span></div>`}
+const allocLabel={requested:['Requested','amber'],confirmed:['Confirmed','teal'],declined:['Declined','gray'],expired:['Expired','gray'],canceled:['Canceled','gray']};
+const postStatus=p=>p.status==='open'?'':pill({expired:'Expired automatically',withdrawn:'Withdrawn',allocated:'Fully allocated'}[p.status]||p.status,p.status==='allocated'?'teal':'gray');
+
+/* ============ header ============ */
+const NAV=[['home','Home'],['food','Food & Needs'],['transport','Transportation'],['sponsor','Sponsor a Delivery'],['impact','Impact']];
+function curRoute(){const h=(location.hash||'').replace(/^#\/?/,'');return NAV.some(n=>n[0]===h)?h:'home'}
+function renderHeader(){
+ const r=curRoute();
+ $('#nav').innerHTML=NAV.map(([k,l])=>`<a href="#/${k}"${k===r?' aria-current="page"':''}>${l}</a>`).join('');
+ const sel=$('#roleSel');
+ if(!sel.options.length){const groups={};ROLES.forEach(x=>{(groups[x.group]=groups[x.group]||[]).push(x)});sel.innerHTML=Object.entries(groups).map(([g,list])=>`<optgroup label="${g}">${list.map(x=>`<option value="${x.id}">${esc(ORGS[x.id].name)}${x.kind==='sponsor'?' (sponsor)':x.kind==='donor'?' (donor)':''}</option>`).join('')}</optgroup>`).join('')}
+ sel.value=S.role;
+ const unread=S.notes.filter(n=>n.to===S.role&&!n.read).length;
+ const b=$('#bellBtn');b.innerHTML=`${icon('bell',16)}<span class="lbl">Alerts</span>${unread?`<span class="dot">${unread}</span>`:''}`;
+ b.setAttribute('aria-label',`Demo notifications, ${unread} unread`);b.setAttribute('aria-expanded',String(!!S.ui.notifOpen));
+ const n=$('#notif');
+ if(S.ui.notifOpen){const mine=S.notes.filter(x=>x.to===S.role).slice(0,30);
+  n.hidden=false;n.className='notif';n.innerHTML=`<header><b>Demo notifications · ${esc(orgShort(S.role))}</b><button class="btn sm ghost" data-act="readAll">Mark all read</button></header>${mine.length?`<ul>${mine.map(x=>`<li class="${x.read?'':'unread'}"><button data-act="notifGo" data-id="${x.id}">${esc(x.text)}<time>${fmtT(x.at)}</time></button></li>`).join('')}</ul>`:'<div class="empty" style="border:0">No notifications for this role yet.</div>'}`;}
+ else n.hidden=true;
+}
+
+/* ============ HOME ============ */
+function viewHome(){
+ const r=R();
+ const opens=S.posts.filter(p=>p.status==='open');
+ const avail=opens.filter(p=>p.type==='donate').reduce((a,p)=>a+qty(p).rem,0);
+ const wk=S.shipments.filter(s=>['planned','released','in_transit'].includes(s.stage)&&s.pickup.date<=dOff(7)).length;
+ const gap=S.sponsorships.filter(sp=>!sp.closed&&['planned','released'].includes((shp(sp.shipmentId)||{}).stage)).reduce((a,sp)=>a+spT(sp).gap,0);
+ const lbs=S.shipments.filter(s=>s.stage==='delivered').reduce((a,s)=>a+s.stops.reduce((b,x)=>b+(x.recLbs||0),0),0);
+ const tile=(ic,t,d,attrs,hl)=>`<button class="act${hl?' hl':''}" ${attrs}><span class="ic">${icon(ic)}</span><span><b>${t}</b><span class="d">${d}</span></span></button>`;
+ const portal=(title,ic,desc,kindIds)=>`<div class="card portal"><h3>${icon(ic,16)} ${title}</h3><p>${desc}</p><div class="idlist">${kindIds.map(id=>{const k=ROLES.find(x=>x.id===id).kind;return `<button class="idbtn${S.role===id?' on':''}" data-act="setRole" data-id="${id}"><span>${esc(ORGS[id].name)}</span><small>${S.role===id?'Viewing now':k==='sponsor'?'Sponsor':k==='donor'?'Donor':k==='ops'?'Operations':'Enter'}</small></button>`}).join('')}</div></div>`;
+ return `
+ <section class="card hero">
+  <div>
+   <div class="eyebrow">A working concept · powered by Backhaul Direct</div>
+   <h1>Food available. Transportation coordinated. <em>Delivery funded.</em></h1>
+   <p class="lede">One network where food banks, donors, transportation providers and corporate sponsors find food, combine orders, coordinate trucks and fund the delivery.</p>
+  </div>
+  <div class="acts4">
+   ${tile('search','Find food','Donations, discounted food and shared orders','data-act="homeFind"')}
+   ${tile('box','Offer food','Post surplus with pallets, weight and pickup date','data-act="compose" data-type="donate"')}
+   ${tile('truck','Arrange transportation','Shared routes, return trips and fleet capacity','data-act="nav" data-to="transport"')}
+   ${tile('heart','Sponsor a delivery','Fund the truck that moves donated food','data-act="nav" data-to="sponsor"',true)}
+  </div>
+ </section>
+ <h2 class="sec-h">Network snapshot <span class="demo-tag">Demo data</span></h2>
+ ${stats([{l:'Open offers & posts',v:opens.length,s:'on the community board',nav:'food'},{l:'Donated pallets available',v:avail,s:'not yet requested',nav:'food'},{l:'Shipments in the next 7 days',v:wk,s:'planned, released or moving',nav:'transport'},{l:'Transportation funding gap',v:money(gap),s:'open sponsorships',nav:'sponsor',tone:gap>0?'amber':'teal'},{l:'Pounds delivered',v:num(lbs),s:'completed deliveries',nav:'impact',tone:'teal'}])}
+ <h2 class="sec-h">Portals <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">— demo role switcher, no accounts</span></h2>
+ <div class="portals">
+  ${portal('Food Banks','food','Find food, request quantities, set receiving hours and accept deliveries.',['crossroads','eastgate','wabash'])}
+  ${portal('Donors & Sponsors','heart','Offer food, approve allocations, and fund transportation for deliveries.',['lakeshore','northline','keystone','riverbend'])}
+  ${portal('BHD Operations','ops','Review offers, plan shared routes, quote, confirm funding and release.',['bhd'])}
+ </div>
+ <h2 class="sec-h">${r.kind==='ops'?'Operations work queue':'Your workspace'} · ${esc(ORGS[S.role].name)}</h2>
+ ${r.kind==='ops'?wsOps():r.kind==='foodbank'?wsFood(S.role):r.kind==='donor'?wsDonor(S.role):wsSponsor(S.role)}`;
+}
+function queue(){
+ const G=[];const add=(label,sev,items)=>G.push({label,sev,items});
+ const open=S.posts.filter(p=>p.status==='open');
+ add('Offers awaiting review','amber',open.filter(p=>!p.reviewed).map(p=>({t:p.title,s:`${orgShort(p.orgId)} · ${TYPES[p.type].label} · ${p.pallets} pallets`,o:'post:'+p.id})));
+ const pend=[];open.forEach(p=>p.allocs.filter(a=>a.status==='requested').forEach(a=>pend.push({t:`${orgShort(a.orgId)} → ${a.pallets} pallets of ${p.title}`,s:`Awaiting ${orgShort(p.orgId)} decision`,o:'post:'+p.id})));
+ add('Allocation decisions pending','gray',pend);
+ const appt=[];S.shipments.filter(s=>['planned','released'].includes(s.stage)).forEach(sh=>sh.stops.filter(x=>x.appt==='requested').forEach(x=>appt.push({t:`${orgShort(x.orgId)} — ${fmtD(x.date)} ${x.win}`,s:`${sh.id} · delivery appointment not yet accepted`,o:'sh:'+sh.id})));
+ add('Recipient acceptance needed','amber',appt);
+ add('Potential shared shipments','lime',suggestions().map(p=>({t:p.title,s:`${p.id} · ${qty(p).conf} confirmed pallets · ${new Set(p.allocs.filter(a=>a.status==='confirmed').map(a=>a.orgId)).size} recipient(s) · suggestion`,o:'sg:'+p.id})));
+ add('Transportation quotes needed','amber',S.shipments.filter(s=>s.stage==='planned'&&(!s.quote||s.quote.status!=='approved')).map(sh=>({t:`${sh.id} · ${sh.title}`,s:!sh.quote?'Issue quote':'Quote issued — approve cost',o:'sh:'+sh.id})));
+ const gaps=[];S.sponsorships.forEach(sp=>{const sh=shp(sp.shipmentId);if(!sh||sp.closed||!['planned','released'].includes(sh.stage))return;const t=spT(sp);if(t.gap>0)gaps.push({t:`${sp.id} · ${money(t.gap)} gap`,s:sh.title,o:'sp:'+sp.id});if(t.pend>0)gaps.push({t:`${sp.id} · ${money(t.pend)} pledged — confirm funding`,s:sh.title,o:'sp:'+sp.id})});
+ add('Funding gaps & pledges to confirm','amber',gaps);
+ add('Carrier or fleet assignment needed','amber',S.shipments.filter(s=>s.stage==='planned'&&!s.assignment).map(sh=>({t:`${sh.id} · ${sh.title}`,s:`${sumP(sh)} pallets · ${sh.temp}`,o:'sh:'+sh.id})));
+ add('Ready for operations release','teal',S.shipments.filter(ready).map(sh=>({t:`${sh.id} · ${sh.title}`,s:'All checks passed — release for dispatch',o:'sh:'+sh.id})));
+ const ex=[];S.shipments.forEach(sh=>sh.exceptions.filter(e=>!e.resolved).forEach(e=>ex.push({t:e.text,s:`${sh.id} · ${e.sev==='red'?'Urgent':'Attention'}`,o:'sh:'+sh.id,sev:e.sev})));
+ add('Pickup & delivery exceptions',ex.some(e=>e.sev==='red')?'red':'amber',ex);
+ add('Sponsorships under review','red',S.sponsorships.filter(sp=>sp.review&&!sp.closed).map(sp=>({t:`${sp.id} · ${sp.review.reason}`,s:'Sponsors notified — no automatic reallocation',o:'sp:'+sp.id})));
+ add('Route adoptions to confirm','gray',S.adoptions.filter(a=>a.status==='pending').map(a=>({t:`${orgShort(a.orgId)} · up to ${money(a.cap)}/month`,s:ROUTES.find(r=>r.id===a.routeId).name,o:'adopt:'+a.id})));
+ return G;
+}
+function wsOps(){
+ const G=queue();
+ return `<p class="muted small" style="margin:-4px 0 12px">Food acceptance, funding and transportation are tracked separately. “Fully funded” is not “ready to dispatch” — release requires every check.</p><div class="queue">${G.map(g=>`<section class="card qg sev-${g.items.length?g.sev:'none'}${g.items.length?'':' empty-g'}"><header><h3>${g.label}</h3>${pill(String(g.items.length),g.items.length?(g.sev==='gray'?'navy':g.sev):'gray')}</header>${g.items.length?`<ul>${g.items.slice(0,5).map(i=>`<li><button data-open="${i.o}">${esc(i.t)}<span class="sub">${esc(i.s)}</span></button></li>`).join('')}${g.items.length>5?`<li class="none">+${g.items.length-5} more</li>`:''}</ul>`:'<div class="none">Nothing waiting.</div>'}</section>`).join('')}</div>`;
+}
+function myAllocs(org){const out=[];S.posts.forEach(p=>p.allocs.filter(a=>a.orgId===org).forEach(a=>out.push({p,a})));return out.sort((x,y)=>y.a.at-x.a.at)}
+function wsFood(org){
+ const al=myAllocs(org);const pr=S.profiles[org];
+ const sh=S.shipments.filter(s=>s.stops.some(x=>x.orgId===org)&&s.stage!=='canceled').sort((a,b)=>(a.stage==='delivered')-(b.stage==='delivered')||b.pickup.date.localeCompare(a.pickup.date));
+ const appts=sh.filter(s=>s.stops.some(x=>x.orgId===org&&x.appt==='requested')&&['planned','released'].includes(s.stage));
+ return `${stats([{l:'Pending requests',v:al.filter(x=>x.a.status==='requested').length,nav:'food'},{l:'Confirmed pallets (not yet delivered)',v:al.filter(x=>x.a.status==='confirmed'&&!(x.p.shipmentId&&(shp(x.p.shipmentId)||{}).stage==='delivered')).reduce((a,x)=>a+x.a.pallets,0),nav:'food'},{l:'Appointments to accept',v:appts.length,tone:appts.length?'amber':'',open:appts[0]?'sh:'+appts[0].id:null,nav:appts[0]?null:'transport'},{l:'Receiving hours',v:`${pad(pr.open)}:00–${pad(pr.close)}:00`,s:'Mon–Fri · edit in Food & Needs',act:'',nav:'food'}])}
+ <div class="grid2" style="margin-top:16px"><div><h3 class="sec-h" style="margin-top:0">My requests</h3>${table([{h:'Post'},{h:'Pallets',r:1},{h:'Status'}],al.slice(0,8).map(x=>({open:'post:'+x.p.id,cells:[`<b>${esc(x.p.title)}</b><span class="sub">${x.p.id} · ${esc(orgShort(x.p.orgId))}</span>`,x.a.pallets,pill(...allocLabel[x.a.status])]})),'No requests yet. Use “Find food” to request pallets.')}</div>
+ <div><h3 class="sec-h" style="margin-top:0">My deliveries</h3>${table([{h:'Shipment'},{h:'My stop'},{h:'Status'}],sh.slice(0,8).map(s=>{const st=s.stops.find(x=>x.orgId===org);return{open:'sh:'+s.id,cells:[`<b>${s.id}</b><span class="sub">${esc(s.title)}</span>`,`${st.pallets} pallets · ${fmtS(st.date)}<span class="sub">${st.appt==='requested'?'Appointment needs your acceptance':'Appointment '+st.appt}</span>`,pill(...transState(s).map((v,i)=>i?v:short(v)))]}}),'No deliveries scheduled.')}</div></div>
+ <div class="note navy" style="margin-top:14px"><b>Recurring needs:</b> ${esc(pr.recurring||'—')} · Storage: ${pr.refrig} refrigerated, ${pr.frozen} frozen, ${pr.dry} dry pallets. <button class="link" data-act="foodTab" data-v="profile">Edit receiving profile</button></div>`;
+}
+function wsDonor(org){
+ const mine=S.posts.filter(p=>p.orgId===org);const pend=mine.reduce((a,p)=>a+p.allocs.filter(x=>x.status==='requested').length,0);
+ const sh=S.shipments.filter(s=>s.donorId===org);
+ return `${stats([{l:'My open offers',v:mine.filter(p=>p.status==='open').length,nav:'food'},{l:'Requests awaiting my decision',v:pend,tone:pend?'amber':'',open:pend?'post:'+(mine.find(p=>p.allocs.some(x=>x.status==='requested'))||{}).id:null,nav:pend?null:'food'},{l:'Shipments moving my food',v:sh.filter(s=>!['delivered','canceled'].includes(s.stage)).length,nav:'transport'},{l:'Pounds delivered from my donations',v:num(sh.filter(s=>s.stage==='delivered').reduce((a,s)=>a+s.stops.reduce((b,x)=>b+(x.recLbs||0),0),0)),nav:'impact',tone:'teal'}])}
+ <div class="row between" style="margin:18px 0 10px"><h3 class="sec-h" style="margin:0">My offers</h3><button class="btn primary" data-act="compose" data-type="donate">Offer food</button></div>
+ ${table([{h:'Offer'},{h:'Total',r:1},{h:'Requested',r:1},{h:'Confirmed',r:1},{h:'Remaining',r:1},{h:'Status'}],mine.map(p=>{const q=qty(p);return{open:'post:'+p.id,cells:[`<b>${esc(p.title)}</b><span class="sub">${p.id} · ${p.temp} · pickup by ${fmtS(p.deadline)}</span>`,q.total,q.req?`<b style="color:var(--amber)">${q.req}</b>`:0,q.conf,q.rem,p.status==='open'?(p.reviewed?pill('Open','teal'):pill('Awaiting BHD review','amber')):postStatus(p)]}}),'No offers yet. Use “Offer food” to post your first one.')}`;
+}
+function wsSponsor(org){
+ const mine=[];S.sponsorships.forEach(sp=>sp.pledges.filter(p=>p.orgId===org).forEach(p=>mine.push({sp,p})));
+ const openOpps=S.sponsorships.filter(sp=>!sp.closed&&!sp.review&&spT(sp).gap>0&&['planned','released'].includes((shp(sp.shipmentId)||{}).stage));
+ const im=impactCalc();const L=lensCalc(im,org);
+ return `${stats([{l:'Deliveries needing funding',v:openOpps.length,nav:'sponsor',tone:openOpps.length?'amber':''},{l:'My pending pledges',v:money(mine.filter(x=>x.p.status==='pending').reduce((a,x)=>a+x.p.amount,0)),nav:'sponsor'},{l:'My confirmed funding',v:money(mine.filter(x=>x.p.status==='confirmed').reduce((a,x)=>a+x.p.amount,0)),nav:'sponsor',tone:'teal'},{l:'Pounds attributed to me',v:num(L.lbs),s:'proportional share of delivered pounds',nav:'impact',tone:'teal'}])}
+ <div class="row between" style="margin:18px 0 10px"><h3 class="sec-h" style="margin:0">My pledges</h3><button class="btn primary" data-act="nav" data-to="sponsor">Sponsor a delivery</button></div>
+ ${table([{h:'Opportunity'},{h:'Amount',r:1},{h:'Status'},{h:'Delivery'}],mine.map(x=>{const sh=shp(x.sp.shipmentId);return{open:'sp:'+x.sp.id,cells:[`<b>${esc(sh.title)}</b><span class="sub">${x.sp.id} · ${sh.id}${x.p.viaCampaign?' · campaign match':''}</span>`,money(x.p.amount),pledgePill(x.p),pill(...transState(sh).map((v,i)=>i?v:short(v)))]}}),'No pledges yet.')}`;
+}
+const pledgePill=p=>p.status==='confirmed'?pill('Funded (simulated)','teal'):p.status==='pending'?pill('Pending confirmation','amber'):pill('Released','gray');
+
+/* ============ FOOD & NEEDS ============ */
+function viewFood(){
+ const tab=S.ui.foodTab;const k=kind();
+ return `<div class="page-head"><div><h1>Food & Needs</h1><p>A structured community board: donations, food for purchase, needs, shared orders and truck capacity. Select a post for details, requests and comments.</p></div>
+  <div class="ph-actions"><button class="btn primary" data-act="compose" data-type="donate">${icon('box',16)} Offer food</button><button class="btn" data-act="compose" data-type="need">Post a need</button><button class="btn" data-act="compose" data-type="shared">Start a shared order</button><button class="btn" data-act="compose" data-type="capacity">Post truck capacity</button></div></div>
+  <div class="tabs" role="tablist">${tabBtn('foodTab','board',tab,'Community board')}${tabBtn('foodTab','profiles',tab,'Food bank receiving profiles')}${k==='foodbank'||k==='ops'?tabBtn('foodTab','profile',tab,k==='ops'?'Edit a receiving profile':'My receiving profile'):''}</div>
+  ${tab==='profiles'?viewProfiles():tab==='profile'?viewProfileForm():viewBoard()}`;
+}
+function viewBoard(){
+ const f=S.ui.f;const mySaved=S.saved.filter(s=>s.owner===S.role);
+ const chips=[['all','All'],['donate','Donations'],['sale','For purchase'],['need','Food needed'],['shared','Shared orders'],['capacity','Truck capacity']];
+ return `<div class="toolbar"><div class="search">${icon('search',16)}<label class="sr" for="f-q">Search posts</label><input id="f-q" type="search" placeholder="Search product, organization, location or ID" value="${esc(f.q)}" data-filter="q" autocomplete="off"></div>
+  <label class="sr" for="f-temp">Temperature</label><select id="f-temp" class="sel" data-filter="temp">${['all','Dry','Refrigerated','Frozen'].map(t=>`<option value="${t}"${f.temp===t?' selected':''}>${t==='all'?'All temperatures':t}</option>`).join('')}</select>
+  <label class="check"><input type="checkbox" data-filter="exp"${f.exp?' checked':''}> Show closed &amp; expired</label>
+  <button class="btn" data-act="saveSearch">Save search</button></div>
+  <div class="seg" role="group" aria-label="Post type" style="margin-bottom:12px">${chips.map(([v,l])=>`<button class="chip" aria-pressed="${f.type===v}" data-act="ftype" data-v="${v}">${l}</button>`).join('')}</div>
+  <div class="saved">${mySaved.length?`<span class="muted">Saved searches:</span>${mySaved.map(s=>`<span class="savedchip"><button data-act="applySaved" data-id="${s.id}" title="Apply saved search">★ ${esc(s.name)}${s.alert?' · alerts on':''}</button><button data-act="delSaved" data-id="${s.id}" aria-label="Delete saved search ${esc(s.name)}">×</button></span>`).join('')}`:`<span class="muted">No saved searches for ${esc(orgShort(S.role))}. Save one to get demo alerts when matching posts appear.</span>`}</div>
+  <div id="board-results">${boardResults()}</div>`;
+}
+function boardResults(){
+ const list=S.posts.filter(p=>matchF(p,S.ui.f)).sort((a,b)=>(a.status!=='open')-(b.status!=='open')||a.deadline.localeCompare(b.deadline));
+ if(!list.length)return `<div class="empty">No posts match these filters. <button class="link" data-act="clearFilters">Clear filters</button></div>`;
+ return `<p class="small muted" style="margin:0 0 8px">${list.length} post${list.length===1?'':'s'}</p><div class="board">${list.map(postCard).join('')}</div>`;
+}
+function postCard(p){
+ const t=TYPES[p.type];const q=qty(p);const dim=p.status!=='open';
+ const rev=!p.reviewed&&p.status==='open'?pill('Awaiting BHD review','amber'):'';
+ const bars=ALLOCABLE.includes(p.type)?`<div class="qbar" aria-hidden="true"><span class="c" style="width:${pct(q.conf,q.total)}%"></span><span class="q" style="width:${pct(q.req,q.total)}%"></span></div><div class="qlegend">${q.rem} of ${q.total} ${p.type==='capacity'?'positions':'pallets'} remaining · ${q.req} requested · ${q.conf} confirmed</div>`:'';
+ return `<article class="post${dim?' dim':''}" data-open="post:${p.id}" tabindex="0" aria-label="${esc(t.label+': '+p.title)}">${thumb(p)}<div style="min-width:0;flex:1"><div class="row" style="gap:6px">${pill(t.label,t.tone)}${rev}${postStatus(p)}${p.comments.length?`<span class="tiny muted">${p.comments.length} comment${p.comments.length===1?'':'s'}</span>`:''}</div><h3>${esc(p.title)}</h3><div class="meta">${esc(orgShort(p.orgId))} · ${esc(p.location)} · ${p.id}</div><div class="facts">${p.pallets} ${p.type==='capacity'?'pallet positions':'pallets'} · ${num(p.lbs)} lbs${p.type==='capacity'?' max':''} · ${p.temp} · ${t.dl} ${fmtS(p.deadline)}</div>${p.price?`<div class="facts"><span class="price">${money(p.price)}/lb</span> · est. ${money(p.price*p.lbs)} · purchase, not a donation</div>`:''}${bars}</div></article>`;
+}
+function viewProfiles(){
+ return table([{h:'Food bank'},{h:'Receiving hours'},{h:'Temperatures'},{h:'Storage limits (pallets)'},{h:'Dock & requirements'},{h:'Recurring needs'}],Object.entries(S.profiles).map(([id,pr])=>({cls:id===S.role?'me':'',cells:[`<b>${esc(ORGS[id].name)}</b><span class="sub">${esc(ORGS[id].city)} · ${esc(ORGS[id].contact)}</span>`,`Mon–Fri ${pad(pr.open)}:00–${pad(pr.close)}:00`,pr.temps.join(', '),`${pr.refrig} refrig · ${pr.frozen} frozen · ${pr.dry} dry`,esc(pr.dock),esc(pr.recurring)]})));
+}
+function viewProfileForm(){
+ const org=isOps()?(S.ui.profOrg||'crossroads'):S.role;const pr=S.profiles[org];if(!pr)return '<div class="empty">Switch to a food bank role to edit a receiving profile.</div>';
+ const hrs=Array.from({length:17},(_,i)=>i+5);
+ return `<form class="card pad" data-form="profile" data-org="${org}" style="max-width:760px"><div class="ferr" hidden></div>
+ ${isOps()?`<div class="field" style="margin-bottom:12px"><label for="pf-org">Food bank</label><select id="pf-org" data-act-change="profOrg">${Object.keys(S.profiles).map(o=>`<option value="${o}"${o===org?' selected':''}>${esc(ORGS[o].name)}</option>`).join('')}</select></div>`:`<p class="muted small" style="margin-top:0">${esc(ORGS[org].name)} — these settings are checked when you request food and when BHD plans deliveries.</p>`}
+ <div class="fgrid">
+  <div class="field"><label for="pf-open">Receiving opens (Mon–Fri)</label><select id="pf-open" name="open">${hrs.map(h=>`<option value="${h}"${h===pr.open?' selected':''}>${pad(h)}:00</option>`).join('')}</select></div>
+  <div class="field"><label for="pf-close">Receiving closes</label><select id="pf-close" name="close">${hrs.map(h=>`<option value="${h}"${h===pr.close?' selected':''}>${pad(h)}:00</option>`).join('')}</select></div>
+  <fieldset class="field full" style="border:0;padding:0;margin:0"><legend class="flabel">Temperature capabilities</legend><div class="row">${['Dry','Refrigerated','Frozen'].map(t=>`<label class="check"><input type="checkbox" name="temps" value="${t}"${pr.temps.includes(t)?' checked':''}> ${t}</label>`).join('')}</div></fieldset>
+  <div class="field"><label for="pf-r">Refrigerated storage limit (pallets)</label><input id="pf-r" name="refrig" type="number" min="0" max="200" step="1" value="${pr.refrig}"></div>
+  <div class="field"><label for="pf-f">Frozen storage limit (pallets)</label><input id="pf-f" name="frozen" type="number" min="0" max="200" step="1" value="${pr.frozen}"></div>
+  <div class="field"><label for="pf-d">Dry storage limit (pallets)</label><input id="pf-d" name="dry" type="number" min="0" max="200" step="1" value="${pr.dry}"></div>
+  <div class="field full"><label for="pf-dock">Dock & receiving requirements</label><input id="pf-dock" name="dock" value="${esc(pr.dock)}" maxlength="160"></div>
+  <div class="field full"><label for="pf-rec">Recurring needs</label><textarea id="pf-rec" name="recurring" maxlength="300">${esc(pr.recurring)}</textarea></div>
+ </div><div class="row" style="margin-top:14px"><button class="btn primary" type="submit">Save receiving profile</button></div></form>`;
+}
+
+/* ============ TRANSPORTATION ============ */
+function viewTransport(){
+ const ops=isOps();let tab=S.ui.tTab;if(tab==='sug'&&!ops)tab='ship';
+ const sg=suggestions().length;
+ return `<div class="page-head"><div><h1>Transportation</h1><p>Upcoming shipments and shared routes. Proposed combinations are suggestions until BHD Operations approves them. Select a shipment for stops, costs, readiness, exceptions and documents.</p></div></div>
+ <div class="tabs" role="tablist">${tabBtn('tTab','ship',tab,'Shipments')}${tabBtn('tTab','cal',tab,'Calendar')}${tabBtn('tTab','cap',tab,'Capacity')}${ops?tabBtn('tTab','sug',tab,'Suggested shared shipments',sg?pill(String(sg),'lime'):''):''}</div>
+ ${tab==='cal'?viewCal():tab==='cap'?viewCap():tab==='sug'?viewSug():viewShipTable()}`;
+}
+function viewShipTable(){
+ const f=S.ui.tFilter;
+ let list=S.shipments.slice();if(f==='active')list=list.filter(s=>['planned','released','in_transit'].includes(s.stage));else if(f==='done')list=list.filter(s=>['delivered','canceled'].includes(s.stage));
+ list.sort((a,b)=>a.pickup.date.localeCompare(b.pickup.date));
+ return `<div class="seg" role="group" aria-label="Filter shipments" style="margin-bottom:12px">${[['active','Active'],['done','Delivered & canceled'],['all','All']].map(([v,l])=>`<button class="chip" aria-pressed="${f===v}" data-act="tFilter" data-v="${v}">${l}</button>`).join('')}</div>
+ ${table([{h:'Shipment'},{h:'Route'},{h:'Pickup'},{h:'Load'},{h:'Food'},{h:'Funding'},{h:'Transport'},{h:'Next action'}],list.map(sh=>{const ex=sh.exceptions.filter(e=>!e.resolved);const[fs,fc]=foodState(sh),[us,uc]=fundState(sh),[ts,tc]=transState(sh);
+  return{open:'sh:'+sh.id,cells:[`<span class="id">${sh.id}</span>${ex.length?' '+pill(ex.length+' exception'+(ex.length>1?'s':''),ex.some(e=>e.sev==='red')?'red':'amber'):''}<span class="sub">${esc(sh.title)}</span>`,`${esc(routeText(sh))}<span class="sub">${sh.stops.length} stop${sh.stops.length>1?'s':''} · ~${num(sh.miles||0)} mi</span>`,`${fmtS(sh.pickup.date)}<span class="sub">${sh.pickup.win}</span>`,`${sumP(sh)} pallets<span class="sub">${num(sumL(sh))} lbs · ${sh.temp}</span>`,pill(short(fs),fc),pill(short(us),uc),pill(short(ts),tc),esc(nextAct(sh))]}}),f==='active'?'No active shipments. Approved shared routes will appear here.':'No shipments.')}`;
+}
+function viewCal(){
+ const t=todayISO();let st=parse(t);st.setDate(st.getDate()-((st.getDay()+6)%7));const start=iso(st);
+ const days=Array.from({length:14},(_,i)=>addDays(start,i));
+ const ev={};const push=(d,o)=>{(ev[d]=ev[d]||[]).push(o)};
+ S.shipments.filter(s=>s.stage!=='canceled').forEach(sh=>{const tone=sh.stage==='delivered'?'teal':sh.exceptions.some(e=>!e.resolved&&e.sev==='red')?'red':sh.stage==='planned'?(ready(sh)?'lime':'amber'):'';
+  push(sh.pickup.date,{sh,txt:`↑ ${sh.id} pickup · ${city(sh.pickup.loc)}`,tone});sh.stops.forEach(s=>push(s.date,{sh,txt:`↓ ${sh.id} · ${orgShort(s.orgId)} ${s.win.split('–')[0]}`,tone}))});
+ return `<p class="small muted" style="margin:0 0 10px">Two weeks from Monday ${fmtS(start)}. ↑ pickup · ↓ delivery appointment. Select an entry to open the shipment.</p><div class="cal">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dh">${d}</div>`).join('')}${days.map(d=>{const e=ev[d]||[];return `<div class="day${d===t?' today':''}${isWknd(d)?' wk':''}${e.length?'':' noev'}"><div class="dn">${fmtD(d)}${d===t?' · today':''}</div>${e.map(x=>`<button class="ev ${x.tone}" data-open="sh:${x.sh.id}" title="${esc(x.txt)}">${esc(x.txt)}</button>`).join('')}</div>`}).join('')}</div>`;
+}
+function viewCap(){
+ const ops=isOps();
+ return `<div class="note navy" style="margin-bottom:12px">Capacity sources BHD can assign: approved carriers, food-bank-owned fleet capacity and return trips. Assignment checks pallet positions, weight and temperature. ${ops?'Internal costs are visible only in the BHD Operations view.':''}</div>
+ ${table([{h:'Source'},{h:'Type'},{h:'Equipment'},{h:'Capacity'},{h:'Temperatures'},{h:'Availability'}].concat(ops?[{h:'Internal cost (demo)',r:1}]:[]),CAPS.map(c=>({cells:[`<b>${esc(c.name)}</b>${c.note?`<span class="sub">${esc(c.note)}</span>`:''}`,c.id==='cap-fresh'?pill(c.kind,'amber'):esc(c.kind),esc(c.equip),`${c.pallets} positions<span class="sub">${num(c.lbs)} lbs max</span>`,c.temps.join(', '),esc(c.avail)].concat(ops?[money(c.cost)]:[])})))}
+ <h3 class="sec-h">Capacity posted on the board</h3>${table([{h:'Post'},{h:'From'},{h:'Positions'},{h:'Until'}],S.posts.filter(p=>p.type==='capacity').map(p=>({open:'post:'+p.id,cells:[`<b>${esc(p.title)}</b><span class="sub">${p.id} · ${esc(orgShort(p.orgId))}</span>`,esc(p.location),`${qty(p).rem} of ${p.pallets} open`,fmtS(p.deadline)]})),'No capacity posts.')}`;
+}
+function viewSug(){
+ const s=suggestions();const waiting=S.posts.filter(p=>p.type==='shared'&&p.status==='open'&&qty(p).rem>0);
+ return `<div class="note lime" style="margin-bottom:12px">Suggestions combine confirmed allocations into one route and check weight, pallet space, temperature, pickup and receiving windows, shelf life and stop sequence. <b>Nothing ships until BHD Operations approves.</b></div>
+ ${table([{h:'Offer'},{h:'Recipients'},{h:'Load'},{h:'Checks'},{h:''}],s.map(p=>{const pl=buildPlan(p);const bad=pl.checks.filter(c=>c.ok==='no').length,warn=pl.checks.filter(c=>c.ok==='warn').length;return{open:'sg:'+p.id,cells:[`<b>${esc(p.title)}</b><span class="sub">${p.id} · ${esc(orgShort(p.orgId))} · ${p.temp}</span>`,pl.stops.map(x=>`${orgShort(x.orgId)} (${x.pallets})`).join(', '),`${pl.totP} pallets<span class="sub">${num(pl.totL)} lbs</span>`,bad?pill(bad+' blocking','red'):warn?pill(warn+' to review','amber'):pill('All checks pass','teal'),'<span class="link">Review</span>']}}),'No suggestions right now. They appear when donors confirm allocations.')}
+ ${waiting.length?`<p class="small muted">Waiting: ${waiting.map(p=>`${p.id} shared order needs ${qty(p).rem} more pallet${qty(p).rem===1?'':'s'} before it can be routed`).join(' · ')}.</p>`:''}`;
+}
+
+/* ============ SPONSOR ============ */
+function viewSponsor(){
+ const f=S.ui.spFilter;
+ const all=S.sponsorships.map(sp=>({sp,sh:shp(sp.shipmentId)})).filter(x=>x.sh);
+ const isOpen=x=>!x.sp.closed&&['planned','released'].includes(x.sh.stage)&&(x.sp.review||spT(x.sp).gap>0||spT(x.sp).pend>0);
+ let list=f==='open'?all.filter(isOpen):f==='funded'?all.filter(x=>!isOpen(x)&&!x.sp.closed):all;
+ list.sort((a,b)=>(b.sp.review?1:0)-(a.sp.review?1:0)||spT(b.sp).gap-spT(a.sp).gap);
+ const totGap=all.filter(isOpen).reduce((a,x)=>a+spT(x.sp).gap,0),totPend=all.filter(isOpen).reduce((a,x)=>a+spT(x.sp).pend,0);
+ const confirmed=all.reduce((a,x)=>a+spT(x.sp).conf,0);
+ return `<div class="page-head"><div><h1>Sponsor a Delivery</h1><p>Food is donated separately. Sponsorship pays only for the <b>transportation</b> that moves it. Pledges here are simulated: no payment details are collected, no money moves, and nothing is described as tax-deductible.</p></div></div>
+ ${stats([{l:'Deliveries needing funding',v:all.filter(isOpen).length,nav:'sponsor'},{l:'Remaining transportation gap',v:money(totGap),tone:totGap>0?'amber':'teal',nav:'sponsor'},{l:'Pledged, awaiting confirmation',v:money(totPend),nav:'sponsor'},{l:'Confirmed (simulated) funding',v:money(confirmed),tone:'teal',nav:'impact'}],true)}
+ <div class="row between" style="margin:20px 0 12px"><div class="seg" role="group" aria-label="Filter opportunities">${[['open','Needs funding'],['funded','Funded'],['all','All']].map(([v,l])=>`<button class="chip" aria-pressed="${f===v}" data-act="spFilter" data-v="${v}">${l}</button>`).join('')}</div><span class="small muted">Pledging as: <b>${kind()==='sponsor'?esc(ORGS[S.role].name):'choose a sponsor in the pledge form'}</b></span></div>
+ ${list.length?`<div class="opps">${list.map(x=>oppCard(x.sp,x.sh)).join('')}</div>`:`<div class="empty">${f==='open'?'Every current delivery is funded. New opportunities appear when BHD issues a transportation quote.':'Nothing to show.'}</div>`}
+ <h2 class="sec-h">Adopt a recurring delivery route <span class="demo-tag">Demo</span></h2>
+ <div class="opps">${ROUTES.map(routeCard).join('')}</div>
+ <h2 class="sec-h">Corporate matching campaign <span class="demo-tag">Demo</span></h2>
+ ${campaignCard()}`;
+}
+function oppCard(sp,sh){
+ const t=spT(sp);const p=sh.postId?post(sh.postId):null;const open=!sp.closed&&!sp.review&&t.gap>0&&['planned','released'].includes(sh.stage);
+ const cls=sp.review?'review':(t.conf>=sp.target-0.005||sp.closed)?'done':'';
+ let next;if(sp.closed)next='Closed — pledges released, nothing reallocated';else if(sp.review)next='BHD reviewing a change — new pledges paused; sponsors notified';else if(t.gap>0)next=`Needs ${money(t.gap)} more in pledges`;else if(t.pend>0)next='BHD to confirm simulated funding';else next=nextAct(sh);
+ return `<article class="card opp ${cls}"><div class="row between"><span class="oid">${sp.id} · ${sh.id}</span>${pill(...fundState(sh))}</div>
+ <div><h3>${esc(sh.title)}</h3><div class="small muted" style="margin-top:3px">Food donated by <b style="color:var(--ink)">${esc(orgName(sh.donorId))}</b> · ${sumP(sh)} pallets · ${num(sumL(sh))} lbs · ${sh.temp}</div></div>
+ ${routeChips(sh)}
+ <div class="small">Recipients: ${sh.stops.map(s=>`<b>${esc(orgShort(s.orgId))}</b> (${s.pallets} pallets)`).join(', ')}</div>
+ <div class="big3"><div><span>Pickup deadline</span><b>${fmtS(sh.deadline||sh.pickup.date)}</b></div><div><span>Transportation target</span><b>${money(sp.target)}</b></div><div><span>Status</span><b style="font-size:13px">${esc(short(transState(sh)[0]))}</b></div></div>
+ <div>${fbar(sp)}</div>
+ <div class="funds-note">Your sponsorship funds <b>transportation only</b> for ${sh.id}. If this were live, payment would go to <b>Backhaul Direct</b>, which coordinates and pays the carrier. The food itself is donated by ${esc(orgShort(sh.donorId))} at no cost.</div>
+ <div class="nextact"><b>Next</b>${esc(next)}</div>
+ <div class="row">${open?`<button class="btn primary" data-act="pledgeOpen" data-sp="${sp.id}" data-full="1">Sponsor the full delivery — ${money(t.gap)}</button><button class="btn" data-act="pledgeOpen" data-sp="${sp.id}">Contribute an amount</button>`:''}<button class="btn ghost" data-open="sp:${sp.id}">Details</button></div></article>`;
+}
+function routeCard(r){
+ const est=r.runs*r.perRun;const ad=S.adoptions.filter(a=>a.routeId===r.id&&a.status!=='ended');const used=ad.reduce((a,b)=>a+b.cap,0);const rem=Math.max(0,est-used);
+ return `<article class="card pad"><div class="row between"><b>${esc(r.name)}</b>${pill(r.freq,'navy')}</div><p class="small muted" style="margin:4px 0 10px">Serves ${esc(r.serves)} · about ${money(r.perRun)} per run (illustrative) · ~${money(est)}/month</p>
+ <div class="fbar"><span class="c" style="width:${pct(ad.filter(a=>a.status==='active').reduce((a,b)=>a+b.cap,0),est)}%"></span><span class="p" style="width:${pct(ad.filter(a=>a.status==='pending').reduce((a,b)=>a+b.cap,0),est)}%"></span></div>
+ <div class="flegend"><span>Adopted: ${ad.length?ad.map(a=>`${orgShort(a.orgId)} up to ${money(a.cap)}/mo${a.status==='pending'?' (pending)':''}`).join(', '):'none yet'}</span><span>Unadopted: <b>${money(rem)}</b>/mo</span></div>
+ <div class="row" style="margin-top:10px"><button class="btn" data-act="adoptOpen" data-id="${r.id}"${rem<=0?' disabled':''}>Adopt this route</button><span class="tiny muted">A monthly cap limits the commitment; runs above the cap are not charged to the sponsor.</span></div></article>`;
+}
+function campaignCard(){
+ const c=S.campaign;const used=campaignUsed();let conf=0;S.sponsorships.forEach(sp=>sp.pledges.forEach(p=>{if(p.viaCampaign&&p.status==='confirmed')conf+=p.amount}));
+ return `<div class="card pad" style="max-width:760px"><div class="row between"><b>${esc(c.name)}</b>${pill('1:1 match','lime')}</div><p class="small muted" style="margin:4px 0 10px">${esc(orgName(c.orgId))} matches other sponsors' pledges one-to-one, up to a maximum commitment of <b>${money(c.max)}</b>. A match never exceeds the remaining gap on a delivery, and stays pending until BHD confirms simulated funding.</p>
+ <div class="fbar"><span class="c" style="width:${pct(conf,c.max)}%"></span><span class="p" style="width:${pct(used-conf,c.max)}%"></span></div>
+ <div class="flegend"><span>Matched & confirmed <b>${money(conf)}</b></span><span>Matched & pending <b>${money(used-conf)}</b></span><span>Remaining commitment <b>${money(campaignRem())}</b></span></div>
+ <p class="tiny muted" style="margin:8px 0 0">To use it, tick “Request a match” when pledging to an open delivery.</p></div>`;
+}
+
+/* ============ IMPACT ============ */
+function impactCalc(){
+ const rows=S.shipments.filter(s=>s.stage==='delivered'&&s.pod).map(sh=>{const lbs=sh.stops.reduce((a,s)=>a+(s.recLbs||0),0);const sp=spFor(sh);const tot=shTotal(sh);const by={};if(sp)sp.pledges.filter(p=>p.status==='confirmed').forEach(p=>by[p.orgId]=r2((by[p.orgId]||0)+p.amount));const applied=Math.min(Object.values(by).reduce((a,b)=>a+b,0),tot);
+  return{sh,lbs,tot,by,applied,banks:sh.stops.filter(s=>s.recPallets>0).map(s=>s.orgId),date:sh.pod.date}}).sort((a,b)=>b.date.localeCompare(a.date));
+ const active=S.shipments.filter(s=>['planned','released','in_transit'].includes(s.stage));
+ let cConf=0,cPend=0;active.forEach(sh=>{const sp=activeSp(sh);if(sp){const t=spT(sp);cConf+=t.conf;cPend+=t.pend}});
+ return{rows,net:{lbs:rows.reduce((a,r)=>a+r.lbs,0),del:rows.length,banks:new Set(rows.flatMap(r=>r.banks)).size,fund:rows.reduce((a,r)=>a+r.applied,0)},
+  com:{lbs:active.reduce((a,s)=>a+sumL(s),0),n:active.length,conf:cConf,pend:cPend}};
+}
+function lensCalc(im,org){
+ const k=ORGS[org]?ORGS[org].type:'ops';let lbs=0,fund=0;const dels=[],banks=new Set();
+ im.rows.forEach(r=>{
+  if(k==='sponsor'&&r.by[org]){const sh=r.by[org]/(r.tot||1);lbs+=r.lbs*sh;fund+=r.by[org];dels.push({r,share:sh});r.banks.forEach(b=>banks.add(b))}
+  else if(k==='foodbank'){const s=r.sh.stops.find(x=>x.orgId===org&&x.recPallets>0);if(s){lbs+=s.recLbs;const w=s.pallets/sumP(r.sh);fund+=r.applied*w;dels.push({r,share:s.recLbs/(r.lbs||1)});banks.add(org)}}
+  else if(k==='donor'&&r.sh.donorId===org){lbs+=r.lbs;fund+=r.applied;dels.push({r,share:1});r.banks.forEach(b=>banks.add(b))}
+ });
+ return{k,lbs,fund,dels,banks:banks.size};
+}
+function viewImpact(){
+ const im=impactCalc();const def=['sponsor','foodbank','donor'].includes(kind())?S.role:'network';const lens=S.ui.lens||def;
+ const L=lens==='network'?null:lensCalc(im,lens);
+ const lensOpts=[['network','Whole network']].concat(Object.keys(ORGS).filter(o=>['sponsor','foodbank','donor'].includes(ORGS[o].type)).map(o=>[o,ORGS[o].name]));
+ const photos=[];im.rows.forEach(r=>r.sh.pod.photos.forEach(p=>{if(p.approved)photos.push({src:p.src,cap:`${r.sh.id} · ${fmtS(r.date)}`})}));
+ const lensLabel={sponsor:'Attributed to this sponsor (proportional share)',foodbank:'Received by this food bank',donor:'Delivered from this donor’s food'};
+ return `<div class="page-head"><div><h1>Impact</h1><p>Completed impact counts only confirmed deliveries, in pounds. Committed activity is shown separately until it is delivered.</p></div>
+ <div class="field" style="min-width:260px"><label for="lensSel">Report for</label><select id="lensSel" data-act-change="lens">${lensOpts.map(([v,l])=>`<option value="${v}"${v===lens?' selected':''}>${esc(l)}</option>`).join('')}</select></div></div>
+ <h2 class="sec-h" style="margin-top:0">Completed impact — network <span class="demo-tag">Demo data</span></h2>
+ ${stats([{l:'Pounds delivered',v:num(im.net.lbs),tone:'teal'},{l:'Completed deliveries',v:im.net.del,s:'a shared shipment counts once'},{l:'Food banks served',v:im.net.banks},{l:'Transportation funding applied',v:money(im.net.fund),s:'confirmed sponsorship on delivered shipments'}],true)}
+ ${L?`<h2 class="sec-h">${lensLabel[L.k]} · ${esc(ORGS[lens].name)}</h2>${stats([{l:L.k==='foodbank'?'Pounds received':'Pounds attributed',v:num(L.lbs),tone:'teal'},{l:L.k==='sponsor'?'Deliveries supported':'Deliveries',v:L.dels.length,s:L.k==='sponsor'?'shared deliveries, not separate impacts':''},{l:L.k==='foodbank'?'Organizations':'Food banks reached',v:L.k==='foodbank'?'—':L.banks},{l:L.k==='sponsor'?'Your confirmed funding applied':'Transportation funding applied',v:money(L.fund),s:L.k==='foodbank'?'proportional to your pallets':''}],true)}`:''}
+ <h2 class="sec-h">Committed — not yet delivered</h2>
+ ${stats([{l:'Pounds scheduled',v:num(im.com.lbs),s:'planned, released or in transit'},{l:'Shipments in progress',v:im.com.n},{l:'Funding confirmed (not yet applied)',v:money(im.com.conf)},{l:'Pledges awaiting confirmation',v:money(im.com.pend),tone:im.com.pend?'amber':''}],true)}
+ <h2 class="sec-h">Completed deliveries</h2>
+ ${table([{h:'Delivered'},{h:'Shipment'},{h:'Pounds',r:1},{h:'Food banks'},{h:'Funding applied',r:1},{h:'Sponsor shares'}].concat(L?[{h:'This report',r:1}]:[]),im.rows.map(r=>{const d=L?L.dels.find(x=>x.r===r):null;
+  return{open:'sh:'+r.sh.id,cls:d?'me':'',cells:[fmtS(r.date),`<b>${r.sh.id}</b><span class="sub">${esc(r.sh.title)} · from ${esc(orgShort(r.sh.donorId))}</span>`,num(r.lbs),r.banks.map(orgShort).join(', '),money(r.applied),Object.keys(r.by).length?Object.entries(r.by).map(([o,a])=>`${esc(orgShort(o))} ${Math.round(a/(r.tot||1)*100)}%`).join(' · '):'<span class="muted">Participant-paid</span>'].concat(L?[d?`${num(r.lbs*d.share)} lbs`:'—']:[])}}),'No completed deliveries yet.')}
+ <h2 class="sec-h">Delivery confirmations & approved photos</h2>
+ ${photos.length?`<div class="photos">${photos.map(p=>`<figure><img src="${esc(p.src)}" alt="Approved delivery photo ${esc(p.cap)}"><figcaption>${esc(p.cap)}</figcaption></figure>`).join('')}</div>`:'<div class="empty">No approved photos yet.</div>'}
+ <div class="note" style="margin-top:16px">How this report counts: pounds are the primary measure and come from proof-of-delivery quantities. Each shipment counts once at the network level, even when several food banks and sponsors share it. Sponsors are attributed proportionally (their confirmed funding ÷ the shipment's transportation cost). Pending pledges and scheduled loads are never counted as completed impact. No meals-served, tax or environmental conversions are made.</div>`;
+}
+
+/* ============ drawers ============ */
+const sec=(t,body,right)=>`<section class="dsec"><h4><span>${t}</span>${right||''}</h4>${body}</section>`;
+const kv=(pairs,cls)=>`<dl class="kv ${cls||''}">${pairs.filter(Boolean).map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
+const DRAWERS={
+ post(id){
+  const p=post(id);if(!p)return null;const t=TYPES[p.type];const q=qty(p);const me=S.role;const owner=me===p.orgId;const ops=isOps();const lpp=lppOf(p);
+  let h=`<section class="dsec"><div class="row" style="align-items:flex-start;gap:14px;flex-wrap:nowrap">${thumb(p,true)}<div><div class="row" style="gap:6px">${pill(t.label,t.tone)}${!p.reviewed&&p.status==='open'?pill('Awaiting BHD review','amber'):''}${postStatus(p)}</div><p style="margin:8px 0 0">${esc(p.desc||'—')}</p>${p.photo&&!p.photo.src?'<p class="tiny muted" style="margin:6px 0 0">Demo image placeholder — posters can attach a real photo.</p>':''}</div></div>
+  ${p.type==='sale'?'<div class="note amber" style="margin-top:12px"><b>For purchase — not a donation.</b> Price and payment are between buyer and seller. BHD coordinates transportation only.</div>':''}
+  ${p.type==='shared'?`<div class="note lime" style="margin-top:12px"><b>Shared order.</b> Participants join with the pallets they need; each pays its own share at ${money(p.price||0)}/lb. Routed once all ${p.pallets} pallets are committed.</div>`:''}
+  ${p.status==='expired'?'<div class="note" style="margin-top:12px">This post expired automatically when its date passed. Pending requests were closed and requesters notified.</div>':''}</section>`;
+  h+=sec('Details',kv([['Product',esc(p.product)],['Organization',`${esc(orgName(p.orgId))}<span class="sub">${esc((ORGS[p.orgId]||{}).contact||'')}</span>`],['Location',esc(p.location)],['Temperature',esc(p.temp)],[p.type==='capacity'?'Pallet positions':'Pallets',p.pallets],[p.type==='capacity'?'Max weight':'Weight',`${num(p.lbs)} lbs${p.type!=='capacity'?`<span class="sub">${num(lpp)} lbs per pallet</span>`:''}`],p.type!=='capacity'?['Shelf life',esc(p.shelfLife)]:null,[t.dl,`${fmtD(p.deadline)}<span class="sub">${rel(p.deadline)}</span>`],['Receiving requirements',esc(p.receiving||'—')],['Transportation',esc(p.transport||'—')],p.price?['Price',`${money(p.price)}/lb · est. ${money(p.price*p.lbs)}`]:null,['Posted',`${fmtT(p.created)} · ${p.id}`]]));
+  if(ALLOCABLE.includes(p.type)){
+   const canReq=p.status==='open'&&!owner&&!p.shipmentId&&q.rem>0&&(kind()==='foodbank'||ops||(p.type==='capacity'&&kind()==='donor'));
+   const reqBtn=canReq?`<button class="btn primary sm" data-act="reqOpen" data-post="${p.id}">${ops?'Request on behalf of…':t.verb}</button>`:'';
+   const pendN=p.allocs.filter(a=>a.status==='requested').length;
+   const bulk=(owner||ops)&&pendN>1&&p.status==='open'?`<button class="btn sm" data-act="confirmAll" data-post="${p.id}">Confirm all ${pendN} requests</button>`:'';
+   h+=sec('Quantities & allocations',`<div class="qty4"><div><b>${q.total}</b><span>Total ${p.type==='capacity'?'positions':'pallets'}</span></div><div><b style="color:var(--amber)">${q.req}</b><span>Requested (pending)</span></div><div><b style="color:var(--teal)">${q.conf}</b><span>Confirmed</span></div><div><b>${q.rem}</b><span>Remaining</span></div></div>
+   <div class="qbar"><span class="c" style="width:${pct(q.conf,q.total)}%"></span><span class="q" style="width:${pct(q.req,q.total)}%"></span></div>
+   <p class="tiny muted" style="margin:6px 0 10px">Requests reserve quantity until the ${p.type==='capacity'?'carrier':'donor'} confirms or declines — the post can never be over-allocated.</p>
+   ${p.allocs.length?p.allocs.slice().reverse().map(a=>`<div class="alloc"><div><b>${esc(orgShort(a.orgId))}</b> · ${a.pallets} pallet${a.pallets===1?'':'s'}${p.type!=='capacity'?` (${num(a.pallets*lpp)} lbs)`:''}<span class="sub">${fmtT(a.at)}</span></div><div class="row" style="gap:6px">${pill(...allocLabel[a.status])}${(owner||ops)&&a.status==='requested'&&p.status==='open'?`<button class="btn sm primary" data-act="decide" data-post="${p.id}" data-alloc="${a.id}" data-d="confirm">Confirm</button><button class="btn sm" data-act="decide" data-post="${p.id}" data-alloc="${a.id}" data-d="decline">Decline</button>`:''}${a.orgId===me&&a.status==='requested'?`<button class="btn sm ghost" data-act="cancelReq" data-post="${p.id}" data-alloc="${a.id}">Cancel request</button>`:''}</div></div>`).join(''):'<p class="muted small" style="margin:0">No requests yet.</p>'}
+   <div class="row" style="margin-top:10px">${reqBtn}${bulk}</div>
+   ${!canReq&&p.status==='open'&&!owner&&!p.shipmentId&&q.rem>0&&!ops&&kind()!=='foodbank'?`<p class="small muted" style="margin:8px 0 0">Switch to a food bank role to request pallets. <button class="link" data-act="setRole" data-id="crossroads">Switch to Crossroads</button></p>`:''}
+   ${p.shipmentId?`<div class="note navy" style="margin-top:10px">Planned on <button class="link" data-open="sh:${p.shipmentId}">${p.shipmentId}</button>. Later requests are not added to that shipment.</div>`:''}`);
+  }
+  h+=sec(`Comments (${p.comments.length})`,`${p.comments.map(c=>`<div class="cmt"><div class="who">${esc(orgShort(c.orgId))} <span class="tiny muted">· ${fmtT(c.at)}</span></div>${esc(c.text)}</div>`).join('')||'<p class="muted small" style="margin:0 0 8px">No comments yet.</p>'}
+   <form data-form="comment" data-post="${p.id}" style="margin-top:10px"><div class="ferr" hidden></div><div class="field"><label for="cm-${p.id}">Comment as ${esc(orgShort(me))}</label><textarea id="cm-${p.id}" name="text" maxlength="600" placeholder="Ask about pickup, packaging, timing…"></textarea></div><div class="row" style="margin-top:8px"><button class="btn sm" type="submit">Post comment</button></div></form>`);
+  const acts=[];if(ops&&!p.reviewed&&p.status==='open')acts.push(`<button class="btn dark" data-act="review" data-post="${p.id}">Mark reviewed</button>`);
+  if((owner||ops)&&['open','allocated'].includes(p.status))acts.push(`<button class="btn danger" data-act="withdrawAsk" data-post="${p.id}">${p.shipmentId?'Mark food unavailable':'Withdraw post'}</button>`);
+  if(ops&&suggestions().includes(p))acts.push(`<button class="btn" data-open="sg:${p.id}">Review suggested shipment</button>`);
+  if(acts.length)h+=sec(owner?'Manage your post':'Operations',`<div class="row">${acts.join('')}</div>`);
+  return{title:p.title,sub:`${t.label} · ${esc(orgName(p.orgId))} · ${p.id}`,body:h};
+ },
+ sh(id){
+  const sh=shp(id);if(!sh)return null;const ops=isOps();const sp=spFor(sh);const q=sh.quote;const me=S.role;const tot=shTotal(sh);
+  let h=`<section class="dsec"><div class="row" style="gap:6px">${P3(sh)}</div><p class="small" style="margin:10px 0 0"><b>Next:</b> ${esc(nextAct(sh))}</p></section>`;
+  h+=sec('Stops & appointments',`<ol class="stops"><li class="stop"><span class="n pu">P</span><div><b>Pickup · ${esc(orgName(sh.pickup.orgId))}</b><span class="sub">${esc(sh.pickup.loc)} · ${fmtD(sh.pickup.date)} ${sh.pickup.win}</span></div><div></div></li>
+   ${sh.stops.map((s,i)=>`<li class="stop"><span class="n">${i+1}</span><div><b>${esc(orgName(s.orgId))}</b><span class="sub">${esc(ORGS[s.orgId].city)} · ${s.pallets} pallets · ${num(s.lbs)} lbs</span><span class="sub">Delivery ${fmtD(s.date)} ${s.win}${S.profiles[s.orgId]?` · receives ${pad(S.profiles[s.orgId].open)}:00–${pad(S.profiles[s.orgId].close)}:00`:''}</span>${s.recPallets!=null?`<span class="sub"><b style="color:var(--teal)">Received ${s.recPallets} of ${s.pallets} pallets (${num(s.recLbs)} lbs)</b></span>`:''}</div><div class="acts">${s.appt==='accepted'?pill('Appointment accepted','teal'):pill('Awaiting recipient acceptance','amber')}${s.appt==='requested'&&['planned','released'].includes(sh.stage)&&(me===s.orgId||ops)?`<button class="btn sm ${me===s.orgId?'primary':''}" data-act="acceptAppt" data-sh="${sh.id}" data-org="${s.orgId}">${me===s.orgId?'Accept appointment':'Confirm by phone'}</button>`:''}</div></li>`).join('')}</ol>
+   <p class="tiny muted" style="margin:6px 0 0">Stop sequence by nearest next stop · ~${num(sh.miles||0)} route miles (estimate)</p>`);
+  const cap=CAPS.find(c=>c.id===sh.assignment);
+  h+=sec('Load',`${kv([['Food',esc(sh.product)],['Temperature',sh.temp],['Pallets',`${sumP(sh)} of ${cap?cap.pallets:26}<div class="loadbar"><span style="width:${pct(sumP(sh),cap?cap.pallets:26)}%"></span></div>`],['Weight',`${num(sumL(sh))} of ${num(cap?cap.lbs:44000)} lbs<div class="loadbar"><span style="width:${pct(sumL(sh),cap?cap.lbs:44000)}%"></span></div>`],['Shelf life',sh.shelfDays?sh.shelfDays+' days':'—'],['Donor',esc(orgName(sh.donorId))]])}`);
+  if(q){const rows=shares(sh);
+   h+=sec(`Quote v${q.ver} · ${q.status==='approved'?'approved':'issued — approval needed'}`,`${kv([['Linehaul',money(q.linehaul)],['Fuel surcharge',money(q.fuel)],['Extra stop charges',money(q.stopoffs)],['Handling',`${money(q.handling)} per stop`],['Coordination fee',money(q.coord)],['Quoted total',`<b>${money(tot)}</b>`]],'k3')}
+    <h4 style="font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 8px">Each participant's share before confirmation</h4>
+    <div class="inner">${table([{h:'Participant'},{h:'Pallets',r:1},{h:'Transport',r:1},{h:'Handling',r:1},{h:'Coord. fee',r:1},{h:'Quoted share',r:1},{h:'Sponsorship',r:1},{h:'Remaining due',r:1}],rows.map(r=>({cls:r.org===me?'me':'',cells:[esc(orgShort(r.org)),r.pallets,money(r.tr),money(r.ha),money(r.co),`<b>${money(r.total)}</b>`,`${money(r.sc)}${r.sd?`<span class="sub">+${money(r.sd)} pending</span>`:''}`,`<b>${money(r.due)}</b>`]})))}</div>
+    <p class="tiny muted" style="margin:8px 0 0">Shares are by pallets; handling is per stop. Sponsorship is applied to each participant in proportion to its share. ${sh.participantCommit?'Participants committed to cover any balance.':'“Remaining due” assumes pending pledges are confirmed.'} All amounts illustrative.</p>
+    ${ops?`<div class="internal"><div class="lab">Internal — BHD Operations only</div>${kv([['Carrier / fleet cost',sh.internal.carrierCost!=null?money(sh.internal.carrierCost):'—'],['Handling pass-through',money(q.handling*sh.stops.length)],['Coordination margin',sh.internal.carrierCost!=null?`<b>${money(tot-sh.internal.carrierCost-q.handling*sh.stops.length)}</b>`:'—'],['Private note',esc(sh.internal.note||'—')]])}</div>`:''}`);
+  }else h+=sec('Quote',`<p class="muted small" style="margin:0">No transportation quote yet. Participants see their share here before anything is confirmed.</p>${ops?'<div class="internal"><div class="lab">Internal — BHD Operations only</div><p class="small" style="margin:0">Issue an illustrative quote to open sponsorship and show participant shares.</p></div>':''}`);
+  let fund='';
+  if(sp){const t=spT(sp);fund=`${sp.review&&!sp.closed?`<div class="note red" style="margin-bottom:10px"><b>Under review:</b> ${esc(sp.review.reason)}. Sponsors have been notified; no pledge has been moved.</div>`:''}${fbar(sp)}<p class="small" style="margin:8px 0 0">${sp.id} · target ${money(sp.target)}${sp.closed?' · closed':''} · <button class="link" data-open="sp:${sp.id}">Open sponsorship</button></p>`}
+  else fund=`<p class="muted small" style="margin:0">${q?'No sponsorship opportunity for this shipment.':'Funding opens once a quote is issued.'}</p>`;
+  if(ops&&q&&!covered(sh)&&sh.stage==='planned')fund+=`<div class="row" style="margin-top:10px">${!sp?`<button class="btn sm" data-act="openSp" data-sh="${sh.id}">Open sponsorship opportunity</button>`:''}<button class="btn sm" data-act="partCommit" data-sh="${sh.id}">Participants cover remaining balance (demo)</button></div>`;
+  h+=sec('Transportation funding',fund);
+  if(sh.stage==='planned'){const r=readiness(sh);
+   h+=sec('Dispatch readiness',`<ul class="checks">${r.map(c=>`<li><span class="ck ${c.ok?'ok':'no'}">${c.ok?'✓':'!'}</span><div><b>${c.l}</b><span class="sub">${esc(c.d)}</span></div></li>`).join('')}</ul>
+   ${sh.stops.some(s=>s.appt==='requested')?'<p class="tiny muted" style="margin:6px 0 0">Delivery appointments still awaiting recipient acceptance are flagged in the work queue.</p>':''}
+   ${ops?`<div class="row" style="margin-top:10px"><button class="btn primary" data-act="release" data-sh="${sh.id}"${r.every(c=>c.ok)?'':' disabled aria-disabled="true"'}>Release for dispatch</button>${r.every(c=>c.ok)?'':'<span class="small muted">Available when every check passes.</span>'}</div>`:'<p class="small muted" style="margin:8px 0 0">BHD Operations releases the shipment once every check passes.</p>'}`);
+  }
+  h+=sec('Capacity',`${cap?`<p style="margin:0"><b>${esc(cap.name)}</b><span class="sub">${esc(cap.kind)} · ${esc(cap.equip)} · ${cap.pallets} positions · ${num(cap.lbs)} lbs</span>${cap.note?`<span class="sub">${esc(cap.note)}</span>`:''}</p>`:'<p class="muted small" style="margin:0">Not assigned.</p>'}
+   ${ops&&sh.stage==='planned'?`<div class="inner" style="margin-top:10px">${table([{h:'Option'},{h:'Fit'},{h:'Internal cost',r:1},{h:''}],CAPS.map(c=>{const f=fits(c,sh);return{cells:[`<b>${esc(c.name)}</b><span class="sub">${esc(c.kind)} · ${esc(c.equip)}</span>`,f.ok?pill('Suitable','teal'):`${pill('Not suitable','red')}<span class="sub">${esc(f.why.join('; '))}</span>`,money(c.cost),sh.assignment===c.id?pill('Assigned','navy'):`<button class="btn sm" data-act="assign" data-sh="${sh.id}" data-cap="${c.id}"${f.ok?'':' disabled'}>Assign</button>`]}}))}</div>`:''}`);
+  const ex=sh.exceptions;
+  h+=sec(`Exceptions (${ex.filter(e=>!e.resolved).length} open)`,`${ex.length?ex.slice().reverse().map(e=>`<div class="alloc"><div>${pill(e.resolved?'Resolved':e.sev==='red'?'Urgent':'Attention',e.resolved?'gray':e.sev)} <span style="margin-left:4px">${esc(e.text)}</span><span class="sub">${fmtT(e.at)}</span></div>${ops&&!e.resolved?`<button class="btn sm" data-act="resolveEx" data-sh="${sh.id}" data-ex="${e.id}">Resolve</button>`:''}</div>`).join(''):'<p class="muted small" style="margin:0">No exceptions.</p>'}${ops&&!['delivered','canceled'].includes(sh.stage)?`<div class="row" style="margin-top:8px"><button class="btn sm" data-act="exOpen" data-sh="${sh.id}">Log exception</button></div>`:''}`);
+  h+=sec('Documents',sh.docs.length?`<ul class="checks">${sh.docs.map((d,i)=>`<li><span class="ck ok">▤</span><div><button class="link" data-act="doc" data-sh="${sh.id}" data-i="${i}">${esc(d.name)}</button><span class="sub">${fmtT(d.at)}</span></div></li>`).join('')}</ul>`:'<p class="muted small" style="margin:0">No documents yet.</p>');
+  if(sh.pod){const ph=sh.pod.photos.map((p,i)=>({p,i})).filter(x=>ops||x.p.approved);
+   h+=sec('Proof of delivery',`${kv([['Delivered',fmtD(sh.pod.date)],['Received by',esc(sh.pod.receiver)],['Pounds delivered',`<b>${num(sh.stops.reduce((a,s)=>a+(s.recLbs||0),0))} lbs</b>`],['Notes',esc(sh.pod.notes||'—')]])}
+   ${ph.length?`<div class="photos" style="margin-top:12px">${ph.map(x=>`<figure><img src="${esc(x.p.src)}" alt="Delivery photo"><figcaption>${x.p.approved?'Approved for reports':'Not approved'}${ops?` · <button class="link" data-act="photoApprove" data-sh="${sh.id}" data-i="${x.i}" data-v="${x.p.approved?0:1}">${x.p.approved?'Hide':'Approve'}</button>`:''}</figcaption></figure>`).join('')}</div>`:''}`);}
+  if(ops){const a=[];
+   if(sh.stage==='planned'){a.push(`<button class="btn ${q?'':'primary'}" data-act="quoteOpen" data-sh="${sh.id}">${q?'Revise quote':'Issue quote'}</button>`);if(q&&q.status!=='approved')a.push(`<button class="btn primary" data-act="approveQuote" data-sh="${sh.id}">Approve transportation cost</button>`)}
+   if(sh.stage==='released')a.push(`<button class="btn primary" data-act="transit" data-sh="${sh.id}">Confirm pickup — in transit</button>`);
+   if(['released','in_transit'].includes(sh.stage))a.push(`<button class="btn primary" data-act="deliverOpen" data-sh="${sh.id}">Record delivery</button>`);
+   if(!['delivered','canceled'].includes(sh.stage))a.push(`<button class="btn danger" data-act="cancelOpen" data-sh="${sh.id}">Cancel shipment</button>`);
+   if(a.length)h+=sec('Operations actions',`<div class="row">${a.join('')}</div>`);}
+  return{title:`${sh.id} · ${sh.title}`,sub:`${esc(routeText(sh))} · pickup ${fmtD(sh.pickup.date)}`,body:h};
+ },
+ sp(id){
+  const sp=spById(id);if(!sp)return null;const sh=shp(sp.shipmentId);const t=spT(sp);const ops=isOps();const me=S.role;
+  const open=!sp.closed&&!sp.review&&t.gap>0&&['planned','released'].includes(sh.stage);
+  let h=`<section class="dsec"><div class="row" style="gap:6px">${pill(...fundState(sh))}${pill(...transState(sh))}</div>${sp.review&&!sp.closed?`<div class="note red" style="margin-top:12px"><b>Flagged for review:</b> ${esc(sp.review.reason)}${sp.review.newTarget!=null?` (new target ${money(sp.review.newTarget)})`:''}. Sponsors notified. New pledges are paused and <b>no funds are reallocated automatically</b>.${ops?'':' BHD Operations will follow up.'}</div>`:''}${sp.closed?'<div class="note" style="margin-top:12px">Closed. Any pledges were released individually and sponsors notified.</div>':''}</section>`;
+  h+=sec('What this sponsorship funds',`<div class="note"><b>Transportation only</b> for ${sh.id}: moving ${sumP(sh)} pallets (${num(sumL(sh))} lbs) of ${esc(sh.product.toLowerCase())} from ${esc(city(sh.pickup.loc))} to ${sh.stops.map(s=>esc(orgShort(s.orgId))).join(', ')}.</div><div class="note navy">The food is donated separately by <b>${esc(orgName(sh.donorId))}</b> at no cost. If this were live, sponsorship payments would go to <b>Backhaul Direct</b>, which coordinates and pays the carrier. This demo collects no payment details, moves no money, issues no receipts and makes no tax claims.</div>`);
+  h+=sec('Funding',`${fbar(sp)}${kv([['Transportation target',money(sp.target)],['Confirmed',money(t.conf)],['Pending pledges',money(t.pend)],['Remaining gap',`<b>${money(t.gap)}</b>`],['Pickup deadline',fmtD(sh.deadline||sh.pickup.date)],['Next required action',esc(sp.review?'BHD review':t.gap>0?'More pledges':t.pend>0?'BHD confirms simulated funding':nextAct(sh))]],'k3').replace('<dl','<dl style="margin-top:12px"')}
+   ${open?`<div class="row" style="margin-top:12px"><button class="btn primary" data-act="pledgeOpen" data-sp="${sp.id}" data-full="1">Sponsor the full delivery — ${money(t.gap)}</button><button class="btn" data-act="pledgeOpen" data-sp="${sp.id}">Contribute an amount</button></div>`:''}`);
+  h+=sec(`Pledges (${sp.pledges.length})`,sp.pledges.length?sp.pledges.slice().reverse().map(p=>`<div class="alloc"><div><b>${esc(orgName(p.orgId))}</b> · ${money(p.amount)}${p.viaCampaign?' <span class="tiny muted">(campaign match)</span>':''}<span class="sub">${fmtT(p.at)}</span></div><div class="row" style="gap:6px">${pledgePill(p)}${ops&&p.status==='pending'&&!sp.review?`<button class="btn sm primary" data-act="confirmPledge" data-sp="${sp.id}" data-pl="${p.id}">Mark simulated funding confirmed</button>`:''}${(ops&&['pending','confirmed'].includes(p.status)&&(sp.review||sh.stage==='planned'))||(p.orgId===me&&p.status==='pending')?`<button class="btn sm" data-act="releasePledge" data-sp="${sp.id}" data-pl="${p.id}">${ops?'Release':'Withdraw'}</button>`:''}</div></div>`).join(''):'<p class="muted small" style="margin:0">No pledges yet.</p>');
+  if(sh.quote)h+=sec('Participant shares',`<div class="inner">${table([{h:'Food bank'},{h:'Quoted share',r:1},{h:'Sponsorship applied',r:1},{h:'Remaining due',r:1}],shares(sh).map(r=>({cells:[esc(orgShort(r.org)),money(r.total),`${money(r.sc)}${r.sd?`<span class="sub">+${money(r.sd)} pending</span>`:''}`,money(r.due)]})))}</div><p class="small" style="margin:8px 0 0"><button class="link" data-open="sh:${sh.id}">Open shipment ${sh.id}</button></p>`);
+  if(ops&&sp.review&&!sp.closed)h+=sec('Resolve review',`<p class="small" style="margin:0 0 10px">${sh.stage==='canceled'||!sh.foodOk?'Release each active pledge (each sponsor is notified), then close this opportunity.':'If active pledges fit the new target, close the review to apply it. Otherwise release or reduce pledges with sponsors first.'}</p><button class="btn dark" data-act="closeReview" data-sp="${sp.id}">${sh.stage==='canceled'||!sh.foodOk?'Close opportunity':'Apply new target & close review'}</button>`);
+  return{title:`Sponsor ${sh.id} · ${sh.title}`,sub:`${sp.id} · ${esc(routeText(sh))}`,body:h};
+ },
+ sg(id){
+  const p=post(id);if(!p)return null;if(p.shipmentId)return DRAWERS.sh(p.shipmentId);
+  const pl=buildPlan(p);const ops=isOps();const bad=pl.checks.some(c=>c.ok==='no');
+  const other=S.posts.filter(x=>x.id!==p.id&&x.status==='open'&&!x.shipmentId&&qty(x).conf>0&&['donate','sale','shared'].includes(x.type));
+  let h=`<section class="dsec"><div class="note lime"><b>Suggestion — requires operations approval.</b> Combines ${pl.stops.length} confirmed allocation${pl.stops.length===1?'':'s'} from ${esc(orgShort(p.orgId))} into one ${p.temp.toLowerCase()} route. Nothing is booked until approved.</div></section>`;
+  h+=sec('Proposed route',`<ol class="stops"><li class="stop"><span class="n pu">P</span><div><b>Pickup · ${esc(orgName(p.orgId))}</b><span class="sub">${esc(p.location)} · ${fmtD(pl.pick)} 06:00–08:00</span></div><div></div></li>${pl.stops.map((s,i)=>`<li class="stop"><span class="n">${i+1}</span><div><b>${esc(orgName(s.orgId))}</b><span class="sub">${s.pallets} pallets · ${num(s.lbs)} lbs · ${fmtD(s.date)} ${s.win}</span></div><div></div></li>`).join('')}</ol><p class="tiny muted" style="margin:6px 0 0">~${num(pl.miles)} route miles (estimate) · ${pl.transit}-day plan</p>`);
+  h+=sec('Compatibility checks',`<ul class="checks">${pl.checks.map(c=>`<li><span class="ck ${c.ok==='ok'?'ok':c.ok==='warn'?'warn':'no'}">${c.ok==='ok'?'✓':'!'}</span><div><b>${c.l}</b><span class="sub">${esc(c.d)}</span></div></li>`).join('')}</ul>${pl.pending.length?`<div class="note amber" style="margin-top:8px">${pl.pending.length} request${pl.pending.length===1?' is':'s are'} still awaiting the donor's decision and ${pl.pending.length===1?'is':'are'} not included.</div>`:''}`);
+  h+=sec('Other confirmed orders considered',other.length?other.map(x=>{const why=x.temp!==p.temp?`different temperature (${x.temp})`:dist(x,p)>120?`pickup ~${num(dist(x,p))} mi away`:'separate pickup — combine manually if needed';return `<div class="alloc"><div><b>${esc(x.title)}</b><span class="sub">${x.id} · ${esc(orgShort(x.orgId))} · ${x.temp}</span></div><span class="small muted">Not combined: ${esc(why)}</span></div>`}).join(''):'<p class="muted small" style="margin:0">No other confirmed orders to combine.</p>');
+  h+=sec('Capacity options',`<p class="small muted" style="margin:0 0 8px">Assigned after approval. Return trips and food-bank fleets are considered alongside approved carriers.</p>${CAPS.map(c=>{const f=fits(c,{stops:pl.stops,temp:p.temp});return `<div class="alloc"><div><b>${esc(c.name)}</b><span class="sub">${esc(c.kind)} · ${esc(c.equip)}</span></div>${f.ok?pill('Suitable','teal'):pill(f.why[0],'gray')}</div>`}).join('')}`);
+  if(ops)h+=sec('Decision',`<div class="row"><button class="btn primary" data-act="approvePlan" data-post="${p.id}"${bad?' disabled':''}>Approve combined shipment</button>${bad?'<span class="small muted">Resolve blocking checks first.</span>':''}</div>`);
+  return{title:'Suggested shared shipment',sub:`${p.id} · ${esc(p.title)}`,body:h};
+ },
+ adopt(id){
+  const a=S.adoptions.find(x=>x.id===id);if(!a)return null;const r=ROUTES.find(x=>x.id===a.routeId);
+  let h=sec('Route adoption',kv([['Route',esc(r.name)],['Sponsor',esc(orgName(a.orgId))],['Monthly cap',money(a.cap)],['Status',a.status==='active'?pill('Active','teal'):pill('Pending confirmation','amber')],['Estimated route cost',`${money(r.runs*r.perRun)}/month`],['Requested',fmtT(a.at)]]));
+  h+=sec('How it works','<div class="note">The sponsor covers runs on this route up to the monthly cap. Runs beyond the cap are funded another way — never charged above the cap. Demo only: no recurring payment is set up.</div>');
+  if(isOps()&&a.status==='pending')h+=sec('Decision',`<button class="btn primary" data-act="confirmAdopt" data-id="${a.id}">Confirm adoption (demo)</button>`);
+  return{title:'Adopted route',sub:esc(r.name),body:h};
+ },
+ compose(type){return composeDrawer(type)}
+};
+function composeDrawer(type){
+ const ops=isOps();const t=TYPES[type]?type:'donate';const o=ORGS[S.role];
+ const posters=Object.keys(ORGS).filter(k=>['donor','foodbank','carrier'].includes(ORGS[k].type));
+ const canFill=S.role==='lakeshore'||ops;
+ const h=`<form data-form="post" data-type="${t}" novalidate><div class="ferr" hidden></div>
+ ${canFill?`<div class="note lime" style="margin-bottom:14px">Demo shortcut: <button type="button" class="link" data-act="fillScenario">Fill the 20-pallet produce scenario</button></div>`:''}
+ <div class="fgrid">
+  <div class="field"><label for="c-type">Post type</label><select id="c-type" name="type" data-act-change="ctype">${Object.entries(TYPES).map(([k,v])=>`<option value="${k}"${k===t?' selected':''}>${v.label}</option>`).join('')}</select></div>
+  ${ops?`<div class="field"><label for="c-org">Post on behalf of</label><select id="c-org" name="org">${posters.map(k=>`<option value="${k}">${esc(ORGS[k].name)}</option>`).join('')}</select></div>`:`<div class="field"><span class="flabel">Posting as</span><div style="padding-top:7px;font-weight:600">${esc(o.name)}</div></div>`}
+  <div class="field full"><label for="c-title">Title</label><input id="c-title" name="title" required maxlength="90" placeholder="e.g. Fresh produce — apples, carrots & cabbage"></div>
+  <div class="field full"><label for="c-product">Product</label><input id="c-product" name="product" maxlength="120" placeholder="What exactly is it?"></div>
+  <div class="field"><label for="c-pallets">Pallets <span class="t-cap">(positions)</span></label><input id="c-pallets" name="pallets" type="number" min="1" max="60" step="1" required></div>
+  <div class="field"><label for="c-lbs">Total weight (lbs)</label><input id="c-lbs" name="lbs" type="number" min="1" step="1" required></div>
+  <div class="field"><label for="c-temp">Temperature</label><select id="c-temp" name="temp"><option>Dry</option><option>Refrigerated</option><option>Frozen</option></select></div>
+  <div class="field"><label for="c-date">Pickup / needed-by / available-until date</label><input id="c-date" name="deadline" type="date" min="${todayISO()}" required></div>
+  <div class="field t-food"><label for="c-shelf">Shelf life</label><input id="c-shelf" name="shelfLife" maxlength="60" placeholder="e.g. 10–14 days at 34–38°F"></div>
+  <div class="field t-food"><label for="c-sdays">Shelf life (days)</label><input id="c-sdays" name="shelfDays" type="number" min="0" step="1"></div>
+  <div class="field t-sale"><label for="c-price">Price per lb (purchase)</label><input id="c-price" name="price" type="number" min="0" step="0.01" placeholder="0.22"><div class="hint">Shown clearly as a purchase, not a donation.</div></div>
+  <div class="field"><label for="c-loc">Location</label><input id="c-loc" name="location" maxlength="60" value="${esc(o.city)}"></div>
+  <div class="field"><label for="c-tr">Transportation</label><select id="c-tr" name="transport"><option>Needs coordinated transportation</option><option>Donor or seller delivers</option><option>Recipient pickup</option><option>Can share a route with nearby deliveries</option></select></div>
+  <div class="field full"><label for="c-rec">Receiving / handling requirements</label><input id="c-rec" name="receiving" maxlength="140" placeholder="e.g. Refrigerated receipt at 34–38°F"></div>
+  <div class="field full"><label for="c-desc">Description</label><textarea id="c-desc" name="desc" maxlength="400"></textarea></div>
+  <div class="field full"><label for="c-photo">Photo (optional)</label><input id="c-photo" type="file" accept="image/*" data-photo="post"><div class="hint">Resized and stored in this browser only.</div><img id="prev-post" alt="Selected photo preview" hidden style="margin-top:8px;max-width:160px;border-radius:6px;border:1px solid var(--line)"></div>
+  <input type="hidden" name="scn" value="">
+ </div><div class="row" style="margin-top:16px"><button class="btn primary" type="submit">Post to the board</button><button class="btn" type="button" data-act="closeDrawer">Cancel</button></div></form>`;
+ return{title:'New post',sub:'Fictional demo organizations only',body:`<section class="dsec">${h}</section>`};
+}
+let drawer=null,lastFocus=null;
+function openRecord(kindK,id){
+ if(kindK==='nav'){closeDrawer();go(id);return}
+ if(!DRAWERS[kindK])return;const opening=!drawer;drawer={k:kindK,id};if(opening)lastFocus=document.activeElement;renderDrawer(true);
+}
+function renderDrawer(focus){
+ const el=$('#drawer'),sc=$('#scrim');
+ if(!drawer){el.hidden=true;sc.hidden=true;el.innerHTML='';return}
+ const res=DRAWERS[drawer.k](drawer.id);if(!res){drawer=null;return renderDrawer()}
+ const prevScroll=el.querySelector('.dw-body')?el.querySelector('.dw-body').scrollTop:0;const hadFocus=el.contains(document.activeElement);
+ const keep=drawer.k==='compose'&&el.querySelector('form[data-form="post"]')&&!focus;if(keep)return;
+ el.innerHTML=`<div class="dw-head"><div><h2 id="dwTitle">${esc(res.title)}</h2><div class="sub muted">${res.sub||''} <span class="demo-tag">Demo data</span></div></div><button class="x" data-act="closeDrawer" aria-label="Close panel">✕</button></div><div class="dw-body">${res.body}</div>`;
+ el.hidden=false;sc.hidden=false;
+ const body=el.querySelector('.dw-body');if(!focus)body.scrollTop=prevScroll;
+ if(focus||hadFocus)el.querySelector('.x').focus({preventScroll:true});
+}
+function closeDrawer(){drawer=null;renderDrawer();if(lastFocus&&document.contains(lastFocus))lastFocus.focus({preventScroll:true})}
+
+/* ============ modals ============ */
+let modal=null;
+function openModal(k,data){modal={k,data};const res=MODALS[k](data||{});if(!res){modal=null;return}
+ $('#modalRoot').innerHTML=`<div class="modal-wrap" data-modal-bg><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="mh"><h2 id="mTitle">${res.title}</h2><button class="x" data-act="closeModal" aria-label="Close dialog">✕</button></div>${res.body}</div></div>`;
+ const f=$('#modalRoot').querySelector('input:not([type=hidden]):not([type=checkbox]),select,textarea,button.btn');if(f)f.focus();}
+function closeModal(){modal=null;$('#modalRoot').innerHTML=''}
+const mform=(name,inner,submit,extra)=>`<form data-form="${name}" novalidate ${extra||''}><div class="mb"><div class="ferr" hidden></div>${inner}</div><div class="mf"><button class="btn" type="button" data-act="closeModal">Cancel</button><button class="btn primary" type="submit">${submit}</button></div></form>`;
+const sponsorSelect=()=>kind()==='sponsor'?`<p class="small" style="margin:0 0 12px">Pledging as <b>${esc(ORGS[S.role].name)}</b></p><input type="hidden" name="org" value="${S.role}">`:`<div class="field" style="margin-bottom:12px"><label for="m-org">Pledge as (demo sponsor)</label><select id="m-org" name="org">${['northline','keystone','riverbend'].map(o=>`<option value="${o}">${esc(ORGS[o].name)}</option>`).join('')}</select></div>`;
+const MODALS={
+ request({post:id}){const p=post(id);if(!p)return null;const q=qty(p);const lpp=lppOf(p);const ops=isOps();const org=ops?'crossroads':S.role;const pr=S.profiles[org];
+  return{title:`${TYPES[p.type].verb} · ${esc(p.title)}`,body:mform('request',`<input type="hidden" name="post" value="${p.id}">
+   ${ops?`<div class="field" style="margin-bottom:12px"><label for="m-fb">On behalf of</label><select id="m-fb" name="org">${Object.keys(S.profiles).map(o=>`<option value="${o}">${esc(ORGS[o].name)}</option>`).join('')}</select></div>`:`<input type="hidden" name="org" value="${org}">`}
+   <div class="field"><label for="m-pal">Pallets</label><input id="m-pal" name="pallets" type="number" min="1" max="${q.rem}" step="1" required value="${Math.min(q.rem,1)}"><div class="hint">${q.rem} of ${q.total} remaining${p.type!=='capacity'?` · about ${num(lpp)} lbs per pallet`:''}</div></div>
+   ${pr&&p.type!=='capacity'&&!ops?`<div class="note" style="margin-top:12px">Your profile: ${pr.temps.join(', ')} · ${p.temp==='Refrigerated'?pr.refrig+' refrigerated':p.temp==='Frozen'?pr.frozen+' frozen':pr.dry+' dry'} pallets of storage · receiving ${pad(pr.open)}:00–${pad(pr.close)}:00.</div>`:''}
+   ${p.type==='sale'?'<div class="note amber" style="margin-top:8px">This is a purchase. The seller sets terms; BHD coordinates transportation only.</div>':''}
+   <p class="small muted" style="margin:12px 0 0">${orgShort(p.orgId)} confirms or declines. Pending requests hold quantity so the offer cannot be over-allocated.</p>`,'Send request')}},
+ pledge({sp:id,full}){const sp=spById(id);if(!sp)return null;const sh=shp(sp.shipmentId);const t=spT(sp);const c=S.campaign;const cr=campaignRem();
+  return{title:`Sponsor ${sh.id} transportation`,body:mform('pledge',`<input type="hidden" name="sp" value="${sp.id}">${sponsorSelect()}
+   <div class="note" style="margin-bottom:12px">You are funding <b>transportation only</b> for ${sh.id} (${sumP(sh)} pallets, ${num(sumL(sh))} lbs, ${esc(routeText(sh))}). The food is donated separately by ${esc(orgShort(sh.donorId))}. Payment recipient if live: <b>Backhaul Direct</b>.</div>
+   <div class="field"><label for="m-amt">Amount (remaining gap ${money(t.gap)})</label><input id="m-amt" name="amount" type="number" min="1" max="${t.gap}" step="0.01" required value="${full?t.gap:Math.min(500,t.gap)}"></div>
+   <div class="row" style="margin-top:8px;gap:6px">${[250,500,1000,2000].filter(v=>v<t.gap).map(v=>`<button type="button" class="chip" data-act="amt" data-v="${v}">${money(v)}</button>`).join('')}<button type="button" class="chip" data-act="amt" data-v="${t.gap}">Full gap ${money(t.gap)}</button></div>
+   ${cr>0?`<label class="check" style="margin-top:12px" data-match-row><input type="checkbox" name="match"> Request a ${esc(c.name)} match (1:1, ${money(cr)} of commitment left; never exceeds the gap)</label>`:''}
+   <label class="check" style="margin-top:12px;align-items:flex-start"><input type="checkbox" name="ack" style="margin-top:3px"> <span>I understand this is a <b>simulated pledge</b>: no payment is collected, it stays pending until BHD Operations confirms simulated funding, and it is not described as tax-deductible.</span></label>`,'Submit demo pledge')}},
+ quote({sh:id}){const sh=shp(id);if(!sh)return null;const q=sh.quote||illustrativeQuote(sh);const sp=spFor(sh);const cost=sh.internal.carrierCost!=null?sh.internal.carrierCost:(CAPS.find(c=>c.id==='cap-lakeview').cost);const f=(n,l,v)=>`<div class="field"><label for="q-${n}">${l}</label><input id="q-${n}" name="${n}" type="number" min="0" step="0.01" value="${v}" data-qin></div>`;
+  return{title:`${sh.quote?'Revise':'Issue'} transportation quote · ${sh.id}`,body:mform('quote',`<input type="hidden" name="sh" value="${sh.id}"><p class="small muted" style="margin:0 0 12px">Illustrative figures for the demo. ${sh.stops.length} stop${sh.stops.length===1?'':'s'}; handling applies per stop.</p>
+   <div class="fgrid">${f('linehaul','Linehaul',q.linehaul)}${f('fuel','Fuel surcharge',q.fuel)}${f('stopoffs','Extra stop charges',q.stopoffs)}${f('handling','Handling per stop',q.handling)}${f('coord','Coordination fee',q.coord)}<div class="field"><span class="flabel">Quoted total</span><div id="qTotal" style="font-size:20px;font-weight:700;padding-top:2px">${money(qTotal(q,sh))}</div></div></div>
+   <div class="internal"><div class="lab">Internal — not shown to participants or sponsors</div><div class="fgrid"><div class="field"><label for="q-cost">Expected carrier cost</label><input id="q-cost" name="cost" type="number" min="0" step="0.01" value="${cost}"></div><div class="field"><label for="q-note">Private note</label><input id="q-note" name="note" maxlength="140" value="${esc(sh.internal.note||'')}"></div></div></div>
+   ${!sp?`<label class="check" style="margin-top:12px"><input type="checkbox" name="openSp" checked> Open a sponsorship opportunity for this transportation cost</label>`:sp.pledges.some(p=>['pending','confirmed'].includes(p.status))?'<div class="note red" style="margin-top:12px">This shipment has pledges. Changing the total flags the sponsorship for review and notifies sponsors — nothing is reallocated automatically.</div>':''}`,sh.quote?'Issue revised quote':'Issue quote')}},
+ deliver({sh:id}){const sh=shp(id);if(!sh)return null;
+  return{title:`Record delivery · ${sh.id}`,body:mform('deliver',`<input type="hidden" name="sh" value="${sh.id}"><p class="small muted" style="margin:0 0 12px">Enter what each stop actually received. Impact uses these pounds.</p>
+   <div class="fgrid">${sh.stops.map(s=>`<div class="field"><label for="d-${s.orgId}">${esc(orgShort(s.orgId))} — pallets received</label><input id="d-${s.orgId}" name="rec_${s.orgId}" type="number" min="0" max="${s.pallets}" step="1" value="${s.pallets}"><div class="hint">of ${s.pallets} allocated (${num(s.lbs)} lbs)</div></div>`).join('')}
+   <div class="field full"><label for="d-rcv">Received by</label><input id="d-rcv" name="receiver" maxlength="100" value="${esc(sh.stops.map(s=>ORGS[s.orgId].contact).join('; '))}"></div>
+   <div class="field full"><label for="d-notes">Delivery notes</label><textarea id="d-notes" name="notes" maxlength="300">All stops received; temperatures logged in range.</textarea></div>
+   <div class="field full"><label for="d-photo">Delivery photo (optional)</label><input id="d-photo" type="file" accept="image/*" data-photo="pod"><div class="hint">If none is attached, a demo placeholder is used.</div><img id="prev-pod" alt="Selected photo preview" hidden style="margin-top:8px;max-width:160px;border-radius:6px"></div>
+   <label class="check full"><input type="checkbox" name="approve" checked> Approve photo for sponsor and impact reports</label></div>`,'Confirm delivery')}},
+ exception({sh:id}){return{title:`Log exception · ${id}`,body:mform('exception',`<input type="hidden" name="sh" value="${id}"><div class="field"><label for="e-sev">Severity</label><select id="e-sev" name="sev"><option value="amber">Attention</option><option value="red">Urgent</option></select></div><div class="field" style="margin-top:12px"><label for="e-text">What happened?</label><textarea id="e-text" name="text" maxlength="240" placeholder="e.g. Driver running 45 minutes late to stop 2"></textarea></div>`,'Log exception')}},
+ cancel({sh:id}){const sh=shp(id);const sp=activeSp(sh);return{title:`Cancel ${id}?`,body:mform('cancel',`<input type="hidden" name="sh" value="${id}"><p style="margin-top:0">Canceling notifies the donor and receiving food banks.${sp&&sp.pledges.some(p=>['pending','confirmed'].includes(p.status))?' The sponsorship will be <b>flagged for review</b> and sponsors notified. No pledge is moved to another delivery.':''}</p><div class="field"><label for="x-r">Reason</label><input id="x-r" name="reason" maxlength="140" placeholder="e.g. Donor could not load on the agreed date"></div>`,'Cancel shipment')}},
+ adopt({route}){const r=ROUTES.find(x=>x.id===route);const est=r.runs*r.perRun;const used=S.adoptions.filter(a=>a.routeId===r.id&&a.status!=='ended').reduce((a,b)=>a+b.cap,0);const rem=Math.max(0,est-used);
+  return{title:`Adopt ${esc(r.name)}`,body:mform('adopt',`<input type="hidden" name="route" value="${r.id}">${sponsorSelect()}<div class="note" style="margin-bottom:12px">${esc(r.freq)} · about ${money(r.perRun)} per run · ~${money(est)}/month. ${money(rem)}/month is not yet adopted.</div><div class="field"><label for="a-cap">Monthly cap</label><input id="a-cap" name="cap" type="number" min="1" max="${rem}" step="1" value="${Math.min(rem,r.perRun*2)}"><div class="hint">You are never committed above this amount in a month. Demo only — no recurring charge.</div></div>`,'Request adoption')}},
+ savesearch(){const f=S.ui.f;return{title:'Save this search',body:mform('savesearch',`<p class="small muted" style="margin-top:0">Type: ${f.type==='all'?'All':TYPES[f.type].label} · Temperature: ${f.temp==='all'?'All':f.temp}${f.q?` · Text: “${esc(f.q)}”`:''}</p><div class="field"><label for="s-name">Name</label><input id="s-name" name="name" maxlength="40" value="${esc(f.type==='all'?'My search':TYPES[f.type].label+(f.temp!=='all'?' · '+f.temp:''))}"></div><label class="check" style="margin-top:12px"><input type="checkbox" name="alert" checked> Send me a demo notification when a new post matches</label>`,'Save search')}},
+ confirm({title,text,act,label,danger,...rest}){const attrs=Object.entries(rest).map(([k,v])=>`data-${k}="${esc(v)}"`).join(' ');return{title:esc(title),body:`<div class="mb"><p style="margin:0">${text}</p></div><div class="mf"><button class="btn" data-act="closeModal">Keep as is</button><button class="btn ${danger?'danger':'primary'}" data-act="${act}" ${attrs}>${esc(label)}</button></div>`}},
+ doc({sh:id,i}){const sh=shp(id);const d=sh.docs[+i];return{title:esc(d.name),body:`<div class="mb"><div class="note amber" style="margin-bottom:12px">Demo document generated from shipment data — not a legal or commercial document.</div>${kv([['Shipment',sh.id],['Issued',fmtT(d.at)],['Pickup',`${esc(orgName(sh.pickup.orgId))}, ${fmtD(sh.pickup.date)} ${sh.pickup.win}`],['Stops',sh.stops.map(s=>`${esc(orgShort(s.orgId))} (${s.pallets})`).join(', ')],['Commodity',`${esc(sh.product)} · ${sh.temp}`],['Pallets / weight',`${sumP(sh)} / ${num(sumL(sh))} lbs`],sh.quote&&/quote/i.test(d.name)?['Quoted total (illustrative)',money(shTotal(sh))]:null,sh.assignment&&/rate|dispatch|lading/i.test(d.name)?['Capacity',esc(CAPS.find(c=>c.id===sh.assignment).name)]:null,sh.pod&&/delivery/i.test(d.name)?['Received by',esc(sh.pod.receiver)]:null])}</div><div class="mf"><button class="btn" data-act="closeModal">Close</button></div>`}},
+ about(){return{title:'About this prototype',body:`<div class="mb small"><p style="margin-top:0"><b>BHD | Food Bank Network</b> is a working front-end concept. Every organization, contact, price, route and figure is fictional demonstration data; no existing BHD customer has agreed to donate or sponsor anything. Fresh Connect / Gleaners appears only as a potential pilot relationship.</p>
+  <p><b>Demo roles, not security.</b> The role switcher shows what each portal would see. Internal costs, margins and private notes appear only in the BHD Operations view, but that is enforced in this browser only. A production build needs authenticated accounts with <b>server-side permission checks</b> on every read and write, so non-operations users can never receive internal data.</p>
+  <p><b>Money.</b> Pledges are simulated. Nothing collects payment details, moves money, issues receipts or claims tax deductibility. Pledges stay pending until an operations user marks simulated funding confirmed.</p>
+  <p><b>Storage.</b> Changes save to this browser's local storage. Use Reset demo to start over.</p>
+  <p style="margin-bottom:0"><b>No live integrations.</b> Quotes, documents and capacity are generated from demo data.</p></div><div class="mf"><button class="btn" data-act="closeModal">Close</button></div>`}}
+};
+function formErr(form,msg){const e=form.querySelector('.ferr');if(e){e.textContent=msg;e.hidden=false;e.scrollIntoView({block:'nearest'})}toast(msg,'err')}
+
+/* ============ demo guide ============ */
+const SCN_POST={type:'donate',title:'Fresh produce — apples, carrots & cabbage',product:'Fresh produce: apples, carrots, green cabbage',pallets:20,lbs:30000,temp:'Refrigerated',shelfLife:'10–14 days at 34–38°F',shelfDays:12,location:'Benton Harbor, MI',receiving:'Refrigerated receiving at 34–38°F; 48×40 pallets, no double-stack',transport:'Needs coordinated transportation',desc:'Seasonal packing surplus. Palletized and stretch-wrapped, about 1,500 lbs per pallet. Donated at no cost.',photo:{emoji:'🥬',bg:'#E7F2DA'},scn:true};
+const SCN_REQ=[['crossroads',8],['eastgate',7],['wabash',5]];
+const scn=()=>S.posts.find(p=>p.scn&&p.status!=='withdrawn'&&p.status!=='expired');
+const scnSh=()=>{const p=scn();return p&&p.shipmentId?shp(p.shipmentId):null};
+const scnSp=()=>{const sh=scnSh();return sh?activeSp(sh):null};
+const STEPS=[
+ {t:'Donor offers 20 pallets (30,000 lbs) of refrigerated produce',who:'lakeshore',done:()=>!!scn(),
+  show:()=>{setRole('lakeshore');go('food');openRecord('compose','donate');fillScenario()},
+  run:()=>createPost(Object.assign({},SCN_POST,{deadline:bizOn(dOff(5))}),'lakeshore'),
+  view:()=>{setRole('lakeshore');go('food');openRecord('post',scn().id)}},
+ {t:'Three food banks request 8, 7 and 5 pallets',who:'crossroads',
+  done:()=>{const p=scn();return !!p&&SCN_REQ.every(([o,n])=>p.allocs.some(a=>a.orgId===o&&a.pallets===n&&['requested','confirmed'].includes(a.status)))},
+  show:()=>{setRole('crossroads');go('food');openRecord('post',scn().id);openModal('request',{post:scn().id})},
+  run:()=>{const p=scn();let r=OK('');for(const[o,n]of SCN_REQ){if(!p.allocs.some(a=>a.orgId===o&&['requested','confirmed'].includes(a.status))){r=requestAlloc(p.id,o,n);if(!r.ok)return r}}return r},
+  view:()=>{setRole('lakeshore');go('food');openRecord('post',scn().id)}},
+ {t:'The donor confirms the allocations',who:'lakeshore',
+  done:()=>{const p=scn();return !!p&&SCN_REQ.every(([o])=>p.allocs.some(a=>a.orgId===o&&a.status==='confirmed'))},
+  show:()=>{setRole('lakeshore');go('food');openRecord('post',scn().id)},
+  run:()=>{const p=scn();let r=OK('');p.allocs.filter(a=>a.status==='requested'&&SCN_REQ.some(([o])=>o===a.orgId)).forEach(a=>{r=decideAlloc(p.id,a.id,'confirm','lakeshore')});return r},
+  view:()=>{setRole('bhd');go('home')}},
+ {t:'BHD reviews the suggested shared route and issues a quote',who:'bhd',done:()=>{const sh=scnSh();return !!(sh&&sh.quote)},
+  show:()=>{setRole('bhd');S.ui.tTab=scnSh()?'ship':'sug';go('transport');const sh=scnSh();sh?openRecord('sh',sh.id):openRecord('sg',scn().id)},
+  run:()=>{let sh=scnSh();if(!sh){const r=approvePlan(scn().id);if(!r.ok)return r;sh=scnSh()}if(!sh.quote)return issueQuote(sh.id,illustrativeQuote(sh),true,{cost:1650,note:'Lakeview return trip likely — confirm reefer pre-cool to 34°F.'});return OK('')},
+  view:()=>{setRole('bhd');S.ui.tTab='ship';go('transport');openRecord('sh',scnSh().id)}},
+ {t:'A sponsor pledges part of the transportation cost',who:'northline',done:()=>{const sp=scnSp();return !!sp&&sp.pledges.some(p=>p.orgId==='northline'&&p.status!=='released')},
+  show:()=>{setRole('northline');S.ui.spFilter='open';go('sponsor');openModal('pledge',{sp:scnSp().id})},
+  run:()=>{const sp=scnSp();return pledge(sp.id,'northline',Math.min(2000,spT(sp).gap),false)},
+  view:()=>{setRole('northline');S.ui.spFilter='open';go('sponsor')}},
+ {t:'Another sponsor covers the remainder',who:'keystone',done:()=>{const sp=scnSp();return !!sp&&spT(sp).gap===0&&sp.pledges.length>0},
+  show:()=>{setRole('keystone');S.ui.spFilter='open';go('sponsor');openModal('pledge',{sp:scnSp().id,full:1})},
+  run:()=>{const sp=scnSp();const g=spT(sp).gap;return g>0?pledge(sp.id,'keystone',g,false):OK('')},
+  view:()=>{setRole('keystone');go('sponsor');openRecord('sp',scnSp().id)}},
+ {t:'BHD confirms funding and transportation, then releases',who:'bhd',done:()=>{const sh=scnSh();return !!sh&&['released','in_transit','delivered'].includes(sh.stage)},
+  show:()=>{setRole('bhd');go('transport');openRecord('sp',scnSp().id)},
+  run:()=>{const sh=scnSh();const sp=scnSp();let r;
+   if(sp)for(const p of sp.pledges.filter(x=>x.status==='pending')){r=confirmPledge(sp.id,p.id);if(!r.ok)return r}
+   if(sh.quote.status!=='approved'){r=approveQuote(sh.id);if(!r.ok)return r}
+   if(!sh.assignment){r=assignCap(sh.id,'cap-lakeview');if(!r.ok)return r}
+   sh.stops.forEach(s=>{if(s.appt==='requested')acceptAppt(sh.id,s.orgId,s.orgId)});
+   return release(sh.id)},
+  view:()=>{setRole('bhd');go('transport');openRecord('sh',scnSh().id)}},
+ {t:'Delivery is confirmed and the impact report updates',who:'bhd',done:()=>{const sh=scnSh();return !!sh&&sh.stage==='delivered'},
+  show:()=>{setRole('bhd');go('transport');openRecord('sh',scnSh().id)},
+  run:()=>{const sh=scnSh();if(sh.stage==='released'){const r=markTransit(sh.id);if(!r.ok)return r}const rec={};sh.stops.forEach(s=>rec[s.orgId]=s.pallets);
+   return recordDelivery(sh.id,{rec,receiver:sh.stops.map(s=>ORGS[s.orgId].contact).join('; '),notes:'All three stops received in full; temperatures logged 35–37°F.',photo:demoPhoto(sh.id+' - Crossroads dock, Indianapolis'),approve:true})},
+  view:()=>{setRole('northline');S.ui.lens=null;closeDrawer();go('impact')}}
+];
+const curStep=()=>{const i=STEPS.findIndex(s=>!s.done());return i<0?STEPS.length:i};
+function guideShow(i){if(i>0&&!STEPS[i-1].done()){toast(`Complete step ${i} first — or press “Do it” to run the earlier steps automatically.`,'err');return}closeModal();STEPS[i].show();save()}
+function guideRun(i){
+ closeModal();
+ for(let j=0;j<=i;j++){if(STEPS[j].done())continue;const r=STEPS[j].run();if(!STEPS[j].done()){expireStale();save();render();toast(`Step ${j+1} could not be completed automatically${r&&r.msg?': '+r.msg:''}. Try Reset demo for a clean start.`,'err');return}}
+ expireStale();STEPS[i].view();save();render();toast(`Step ${i+1} complete: ${STEPS[i].t}.`);
+}
+function renderGuide(){
+ const root=$('#guideRoot');
+ if(!S.ui.guide){root.innerHTML=`<button class="btn dark gbtn" data-act="guideToggle">${icon('play',16)} 5-minute demo guide</button>`;return}
+ const c=curStep();
+ root.innerHTML=`<aside class="guide" aria-label="Demo guide"><header><div><h2>Offer-to-delivery demo · 8 steps</h2><p>“Show me” opens the right role and screen. “Do it” completes the step (and any earlier ones).</p></div><button class="x" data-act="guideToggle" aria-label="Hide demo guide">✕</button></header>
+ <ol>${STEPS.map((s,i)=>{const d=s.done();return `<li class="gs${d?' done':''}${i===c?' cur':''}"><span class="n">${d?'✓':i+1}</span><div><b>${s.t}</b><span class="who">As ${esc(ORGS[s.who].name)}</span>${d?'':`<div class="row"><button class="btn sm" data-act="gShow" data-i="${i}"${i>c?' disabled':''}>Show me</button><button class="btn sm ${i===c?'primary':''}" data-act="gRun" data-i="${i}">Do it</button></div>`}</div></li>`}).join('')}</ol>
+ <footer><span class="small muted">${c>=STEPS.length?'Scenario complete — see Impact.':`Next: step ${c+1}`}</span><button class="btn sm" data-act="resetAsk">Reset demo</button></footer></aside>`;
+}
+function fillScenario(){
+ const f=document.querySelector('form[data-form="post"]');if(!f)return;const v=Object.assign({},SCN_POST,{deadline:bizOn(dOff(5))});
+ const set=(n,val)=>{const el=f.elements[n];if(el)el.value=val};
+ set('type','donate');f.dataset.type='donate';['title','product','pallets','lbs','temp','shelfLife','shelfDays','location','receiving','transport','desc','deadline'].forEach(k=>set(k,v[k]));set('scn','1');if(f.elements.org)set('org','lakeshore');
+ toast('Scenario values filled — review and press “Post to the board”.');
+}
+
+/* ============ render & routing ============ */
+function render(){renderHeader();const r=curRoute();const V={home:viewHome,food:viewFood,transport:viewTransport,sponsor:viewSponsor,impact:viewImpact}[r];$('#main').innerHTML=V();renderDrawer();renderGuide();document.title=`${NAV.find(n=>n[0]===r)[1]} · BHD Food Bank Network`}
+function go(r){if(curRoute()!==r||!location.hash){location.hash='#/'+r}else render()}
+function setRole(id,announce){if(!ROLES.some(r=>r.id===id))return;S.role=id;S.ui.lens=null;S.ui.notifOpen=false;if(id!=='bhd'&&S.ui.tTab==='sug')S.ui.tTab='ship';if(S.ui.foodTab==='profile'&&!['foodbank','ops'].includes(kind()))S.ui.foodTab='board';save();render();if(announce)toast(`Now viewing as ${ORGS[id].name}.`)}
+function commit(res){if(res.ok){expireStale();save();render()}if(res.msg)toast(res.msg,res.ok?'ok':'err');return res.ok}
+function toast(msg,kindT){const el=document.createElement('div');el.className='toast'+(kindT==='err'?' err':'');el.textContent=msg;const box=$('#toasts');box.appendChild(el);while(box.children.length>3)box.firstChild.remove();setTimeout(()=>el.remove(),kindT==='err'?6500:4200)}
+
+/* ============ events ============ */
+const ACT={
+ nav:d=>{closeDrawer();go(d.to)},
+ setRole:d=>setRole(d.id,true),
+ closeDrawer:()=>closeDrawer(),closeModal:()=>closeModal(),
+ compose:d=>{if(['sponsor'].includes(kind())&&d.type==='donate'&&!isOps()){}openRecord('compose',d.type||'donate')},
+ fillScenario:()=>fillScenario(),
+ homeFind:()=>{S.ui.f={q:'',type:'donate',temp:'all',exp:false};S.ui.foodTab='board';save();go('food')},
+ foodTab:d=>{S.ui.foodTab=d.v;save();if(curRoute()!=='food')go('food');else render()},
+ tTab:d=>{S.ui.tTab=d.v;save();render()},tFilter:d=>{S.ui.tFilter=d.v;save();render()},spFilter:d=>{S.ui.spFilter=d.v;save();render()},
+ ftype:d=>{S.ui.f.type=d.v;save();render()},
+ clearFilters:()=>{S.ui.f={q:'',type:'all',temp:'all',exp:false};save();render()},
+ saveSearch:()=>openModal('savesearch'),
+ applySaved:d=>{const s=S.saved.find(x=>x.id===d.id);if(s){S.ui.f=Object.assign({},s.f);save();render();toast(`Applied “${s.name}”.`)}},
+ delSaved:d=>{S.saved=S.saved.filter(x=>x.id!==d.id);commit(OK('Saved search deleted.'))},
+ toggleNotif:()=>{S.ui.notifOpen=!S.ui.notifOpen;renderHeader()},
+ readAll:()=>{S.notes.forEach(n=>{if(n.to===S.role)n.read=true});save();renderHeader()},
+ notifGo:d=>{const n=S.notes.find(x=>x.id===d.id);if(!n)return;n.read=true;S.ui.notifOpen=false;save();renderHeader();if(n.link){const[k,id]=n.link.split(':');if(k==='nav')go(id);else openRecord(k,id)}},
+ reqOpen:d=>openModal('request',{post:d.post}),
+ decide:d=>commit(decideAlloc(d.post,d.alloc,d.d,S.role)),
+ confirmAll:d=>{const p=post(d.post);let last=NO('Nothing to confirm.');let n=0;for(const a of p.allocs.filter(x=>x.status==='requested')){last=decideAlloc(p.id,a.id,'confirm',S.role);if(!last.ok)break;n++}commit(n&&last.ok?OK(`Confirmed ${n} request${n===1?'':'s'}.`):last)},
+ cancelReq:d=>commit(cancelReq(d.post,d.alloc,S.role)),
+ review:d=>commit(reviewPost(d.post)),
+ withdrawAsk:d=>{const p=post(d.post);openModal('confirm',{title:p.shipmentId?'Mark food unavailable?':'Withdraw this post?',text:p.shipmentId?`${esc(p.title)} is planned on ${p.shipmentId}. Marking it unavailable blocks dispatch and flags any sponsorship for review. Sponsors are notified; no funds are reallocated.`:'Pending requests will be closed and requesters notified.',act:'withdraw',label:p.shipmentId?'Mark unavailable':'Withdraw',danger:1,post:p.id})},
+ withdraw:d=>{closeModal();commit(withdrawPost(d.post,S.role))},
+ approvePlan:d=>{const r=approvePlan(d.post);if(commit(r)){S.ui.tTab='ship';openRecord('sh',r.id);save()}},
+ quoteOpen:d=>openModal('quote',{sh:d.sh}),
+ approveQuote:d=>commit(approveQuote(d.sh)),
+ openSp:d=>commit(openSp(d.sh)),
+ partCommit:d=>openModal('confirm',{title:'Participants cover the balance?',text:'Any amount not covered by confirmed sponsorship will be billed to the participating food banks by share (demo). This satisfies the funding check for release.',act:'partCommitGo',label:'Confirm',sh:d.sh}),
+ partCommitGo:d=>{closeModal();commit(participantCommit(d.sh))},
+ assign:d=>commit(assignCap(d.sh,d.cap)),
+ acceptAppt:d=>commit(acceptAppt(d.sh,d.org,S.role)),
+ release:d=>commit(release(d.sh)),
+ transit:d=>commit(markTransit(d.sh)),
+ deliverOpen:d=>openModal('deliver',{sh:d.sh}),
+ cancelOpen:d=>openModal('cancel',{sh:d.sh}),
+ exOpen:d=>openModal('exception',{sh:d.sh}),
+ resolveEx:d=>commit(resolveEx(d.sh,d.ex)),
+ photoApprove:d=>commit(setPhotoApproval(d.sh,+d.i,d.v==='1')),
+ doc:d=>openModal('doc',{sh:d.sh,i:d.i}),
+ pledgeOpen:d=>openModal('pledge',{sp:d.sp,full:d.full}),
+ amt:d=>{const i=document.querySelector('form[data-form="pledge"] [name="amount"]');if(i)i.value=d.v},
+ confirmPledge:d=>commit(confirmPledge(d.sp,d.pl)),
+ releasePledge:d=>openModal('confirm',{title:'Release this pledge?',text:'The pledge is released, not moved to another delivery. The sponsor is notified.',act:'releasePledgeGo',label:'Release pledge',danger:1,sp:d.sp,pl:d.pl}),
+ releasePledgeGo:d=>{closeModal();commit(releasePledge(d.sp,d.pl,S.role))},
+ closeReview:d=>commit(closeReview(d.sp)),
+ adoptOpen:d=>openModal('adopt',{route:d.id}),
+ confirmAdopt:d=>commit(confirmAdoption(d.id)),
+ guideToggle:()=>{S.ui.guide=!S.ui.guide;save();renderGuide()},
+ gShow:d=>guideShow(+d.i),gRun:d=>guideRun(+d.i),
+ about:()=>openModal('about'),
+ resetAsk:()=>openModal('confirm',{title:'Reset the demo?',text:'This restores the original demonstration data in this browser. Your demo changes will be cleared.',act:'reset',label:'Reset demo',danger:1}),
+ reset:()=>{closeModal();drawer=null;try{localStorage.removeItem(LS_KEY)}catch(e){}S=seed();expireStale();save();if(curRoute()!=='home')location.hash='#/home';render();toast('Demo reset to the starting scenario.')}
+};
+document.addEventListener('click',e=>{
+ if(e.target.matches('[data-modal-bg]')){closeModal();return}
+ const a=e.target.closest('[data-act]');
+ if(a&&!a.disabled){if(a.tagName==='SELECT'||a.tagName==='INPUT')return;e.preventDefault();const fn=ACT[a.dataset.act];if(fn)fn(a.dataset,a,e);return}
+ const o=e.target.closest('[data-open]');
+ if(o){e.preventDefault();const s=o.dataset.open;const i=s.indexOf(':');if(modal)closeModal();lastFocus=o;openRecord(s.slice(0,i),s.slice(i+1));return}
+ if(S.ui.notifOpen&&!e.target.closest('#notif')&&!e.target.closest('#bellBtn')){S.ui.notifOpen=false;renderHeader()}
+});
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){if(modal){closeModal();return}if(S.ui.notifOpen){S.ui.notifOpen=false;renderHeader();$('#bellBtn').focus();return}if(drawer){closeDrawer();return}}
+ if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]:not(button)')){e.preventDefault();e.target.click()}
+});
+let qTimer=null;
+document.addEventListener('input',e=>{
+ const t=e.target;
+ if(t.dataset.filter==='q'){S.ui.f.q=t.value;clearTimeout(qTimer);qTimer=setTimeout(()=>{save();const b=$('#board-results');if(b)b.innerHTML=boardResults()},160)}
+ if(t.matches('[data-qin]')){const f=t.form;const sh=shp(f.elements.sh.value);const q={};['linehaul','fuel','stopoffs','handling','coord'].forEach(k=>q[k]=Number(f.elements[k].value)||0);$('#qTotal').textContent=money(qTotal(q,sh))}
+});
+document.addEventListener('change',e=>{
+ const t=e.target;
+ if(t.id==='roleSel'){setRole(t.value,true);return}
+ if(t.dataset.filter==='temp'){S.ui.f.temp=t.value;save();$('#board-results').innerHTML=boardResults();return}
+ if(t.dataset.filter==='exp'){S.ui.f.exp=t.checked;save();$('#board-results').innerHTML=boardResults();return}
+ const ac=t.dataset.actChange;
+ if(ac==='ctype'){t.form.dataset.type=t.value;return}
+ if(ac==='lens'){S.ui.lens=t.value;save();render();return}
+ if(ac==='profOrg'){S.ui.profOrg=t.value;save();render();return}
+ if(t.dataset.photo){const file=t.files&&t.files[0];if(!file)return;if(!/^image\//.test(file.type)){toast('Choose an image file.','err');t.value='';return}
+  const rd=new FileReader();rd.onload=()=>{const img=new Image();img.onload=()=>{const max=800,sc=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*sc);c.height=Math.round(img.height*sc);c.getContext('2d').drawImage(img,0,0,c.width,c.height);pendingPhoto[t.dataset.photo]=c.toDataURL('image/jpeg',0.72);const pv=$('#prev-'+t.dataset.photo);if(pv){pv.src=pendingPhoto[t.dataset.photo];pv.hidden=false}};img.onerror=()=>toast('That image could not be read.','err');img.src=rd.result};rd.readAsDataURL(file)}
+});
+const pendingPhoto={};
+const FORMS={
+ post(fd,form){const d={};['type','title','product','pallets','lbs','temp','deadline','shelfLife','shelfDays','price','location','transport','receiving','desc'].forEach(k=>d[k]=(fd.get(k)||'').toString());d.scn=fd.get('scn')==='1';
+  if(pendingPhoto.post){d.photo={src:pendingPhoto.post,bg:'#EEF1F4'}}
+  const org=isOps()?fd.get('org'):S.role;const r=createPost(d,org);if(!r.ok)return formErr(form,r.msg);delete pendingPhoto.post;drawer=null;commit(r);openRecord('post',r.id)},
+ request(fd,form){const r=requestAlloc(fd.get('post'),fd.get('org'),fd.get('pallets'));if(!r.ok)return formErr(form,r.msg);closeModal();commit(r)},
+ comment(fd,form){const r=addComment(form.dataset.post,S.role,fd.get('text'));if(!r.ok)return formErr(form,r.msg);commit(r)},
+ profile(fd,form){const r=saveProfile(form.dataset.org,{open:fd.get('open'),close:fd.get('close'),refrig:fd.get('refrig'),frozen:fd.get('frozen'),dry:fd.get('dry'),temps:fd.getAll('temps'),dock:(fd.get('dock')||'').trim(),recurring:(fd.get('recurring')||'').trim()});if(!r.ok)return formErr(form,r.msg);commit(r)},
+ pledge(fd,form){if(!fd.get('ack'))return formErr(form,'Please confirm you understand this is a simulated pledge.');const r=pledge(fd.get('sp'),fd.get('org'),fd.get('amount'),!!fd.get('match'));if(!r.ok)return formErr(form,r.msg);closeModal();commit(r)},
+ quote(fd,form){const q={};['linehaul','fuel','stopoffs','handling','coord'].forEach(k=>q[k]=fd.get(k));const r=issueQuote(fd.get('sh'),q,!!fd.get('openSp'),{cost:fd.get('cost'),note:(fd.get('note')||'').trim()});if(!r.ok)return formErr(form,r.msg);closeModal();commit(r)},
+ deliver(fd,form){const sh=shp(fd.get('sh'));const rec={};sh.stops.forEach(s=>rec[s.orgId]=fd.get('rec_'+s.orgId));const r=recordDelivery(sh.id,{rec,receiver:fd.get('receiver')||'',notes:fd.get('notes')||'',photo:pendingPhoto.pod||demoPhoto(sh.id+' - delivery confirmation'),approve:!!fd.get('approve')});if(!r.ok)return formErr(form,r.msg);delete pendingPhoto.pod;closeModal();commit(r)},
+ exception(fd,form){const r=addException(fd.get('sh'),fd.get('sev'),fd.get('text'));if(!r.ok)return formErr(form,r.msg);closeModal();commit(r)},
+ cancel(fd,form){const r=cancelShipment(fd.get('sh'),fd.get('reason')||'');if(!r.ok)return formErr(form,r.msg);closeModal();commit(r)},
+ adopt(fd,form){const r=adoptRoute(fd.get('route'),fd.get('org'),fd.get('cap'));if(!r.ok)return formErr(form,r.msg);closeModal();commit(r)},
+ savesearch(fd,form){const name=(fd.get('name')||'').trim();if(name.length<2)return formErr(form,'Give the search a name.');S.saved.push({id:uid('SS'),owner:S.role,name,f:Object.assign({},S.ui.f),alert:!!fd.get('alert')});closeModal();commit(OK(`Saved “${name}”.${fd.get('alert')?' You will get demo alerts for new matches.':''}`))}
+};
+document.addEventListener('submit',e=>{const f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();const fn=FORMS[f.dataset.form];if(fn)fn(new FormData(f),f)});
+window.addEventListener('hashchange',()=>{S.ui.notifOpen=false;render();window.scrollTo(0,0);$('#main').focus({preventScroll:true})});
+
+/* ============ init ============ */
+if(expireStale())save();else save();
+render();
+window.__bhd={get S(){return S},STEPS,guideRun,render};
+})();
+</script>
+</body>
+</html>
